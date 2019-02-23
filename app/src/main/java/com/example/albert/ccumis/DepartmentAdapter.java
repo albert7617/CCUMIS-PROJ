@@ -3,12 +3,16 @@ package com.example.albert.ccumis;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentAdapter extends ArrayAdapter<String>{
-  private List<Department> departments;
+  private List<Department> departments,departments_bak;
   public DepartmentAdapter(@NonNull Context context, int resource) {
     super(context, resource);
   }
@@ -37,12 +41,51 @@ public class DepartmentAdapter extends ArrayAdapter<String>{
     return departments == null ? 0 : departments.size();
   }
 
+  @NonNull
+  @Override
+  public Filter getFilter() {
+    Filter filter = new Filter() {
+      @Override
+      protected FilterResults performFiltering(CharSequence constraint) {
+        FilterResults results = new FilterResults();
+        ArrayList<Department> filtered = new ArrayList<>();
+
+        departments = departments_bak;
+        // perform your search here using the searchConstraint String.
+        if(constraint != null) {
+          constraint = constraint.toString().toLowerCase();
+          for (int i = 0; i < departments.size(); i++) {
+            String dataNames = departments.get(i).name;
+            if (dataNames.toLowerCase().contains(constraint))  {
+              filtered.add(departments.get(i));
+            }
+          }
+          results.count = filtered.size();
+          results.values = filtered;
+        } else {
+          results.count = departments.size();
+          results.values = departments;
+        }
+        return results;
+      }
+
+      @Override
+      protected void publishResults(CharSequence constraint, FilterResults results) {
+        departments = (List<Department>) results.values;
+        notifyDataSetChanged();
+      }
+    };
+    return filter;
+  }
+
   public void setDepartments(List<Department> departments) {
     this.departments = departments;
+    this.departments_bak = departments;
     notifyDataSetChanged();
   }
 
   public Department getDepartment(int position) {
     return departments.get(position);
   }
+
 }

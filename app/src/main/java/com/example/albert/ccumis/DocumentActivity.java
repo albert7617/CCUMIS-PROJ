@@ -1,5 +1,9 @@
 package com.example.albert.ccumis;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -12,15 +16,25 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
+
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -48,11 +62,14 @@ public class DocumentActivity extends AppCompatActivity {
     setContentView(R.layout.activity_document);
     Intent intent = getIntent();
     final int seri_no = intent.getIntExtra("SERI_NO", -1);
-
+    fm = getSupportFragmentManager();
     employmentViewModel = ViewModelProviders.of(this).get(EmploymentViewModel.class);
     final AutoCompleteTextView autoTextView = findViewById(R.id.content);
-    final SearchableSpinner spinner = findViewById(R.id.spinner_item);
+//    final SearchableSpinner spinner = findViewById(R.id.spinner_item);
+    final TextView spinner = findViewById(R.id.spinner_item);
     final DepartmentAdapter adapter = new DepartmentAdapter(this, R.layout.support_simple_spinner_dropdown_item);
+    final DepartmentAdapter listadapter = new DepartmentAdapter(this, android.R.layout.simple_list_item_1);
+
     if(seri_no != -1) {
       updateSeri_no = seri_no;
       employmentViewModel.getBySer_no(seri_no).observe(this, new Observer<Employment>() {
@@ -67,6 +84,11 @@ public class DocumentActivity extends AppCompatActivity {
             endHour     = employment.end_hour;
             endMinute   = employment.end_minute;
             autoTextView.setText(employment.content);
+            Department department = new Department();
+            department.name = employment.department;
+            department.value = employment.department_cd;
+            spinner.setTag(department);
+            spinner.setText(employment.department);
             updateInfoView();
           } catch (Exception e) {
             e.printStackTrace();
@@ -76,29 +98,69 @@ public class DocumentActivity extends AppCompatActivity {
     } else {
       updateSeri_no = -1;
     }
-    departmentViewModel = ViewModelProviders.of(this).get(DepartmentViewModel.class);
-    departmentViewModel.getAll(DEPARTMENT_TYPE).observe(this, new Observer<List<Department>>() {
+
+//    new Thread(new Runnable() {
+//      @Override
+//      public void run() {
+//        final ArrayList<Department> departments = getDepartments();
+//        if(departments != null) {
+//          runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//              adapter.setDepartments(departments);
+//              if(seri_no != -1) {
+////                spinner.setSelection(seri_no);
+//              }
+//            }
+//          });
+//
+//        }
+//      }
+//    }).start();
+
+
+
+//    AlertDialog.Builder alertDialog = new AlertDialog.Builder(DocumentActivity.this);
+//    LayoutInflater inflater = getLayoutInflater();
+//    View convertView = (View) inflater.inflate(R.layout.dialog_search_department, null);
+//    alertDialog.setView(convertView);
+//    ListView lv = (ListView) convertView.findViewById(R.id.spinnerList);
+//
+//
+//    lv.setAdapter(listadapter);
+//    alertDialog.show();
+
+//    departmentViewModel = ViewModelProviders.of(this).get(DepartmentViewModel.class);
+//    departmentViewModel.getAll(DEPARTMENT_TYPE).observe(this, new Observer<List<Department>>() {
+//      @Override
+//      public void onChanged(@Nullable List<Department> departments) {
+//        adapter.setDepartments(departments);
+//        if(seri_no != -1) {
+//          employmentViewModel.getBySer_no(seri_no).observe(DocumentActivity.this, new Observer<Employment>() {
+//            @Override
+//            public void onChanged(@Nullable Employment employment) {
+//              int position = adapter.getPosition(employment.department);
+//              if(position != -1) {
+//                spinner.setSelection(position);
+//              }
+//            }
+//          });
+//        }
+//      }
+//    });
+
+
+//    spinner.setTitle("選擇勞雇單位");
+//    spinner.setPositiveButton("確定");
+    spinner.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onChanged(@Nullable List<Department> departments) {
-        adapter.setDepartments(departments);
-        if(seri_no != -1) {
-          employmentViewModel.getBySer_no(seri_no).observe(DocumentActivity.this, new Observer<Employment>() {
-            @Override
-            public void onChanged(@Nullable Employment employment) {
-              int position = adapter.getPosition(employment.department);
-              if(position != -1) {
-                spinner.setSelection(position);
-              }
-            }
-          });
-        }
+      public void onClick(View v) {
+        DepartmentSearchDialogFragment dialog = new DepartmentSearchDialogFragment();
+        dialog.setCallback(searchCallback);
+        dialog.show(fm, "DepartmentSearchDialogFragment");
       }
     });
 
-
-    spinner.setTitle("選擇勞雇單位");
-    spinner.setPositiveButton("確定");
-    spinner.setAdapter(adapter);
 
     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     List<String> historyList = new ArrayList<>(sharedPreferences.getStringSet(getString(R.string.pref_content), new HashSet<String>()));
@@ -107,7 +169,7 @@ public class DocumentActivity extends AppCompatActivity {
     final ArrayAdapter<String> historyArrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, historyList);
     autoTextView.setAdapter(historyArrayAdapter);
 
-    fm = getSupportFragmentManager();
+
 
     editDate = findViewById(R.id.editDate);
     editDate.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +235,7 @@ public class DocumentActivity extends AppCompatActivity {
     saveBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        checkValidity(adapter.getDepartment(spinner.getSelectedItemPosition()));
+        checkValidity((Department) spinner.getTag());
       }
     });
   }
@@ -191,6 +253,27 @@ public class DocumentActivity extends AppCompatActivity {
       updateInfoView();
     }
   };
+
+  DepartmentSearchDialogFragment.Callback searchCallback = new DepartmentSearchDialogFragment.Callback() {
+    @Override
+    public void onCancelled() {
+      FragmentManager fm = getSupportFragmentManager();
+      fm.beginTransaction().remove(fm.findFragmentByTag("DepartmentSearchDialogFragment")).commit();
+    }
+
+    @Override
+    public void onSelect(Department department) {
+      TextView spinner = findViewById(R.id.spinner_item);
+      spinner.setTag(department);
+      spinner.setText(department.name);
+      fm.beginTransaction().remove(fm.findFragmentByTag("DepartmentSearchDialogFragment")).commit();
+
+    }
+  };
+
+
+
+
 
   private void updateInfoView() {
     if (mSelectedDate != null) {

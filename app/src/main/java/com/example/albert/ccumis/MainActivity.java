@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
     }
     Bitmap userIcon = IdenticonGenerator.generate(pref.getString(getString(R.string.pref_username), "NA"));
     ImageView imageView = headerView.findViewById(R.id.imageView);
-    imageView.setImageBitmap(userIcon);
+    imageView.setImageBitmap(Bitmap.createScaledBitmap(userIcon, 120, 120, false));
   }
 
   @Override

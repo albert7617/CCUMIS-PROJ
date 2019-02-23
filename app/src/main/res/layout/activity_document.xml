@@ -8,6 +8,8 @@
 
     <LinearLayout
         android:padding="8dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -68,10 +70,15 @@
             android:layout_height="wrap_content"
             android:text="學習暨勞僱單位"/>
 
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+
+        <TextView
             android:id="@+id/spinner_item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingStart="4dp"
+            android:text="勞僱單位"
+            style="@style/Widget.AppCompat.Spinner"/>
 
         <TextView
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
