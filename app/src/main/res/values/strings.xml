@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">CCUMIS</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="not_login">未登入</string>
+    <string name="caution">注意事項</string>
+    <string name="caution_items">1. 本系統僅提供學習暨勞僱時數登錄，助學金請領仍應於會計系統辦理。\n2. 學生應於完成學習暨勞僱後逐日即時進入學習暨勞僱系統內登錄學習暨勞僱時段，超過3個月未登錄，將視同放棄請領。\n3. 學習暨勞僱時段不可事先登錄。\n4. 學習暨勞僱時段不可於不同單位重複登錄。\n5. 學習暨勞僱時段亦不可和臨時工資工作時段重複登錄。\n6. 當周申請時數不能超過20小時(不含假日)</string>
+    <string name="hour_count">本次登記時數</string>
+    <string name="hours">小時</string>
+    <string name="delete">刪除</string>
+    <string name="delete_all">刪除全部</string>
+    <string name="edit">編輯</string>
+    <string name="submit">送出</string>
+    <string name="loading">載入中</string>
+    <string name="department">學習暨勞僱單位</string>
+    <string name="status">處理情況</string>
+    <string name="weekend">例假日</string>
+    <string name="no_data">沒有資料</string>
+
+    <!-- Status Items -->
+    <string-array name="statuses">
+        <item>未確認</item>
+        <item>已確認</item>
+        <item>已報帳</item>
+        <item>所有狀態</item>
+    </string-array>
+
+    <!-- Weekend Items -->
+    <string-array name="weekends">
+        <item>是</item>
+        <item>否</item>
+        <item>全部</item>
+    </string-array>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!-- URLs -->
+    <string name="url_login">http://mis.cc.ccu.edu.tw/parttime/control.php</string>
+    <string name="url_home">http://mis.cc.ccu.edu.tw/parttime/</string>
+    <string name="url_post_data">http://mis.cc.ccu.edu.tw/parttime/next.php</string>
+    <string name="url_employment_list">http://mis.cc.ccu.edu.tw/parttime/xa2.php</string>
+    <string name="url_save_to_db">http://mis.cc.ccu.edu.tw/parttime/todb.php</string>
+    <string name="url_del_to_db">http://mis.cc.ccu.edu.tw/parttime/delete_todb.php</string>
+    <string name="url_head_stu">http://mis.cc.ccu.edu.tw/parttime/head_stu.php</string>
+    <string name="url_menu">http://mis.cc.ccu.edu.tw/parttime/menu_stu.php?type=0</string>
+    <string name="url_attend">http://mis.cc.ccu.edu.tw/parttime/attend.php</string>
+    <string name="url_control2">http://mis.cc.ccu.edu.tw/parttime/control2.php</string>
+    <string name="url_sel_row">http://mis.cc.ccu.edu.tw/parttime/sp_row.php</string>
+    <string name="url_del_row">http://mis.cc.ccu.edu.tw/parttime/delete_row.php</string>
+    <string name="url_sp_sel">http://mis.cc.ccu.edu.tw/parttime/sp_sel.php</string>
+    <string name="url_del_sel">http://mis.cc.ccu.edu.tw/parttime/delete_sel.php</string>
+    <string name="url_prt_sel">http://mis.cc.ccu.edu.tw/parttime/print_sel.php</string>
+    <string name="main2">http://mis.cc.ccu.edu.tw/parttime/main2.php</string>
+
+    <!-- SharedPreference Keys -->
+    <string name="pref_username">PREF_USERNAME</string>
+    <string name="pref_password">PREF_PASSWORD</string>
+    <string name="pref_logined">PREF_LOGINED</string>
+    <string name="pref_content">PREF_CONTENT</string>
+
+    <!-- Drawer Titles -->
+    <string name="drawer_new_doc">新增學習暨勞僱時數</string>
+    <string name="drawer_sel_doc">查詢學習暨勞僱資料</string>
+    <string name="drawer_del_doc">刪除學習暨勞僱資料</string>
+    <string name="drawer_prt_doc">列印簽到退表與批號</string>
+
+
+    <!-- Error Message-->
+    <string name="error">錯誤</string>
+
+    <string name="error_no_date">請輸入日期</string>
+    <string name="error_no_start_time">請輸入起始時間</string>
+    <string name="error_no_end_time">請輸入結束時間</string>
+    <string name="error_no_start_date">請輸入起始日期</string>
+    <string name="error_no_end_date">請輸入結束日期</string>
+    <string name="error_start_later_than_end">起始時間晚於結束時間</string>
+    <string name="error_start_later_than_end_date">起始日期晚於結束日期</string>
+    <string name="error_no_content">請輸入勞雇內容</string>
+    <string name="error_duration_long">勞雇時數大於4小時</string>
+    <string name="error_not_saved">未儲存到資料庫</string>
+    <string name="error_no_connection">網路錯誤 請檢查連線</string>
+    <string name="error_login_fail">登入失敗</string>
+    <string name="error_unknown">未知錯誤</string>
+    <string name="error_no_data">請輸入資料</string>
+
+    <!-- Success Message -->
+
+    <string name="success">成功</string>
+    <string name="success_to_db">資料已寫入資料庫</string>
+
+    <!-- Alert Dialog -->
+    <string name="delete_warning">確定刪除嗎?</string>
+    <string name="delete_all_warning">確定全部刪除嗎?</string>
+    <string name="delete_confirm">確定</string>
+    <string name="delete_dismiss">取消</string>
+    <string name="confirm">確定</string>
+    <string name="dismiss">取消</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

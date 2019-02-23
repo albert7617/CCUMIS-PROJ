@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/LightCardView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/container"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/hoursCount"
+                android:text="XXHr"
+                android:textAlignment="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:background="#D3D3D3"
+                android:padding="8dp"/>
+
+            <TextView
+                android:id="@+id/department"
+                android:text="OOXOXOXXOXOXOOXOO"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/hoursCount"
+                app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                android:id="@+id/date"
+                android:text="2018年8月9日"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toBottomOf="@id/department"
+                app:layout_constraintStart_toEndOf="@id/hoursCount" />
+            <TextView
+                android:id="@+id/time"
+                android:text="13:23~15:59"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toBottomOf="@id/department"
+                app:layout_constraintStart_toEndOf="@id/date" />
+            <TextView
+                android:id="@+id/content"
+                android:text="OOXOXOXXOXOXOOXOO"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/hoursCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date"/>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/unconfirmed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@id/hoursCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content">
+                <ImageView
+                    android:src="@drawable/ic_error_outline_white_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="#FFBF00"/>
+                <TextView
+                    android:text="未確認"
+                    android:textColor="#FFBF00"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/confirmed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@id/hoursCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content">
+                <ImageView
+                    android:src="@drawable/ic_mood_white_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="#00A572"/>
+                <TextView
+                    android:text="沒問題"
+                    android:textColor="#00A572"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/error"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@id/hoursCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content">
+                <ImageView
+                    android:src="@drawable/ic_cancel_white_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="#FF2400"/>
+                <TextView
+                    android:text="錯誤:"
+                    android:textColor="#FF2400"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/error_msg"
+                    android:textColor="#FF2400"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textColor="#FF5252"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container" />
+        <Button
+            android:id="@+id/edit"
+            android:text="@string/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textColor="#009688"
+            app:layout_constraintTop_toBottomOf="@id/container"
+            app:layout_constraintEnd_toStartOf="@id/delete"/>
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
