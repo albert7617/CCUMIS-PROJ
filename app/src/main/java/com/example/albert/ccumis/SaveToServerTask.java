@@ -1,20 +1,15 @@
 package com.example.albert.ccumis;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class SaveToServerTask extends AsyncTask<Void, Void, Integer> {
   private Callback callback;

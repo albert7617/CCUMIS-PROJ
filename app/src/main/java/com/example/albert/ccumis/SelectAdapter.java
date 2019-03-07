@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,19 +121,12 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
   }
 
   public void setEmployments(List<Employment> employments) {
-//    DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallback(employments, this.employments));
-//    diffResult.dispatchUpdatesTo(this);
-//    if(this.employments != null) {
-//      this.employments.clear();
-//      this.employments.addAll(employments);
-//    } else {
-//      this.employments = employments;
-//    }
     this.expanded = new ArrayList<>();
     this.selected = new ArrayList<>();
     this.employments = employments;
     notifyDataSetChanged();
   }
+
 
   private class DiffCallback extends DiffUtil.Callback {
 

@@ -18,7 +18,9 @@ public class DepartmentViewModel extends AndroidViewModel {
     return repository.getAll(type);
   }
 
-  public void nuke(int type) {
-    repository.nuke(type);
-  }
+// --Commented out by Inspection START (2019/3/7 17:53):
+//  public void nuke(int type) {
+//    repository.nuke(type);
+//  }
+// --Commented out by Inspection STOP (2019/3/7 17:53)
 }

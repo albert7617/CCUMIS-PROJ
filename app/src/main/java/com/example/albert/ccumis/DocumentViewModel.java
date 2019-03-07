@@ -10,11 +10,13 @@ import java.util.List;
 public class DocumentViewModel extends AndroidViewModel {
   private DocumentRepository repository;
   private LiveData<List<Department>> allDepartment;
+
   public DocumentViewModel(@NonNull Application application) {
     super(application);
     repository = new DocumentRepository(application);
     allDepartment = repository.getAll();
   }
+
 
   public void insert(Department department) {
     repository.insert(department);

@@ -1,40 +1,26 @@
 package com.example.albert.ccumis;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
-
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -48,11 +34,12 @@ public class DocumentActivity extends AppCompatActivity {
 
   SelectedDate mSelectedDate;
   private final int OPERATION = 0;
-  private final int DEPARTMENT_TYPE = 0;
+  // --Commented out by Inspection (2019/3/7 17:53):private final int DEPARTMENT_TYPE = 0;
   private int startHour=-1, startMinute=-1, endHour=-1, endMinute=-1;
   private FragmentManager fm;
   private final DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.TAIWAN);
   private EditText editDate, sTime, eTime;
+
   private DepartmentViewModel departmentViewModel;
   private EmploymentViewModel employmentViewModel;
   private int updateSeri_no;
@@ -65,10 +52,7 @@ public class DocumentActivity extends AppCompatActivity {
     fm = getSupportFragmentManager();
     employmentViewModel = ViewModelProviders.of(this).get(EmploymentViewModel.class);
     final AutoCompleteTextView autoTextView = findViewById(R.id.content);
-//    final SearchableSpinner spinner = findViewById(R.id.spinner_item);
     final TextView spinner = findViewById(R.id.spinner_item);
-    final DepartmentAdapter adapter = new DepartmentAdapter(this, R.layout.support_simple_spinner_dropdown_item);
-    final DepartmentAdapter listadapter = new DepartmentAdapter(this, android.R.layout.simple_list_item_1);
 
     if(seri_no != -1) {
       updateSeri_no = seri_no;
@@ -99,59 +83,6 @@ public class DocumentActivity extends AppCompatActivity {
       updateSeri_no = -1;
     }
 
-//    new Thread(new Runnable() {
-//      @Override
-//      public void run() {
-//        final ArrayList<Department> departments = getDepartments();
-//        if(departments != null) {
-//          runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//              adapter.setDepartments(departments);
-//              if(seri_no != -1) {
-////                spinner.setSelection(seri_no);
-//              }
-//            }
-//          });
-//
-//        }
-//      }
-//    }).start();
-
-
-
-//    AlertDialog.Builder alertDialog = new AlertDialog.Builder(DocumentActivity.this);
-//    LayoutInflater inflater = getLayoutInflater();
-//    View convertView = (View) inflater.inflate(R.layout.dialog_search_department, null);
-//    alertDialog.setView(convertView);
-//    ListView lv = (ListView) convertView.findViewById(R.id.spinnerList);
-//
-//
-//    lv.setAdapter(listadapter);
-//    alertDialog.show();
-
-//    departmentViewModel = ViewModelProviders.of(this).get(DepartmentViewModel.class);
-//    departmentViewModel.getAll(DEPARTMENT_TYPE).observe(this, new Observer<List<Department>>() {
-//      @Override
-//      public void onChanged(@Nullable List<Department> departments) {
-//        adapter.setDepartments(departments);
-//        if(seri_no != -1) {
-//          employmentViewModel.getBySer_no(seri_no).observe(DocumentActivity.this, new Observer<Employment>() {
-//            @Override
-//            public void onChanged(@Nullable Employment employment) {
-//              int position = adapter.getPosition(employment.department);
-//              if(position != -1) {
-//                spinner.setSelection(position);
-//              }
-//            }
-//          });
-//        }
-//      }
-//    });
-
-
-//    spinner.setTitle("選擇勞雇單位");
-//    spinner.setPositiveButton("確定");
     spinner.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

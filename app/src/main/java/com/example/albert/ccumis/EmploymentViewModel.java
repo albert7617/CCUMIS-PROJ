@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 public class EmploymentViewModel extends AndroidViewModel {
-  private LiveData<List<Employment>> employments;
+  // --Commented out by Inspection (2019/3/7 17:53):private LiveData<List<Employment>> employments;
   private EmploymentRepository repository;
   public EmploymentViewModel(@NonNull Application application) {
     super(application);

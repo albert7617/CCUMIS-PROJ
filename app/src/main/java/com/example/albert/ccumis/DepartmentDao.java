@@ -16,11 +16,15 @@ public interface DepartmentDao {
   @Query("SELECT * FROM department WHERE seri_no > 0 AND type =:type")
   LiveData<List<Department>> getAll(int type);
 
+
   @Query("DELETE FROM department")
   void dropAll();
 
+
+
   @Query("SELECT value FROM department WHERE seri_no = -1")
   String getLastUpdateTime();
+
 
   @Query("SELECT value FROM department WHERE name = :name")
   String getDepartmentCd(String name);

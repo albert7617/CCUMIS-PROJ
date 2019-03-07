@@ -37,10 +37,11 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/email"
+                    android:imeOptions="actionNext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_email"
-                    android:inputType="textEmailAddress"
+                    android:hint="@string/prompt_account"
+                    android:inputType="numberSigned"
                     android:maxLines="1"
                     android:singleLine="true" />
 

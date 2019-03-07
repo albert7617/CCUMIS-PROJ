@@ -5,7 +5,6 @@ import android.arch.lifecycle.LiveData;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -14,8 +13,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class DepartmentRepository {
   private DepartmentDao departmentDao;
@@ -26,10 +23,12 @@ public class DepartmentRepository {
     departmentDao = db.departmentDao();
   }
   
-  public void insert(Department department) {
-    new InsertTask(departmentDao).execute(department);
-  }
-  
+// --Commented out by Inspection START (2019/3/7 17:53):
+//  public void insert(Department department) {
+//    new InsertTask(departmentDao).execute(department);
+//  }
+// --Commented out by Inspection STOP (2019/3/7 17:53)
+
   private static class InsertTask extends AsyncTask<Department, Void, Void> {
     DepartmentDao departmentDao;
     public InsertTask(DepartmentDao departmentDao) {

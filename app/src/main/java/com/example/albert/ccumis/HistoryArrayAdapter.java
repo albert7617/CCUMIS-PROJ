@@ -3,19 +3,18 @@ package com.example.albert.ccumis;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
-
 public class HistoryArrayAdapter extends ArrayAdapter<String> {
 
   private List<String> history;
+
   public HistoryArrayAdapter(@NonNull Context context, int resource) {
     super(context, resource);
   }
+
 
   @Nullable
   @Override

@@ -1,22 +1,17 @@
 package com.example.albert.ccumis;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.support.v4.app.DialogFragment;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -28,8 +23,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class DepartmentSearchDialogFragment extends DialogFragment {
   Callback callback;
@@ -91,8 +84,11 @@ public class DepartmentSearchDialogFragment extends DialogFragment {
   public void onResume() {
     super.onResume();
     Window window = getDialog().getWindow();
-    window.setLayout(600 , 800);
-    window.setGravity(Gravity.CENTER);
+    if(window != null) {
+      window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.MATCH_PARENT);
+      window.setGravity(Gravity.CENTER);
+    }
+
   }
 
   private ArrayList<Department> getDepartments() {

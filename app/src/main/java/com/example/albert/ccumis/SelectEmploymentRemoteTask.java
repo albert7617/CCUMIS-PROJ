@@ -12,8 +12,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import static android.content.ContentValues.TAG;
-
 public class SelectEmploymentRemoteTask extends AsyncTask<Void, Void, Integer> {
   private Application application;
   private int operation;
@@ -199,11 +197,13 @@ public class SelectEmploymentRemoteTask extends AsyncTask<Void, Void, Integer> {
     void result(int result);
   }
 
-  public static void longLog(String str) {
-    if (str.length() > 4000) {
-      Log.d("LongLog", str.substring(0, 4000));
-      longLog(str.substring(4000));
-    } else
-      Log.d("LongLog", str);
-  }
+// --Commented out by Inspection START (2019/3/7 17:53):
+//  public static void longLog(String str) {
+//    if (str.length() > 4000) {
+//      Log.d("LongLog", str.substring(0, 4000));
+//      longLog(str.substring(4000));
+//    } else
+//      Log.d("LongLog", str);
+//  }
+// --Commented out by Inspection STOP (2019/3/7 17:53)
 }

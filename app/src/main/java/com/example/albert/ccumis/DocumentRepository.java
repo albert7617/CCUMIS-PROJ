@@ -3,10 +3,8 @@ package com.example.albert.ccumis;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -16,14 +14,10 @@ import org.jsoup.select.Elements;
 
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
-
-import static android.content.ContentValues.TAG;
 
 public class DocumentRepository {
   private HistoryDao historyDao;
@@ -38,9 +32,11 @@ public class DocumentRepository {
     this.application = application;
   }
 
+
   LiveData<List<String>> getAllHistory(int type) {
     return historyDao.getAll(type);
   }
+
 
   LiveData<List<Department>> getAll() {
     new RemoteDataTask(application, departmentDao).execute();

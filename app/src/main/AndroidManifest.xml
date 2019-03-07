@@ -29,9 +29,9 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".NewDocFragment" />
+
         <activity android:name=".DocumentActivity" />
-        <activity android:name=".SelectedEmploymentActivity"></activity>
+
     </application>
 
 </manifest>

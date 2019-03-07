@@ -5,8 +5,6 @@ import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,7 +13,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,15 +22,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
-
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import static android.content.ContentValues.TAG;
 
 
 /**
@@ -47,17 +39,19 @@ public class SelectDocFragment extends Fragment {
   private static final String ARG_PARAM1 = "param1";
   private static final String ARG_PARAM2 = "param2";
 
-  // TODO: Rename and change types of parameters
+
+
   private String mParam1;
   private String mParam2;
 
   private final int OPERATION = 1;
-  private final int DEPARTMENT_TYPE = 1;
+  // --Commented out by Inspection (2019/3/7 17:53):private final int DEPARTMENT_TYPE = 1;
 
   private DepartmentViewModel departmentViewModel;
   private EmploymentViewModel employmentViewModel;
   private FragmentManager fm;
   private EditText startDate, endDate, weekend, status;
+
   private final DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.TAIWAN);
   private Calendar start, end;
   private int status_cd = 9, weekend_cd = 2;
