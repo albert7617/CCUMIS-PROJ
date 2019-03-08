@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 
-import com.example.albert.ccumis.models.Department;
+import com.example.albert.ccumis.data.Department;
 
 import java.util.ArrayList;
 import java.util.List;

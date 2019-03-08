@@ -104,7 +104,17 @@ public class MainActivity extends AppCompatActivity
     int id = item.getItemId();
 
     //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
+    if (id == R.id.action_edit) {
+      this.startActivity(new Intent(this, EditStuffActivity.class));
+      return true;
+    } else if (id == R.id.action_logout) {
+      SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+      SharedPreferences.Editor editor = sharedPreferences.edit();
+      editor.putString(getString(R.string.pref_username), "");
+      editor.putString(getString(R.string.pref_password), "");
+      editor.putBoolean(getString(R.string.pref_logined), false);
+      editor.commit();
+      startActivity(new Intent(MainActivity.this, LoginActivity.class));
       return true;
     }
 
@@ -130,10 +140,6 @@ public class MainActivity extends AppCompatActivity
               .replace(R.id.main_frame, new DeleteDocFragment())
               .commit();
     } else if (id == R.id.nav_prt_doc) {
-
-    } else if (id == R.id.nav_share) {
-
-    } else if (id == R.id.nav_send) {
 
     }
 

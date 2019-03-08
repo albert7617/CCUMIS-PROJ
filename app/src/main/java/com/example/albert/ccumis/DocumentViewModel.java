@@ -5,7 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
-import com.example.albert.ccumis.models.Department;
+import com.example.albert.ccumis.data.Department;
 
 import java.util.List;
 

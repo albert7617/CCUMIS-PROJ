@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.data.Employment;
 
 import java.util.List;
 

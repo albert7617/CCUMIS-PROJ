@@ -16,7 +16,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.albert.ccumis.models.Department;
+import com.example.albert.ccumis.data.Department;
 import com.example.albert.ccumis.adapters.DepartmentAdapter;
 import com.example.albert.ccumis.R;
 

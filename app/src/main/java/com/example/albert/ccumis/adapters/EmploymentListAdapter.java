@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.albert.ccumis.DocumentActivity;
-import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.data.Employment;
 import com.example.albert.ccumis.R;
 
 import java.util.List;

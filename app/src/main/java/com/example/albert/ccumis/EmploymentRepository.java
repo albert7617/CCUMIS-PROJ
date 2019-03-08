@@ -4,7 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
-import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.data.Employment;
 
 import java.util.List;
 

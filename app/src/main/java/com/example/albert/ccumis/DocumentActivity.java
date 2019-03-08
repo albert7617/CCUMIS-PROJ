@@ -23,8 +23,8 @@ import android.widget.TimePicker;
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.example.albert.ccumis.fragments.DatePickerDialogFragment;
 import com.example.albert.ccumis.fragments.DepartmentSearchDialogFragment;
-import com.example.albert.ccumis.models.Department;
-import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.data.Department;
+import com.example.albert.ccumis.data.Employment;
 
 import java.text.DateFormat;
 import java.util.ArrayList;

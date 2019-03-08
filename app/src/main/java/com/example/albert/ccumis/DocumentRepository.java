@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 
-import com.example.albert.ccumis.models.Department;
+import com.example.albert.ccumis.data.Department;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

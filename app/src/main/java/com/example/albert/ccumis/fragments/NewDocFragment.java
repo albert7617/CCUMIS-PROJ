@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.albert.ccumis.DocumentActivity;
-import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.data.Employment;
 import com.example.albert.ccumis.adapters.EmploymentListAdapter;
 import com.example.albert.ccumis.EmploymentViewModel;
 import com.example.albert.ccumis.R;

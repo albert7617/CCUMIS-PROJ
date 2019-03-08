@@ -1,4 +1,4 @@
-package com.example.albert.ccumis.models;
+package com.example.albert.ccumis.data;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

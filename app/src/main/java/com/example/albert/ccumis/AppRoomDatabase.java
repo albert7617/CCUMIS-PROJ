@@ -5,9 +5,9 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-import com.example.albert.ccumis.models.Department;
-import com.example.albert.ccumis.models.Employment;
-import com.example.albert.ccumis.models.History;
+import com.example.albert.ccumis.data.Department;
+import com.example.albert.ccumis.data.Employment;
+import com.example.albert.ccumis.data.History;
 
 @Database(entities = {Employment.class, Department.class, History.class}, version = 12, exportSchema = false)
 public abstract class AppRoomDatabase extends RoomDatabase {
@@ -17,7 +17,7 @@ public abstract class AppRoomDatabase extends RoomDatabase {
 
   private static AppRoomDatabase INSTANCE;
 
-  static AppRoomDatabase getDatabase(final Context context) {
+  public static AppRoomDatabase getDatabase(final Context context) {
     if(INSTANCE == null) {
       synchronized (AppRoomDatabase.class) {
         if(INSTANCE == null) {

@@ -25,10 +25,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.albert.ccumis.DeleteOnServerTask;
-import com.example.albert.ccumis.models.Department;
+import com.example.albert.ccumis.data.Department;
 import com.example.albert.ccumis.adapters.DepartmentAdapter;
 import com.example.albert.ccumis.DepartmentViewModel;
-import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.data.Employment;
 import com.example.albert.ccumis.EmploymentViewModel;
 import com.example.albert.ccumis.PostEmployment;
 import com.example.albert.ccumis.R;

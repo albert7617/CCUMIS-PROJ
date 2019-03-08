@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.example.albert.ccumis.models.Department;
+import com.example.albert.ccumis.data.Department;
 
 import java.util.List;
 
