@@ -1,4 +1,4 @@
-package com.example.albert.ccumis;
+package com.example.albert.ccumis.fragments;
 
 import android.app.Application;
 import android.app.DatePickerDialog;
@@ -21,6 +21,17 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.albert.ccumis.models.Department;
+import com.example.albert.ccumis.adapters.DepartmentAdapter;
+import com.example.albert.ccumis.DepartmentViewModel;
+import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.EmploymentViewModel;
+import com.example.albert.ccumis.PostEmployment;
+import com.example.albert.ccumis.R;
+import com.example.albert.ccumis.RecyclerDecoration;
+import com.example.albert.ccumis.adapters.SelectAdapter;
+import com.example.albert.ccumis.SelectEmploymentRemoteTask;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -60,15 +71,7 @@ public class SelectDocFragment extends Fragment {
     // Required empty public constructor
   }
 
-  /**
-   * Use this factory method to create a new instance of
-   * this fragment using the provided parameters.
-   *
-   * @param param1 Parameter 1.
-   * @param param2 Parameter 2.
-   * @return A new instance of fragment SelectDocFragment.
-   */
-  // TODO: Rename and change types and number of parameters
+
   public static SelectDocFragment newInstance(String param1, String param2) {
     SelectDocFragment fragment = new SelectDocFragment();
     Bundle args = new Bundle();

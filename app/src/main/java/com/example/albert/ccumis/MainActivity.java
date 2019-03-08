@@ -18,6 +18,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.albert.ccumis.fragments.DeleteDocFragment;
+import com.example.albert.ccumis.fragments.NewDocFragment;
+import com.example.albert.ccumis.fragments.SelectDocFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

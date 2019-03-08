@@ -4,7 +4,8 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.util.Log;
+
+import com.example.albert.ccumis.models.Employment;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

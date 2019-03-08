@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 
+import com.example.albert.ccumis.models.Employment;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,7 +18,7 @@ public class SaveToServerTask extends AsyncTask<Void, Void, Integer> {
   private EmploymentDao dao;
   private Application application;
   private final int OPERATION = 0;
-  SaveToServerTask(Application application) {
+  public SaveToServerTask(Application application) {
     this.application = application;
     this.dao = AppRoomDatabase.getDatabase(application.getApplicationContext()).employmentDao();
   }

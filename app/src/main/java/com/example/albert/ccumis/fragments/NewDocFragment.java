@@ -1,4 +1,4 @@
-package com.example.albert.ccumis;
+package com.example.albert.ccumis.fragments;
 
 import android.app.Application;
 import android.arch.lifecycle.Observer;
@@ -18,6 +18,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.albert.ccumis.DocumentActivity;
+import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.adapters.EmploymentListAdapter;
+import com.example.albert.ccumis.EmploymentViewModel;
+import com.example.albert.ccumis.R;
+import com.example.albert.ccumis.RecyclerDecoration;
+import com.example.albert.ccumis.SaveToServerTask;
 
 import java.util.List;
 

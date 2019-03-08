@@ -1,4 +1,4 @@
-package com.example.albert.ccumis;
+package com.example.albert.ccumis.adapters;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.albert.ccumis.DocumentActivity;
+import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.R;
+
 import java.util.List;
 
 public class EmploymentListAdapter extends RecyclerView.Adapter<EmploymentListAdapter.EmploymentViewHolder> {
@@ -21,7 +25,7 @@ public class EmploymentListAdapter extends RecyclerView.Adapter<EmploymentListAd
   private Context context;
   private Callback callback;
 
-  EmploymentListAdapter(Context context) {
+  public EmploymentListAdapter(Context context) {
     this.inflater = LayoutInflater.from(context);
     this.context = context;
   }

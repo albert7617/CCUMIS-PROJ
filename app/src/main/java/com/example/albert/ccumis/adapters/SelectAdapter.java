@@ -1,4 +1,4 @@
-package com.example.albert.ccumis;
+package com.example.albert.ccumis.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -12,6 +12,9 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.R;
 
 import java.util.ArrayList;
 import java.util.List;

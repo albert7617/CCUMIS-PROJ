@@ -5,6 +5,10 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.example.albert.ccumis.models.Department;
+import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.models.History;
+
 @Database(entities = {Employment.class, Department.class, History.class}, version = 12, exportSchema = false)
 public abstract class AppRoomDatabase extends RoomDatabase {
   public abstract EmploymentDao employmentDao();

@@ -1,4 +1,4 @@
-package com.example.albert.ccumis;
+package com.example.albert.ccumis.fragments;
 
 
 import android.app.Application;
@@ -23,6 +23,18 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.example.albert.ccumis.DeleteOnServerTask;
+import com.example.albert.ccumis.models.Department;
+import com.example.albert.ccumis.adapters.DepartmentAdapter;
+import com.example.albert.ccumis.DepartmentViewModel;
+import com.example.albert.ccumis.models.Employment;
+import com.example.albert.ccumis.EmploymentViewModel;
+import com.example.albert.ccumis.PostEmployment;
+import com.example.albert.ccumis.R;
+import com.example.albert.ccumis.RecyclerDecoration;
+import com.example.albert.ccumis.adapters.SelectAdapter;
+import com.example.albert.ccumis.SelectEmploymentRemoteTask;
 
 import java.text.DateFormat;
 import java.util.Calendar;

@@ -1,9 +1,11 @@
-package com.example.albert.ccumis;
+package com.example.albert.ccumis.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+
+import com.example.albert.ccumis.models.Department;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.albert.ccumis;
+package com.example.albert.ccumis.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

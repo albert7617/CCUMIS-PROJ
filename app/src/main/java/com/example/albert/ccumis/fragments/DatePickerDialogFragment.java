@@ -1,4 +1,4 @@
-package com.example.albert.ccumis;
+package com.example.albert.ccumis.fragments;
 
 
 import android.os.Bundle;

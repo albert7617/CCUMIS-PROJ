@@ -1,4 +1,4 @@
-package com.example.albert.ccumis;
+package com.example.albert.ccumis.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +15,10 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.example.albert.ccumis.models.Department;
+import com.example.albert.ccumis.adapters.DepartmentAdapter;
+import com.example.albert.ccumis.R;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

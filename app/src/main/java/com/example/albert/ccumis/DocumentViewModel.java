@@ -5,6 +5,8 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
+import com.example.albert.ccumis.models.Department;
+
 import java.util.List;
 
 public class DocumentViewModel extends AndroidViewModel {
