@@ -205,6 +205,9 @@ public class SelectDocFragment extends Fragment {
     submit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        if(spinner.getSelectedItemPosition() == -1) {
+          return;
+        }
         String errorMsg = "";
         if(start == null) {
           errorMsg += getString(R.string.error_no_start_date);

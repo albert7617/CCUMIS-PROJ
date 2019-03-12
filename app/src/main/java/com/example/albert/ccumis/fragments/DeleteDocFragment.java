@@ -151,6 +151,9 @@ public class DeleteDocFragment extends Fragment {
     submit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        if(spinner.getSelectedItemPosition() == -1) {
+          return;
+        }
         if(start.getTime().after(end.getTime())) {
           new AlertDialog.Builder(getActivity())
                   .setTitle(getString(R.string.error))
