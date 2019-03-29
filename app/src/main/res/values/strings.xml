@@ -68,6 +68,7 @@
     <string name="url_sp_sel">http://mis.cc.ccu.edu.tw/parttime/sp_sel.php</string>
     <string name="url_del_sel">http://mis.cc.ccu.edu.tw/parttime/delete_sel.php</string>
     <string name="url_prt_sel">http://mis.cc.ccu.edu.tw/parttime/print_sel.php</string>
+    <string name="url_prt_pdf">http://mis.cc.ccu.edu.tw/parttime/printpdf1.php</string>
     <string name="main2">http://mis.cc.ccu.edu.tw/parttime/main2.php</string>
 
     <!-- SharedPreference Keys -->
@@ -81,6 +82,7 @@
     <string name="drawer_sel_doc">查詢學習暨勞僱資料</string>
     <string name="drawer_del_doc">刪除學習暨勞僱資料</string>
     <string name="drawer_prt_doc">列印簽到退表與批號</string>
+    <string name="drawer_pdf_doc">查詢簽到退表與批號</string>
 
 
     <!-- Error Message-->

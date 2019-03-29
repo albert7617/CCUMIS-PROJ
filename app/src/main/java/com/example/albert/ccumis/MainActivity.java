@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.albert.ccumis.fragments.DeleteDocFragment;
 import com.example.albert.ccumis.fragments.NewDocFragment;
+import com.example.albert.ccumis.fragments.QueryFragment;
 import com.example.albert.ccumis.fragments.SelectDocFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -141,6 +142,10 @@ public class MainActivity extends AppCompatActivity
               .commit();
     } else if (id == R.id.nav_prt_doc) {
 
+    } else if (id == R.id.nav_pdf_doc) {
+      getSupportFragmentManager().beginTransaction()
+              .replace(R.id.main_frame, new QueryFragment())
+              .commit();
     }
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
