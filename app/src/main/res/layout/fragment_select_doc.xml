@@ -19,7 +19,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:id="@+id/cautionCard"
-                android:layout_margin="4dp"
+                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/LightCardView">

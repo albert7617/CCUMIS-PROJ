@@ -22,8 +22,8 @@
             android:title="@string/drawer_prt_doc" />
         <item
             android:id="@+id/nav_pdf_doc"
-            android:icon="@drawable/ic_print_white_24dp"
-            android:title="@string/drawer_prt_doc" />
+            android:icon="@drawable/ic_search_black_24dp"
+            android:title="@string/drawer_pdf_doc" />
     </group>
 
 

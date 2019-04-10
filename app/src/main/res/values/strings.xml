@@ -23,6 +23,7 @@
     <string name="status">處理情況</string>
     <string name="weekend">例假日</string>
     <string name="no_data">沒有資料</string>
+    <string name="querying">查詢中</string>
 
     <!-- Status Items -->
     <string-array name="statuses">
