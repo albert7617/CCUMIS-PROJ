@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.example.albert.ccumis.data.Employment;
 
@@ -160,7 +161,51 @@ public class SelectEmploymentRemoteTask extends AsyncTask<Void, Void, Integer> {
     return 400;
   }
   private int getPrint(String phpsessid) {
-    return 200;
+    try {
+      dao.nukeTable(operation);
+      Connection.Response response = Jsoup.connect(application.getString(R.string.url_prt_sel))
+              .cookie("PHPSESSID", phpsessid)
+              .followRedirects(true)
+              .method(Connection.Method.GET)
+              .execute();
+      response = Jsoup.connect(application.getString(R.string.url_prt_row))
+              .cookie("PHPSESSID", phpsessid)
+              .followRedirects(true)
+              .data("unit_cd1", postEmployment.department,
+                      "sy", String.valueOf(postEmployment.start_year),
+                      "sm", String.valueOf(postEmployment.start_month),
+                      "sd", String.valueOf(postEmployment.start_day),
+                      "ey", String.valueOf(postEmployment.end_year),
+                      "em", String.valueOf(postEmployment.end_month),
+                      "ed", String.valueOf(postEmployment.end_day),
+                      "go", "依條件選出資料")
+              .method(Connection.Method.POST)
+              .maxBodySize(0)
+              .execute();
+      Document document = response.parse();
+      Elements table_rows = document.select("#form_ck > table:nth-child(1) > tbody > tr");
+      for (Element table_row : table_rows) {
+        if (table_row.attr("bgcolor").compareToIgnoreCase("#008000") == 0) {
+          continue;
+        }
+        Elements table_data = table_row.children();
+        Employment employment = new Employment();
+        employment.batch_num = table_data.select("input").attr("name");
+        employment.operation = operation;
+        employment.date = table_data.get(1).text();
+        employment.department = table_data.get(2).text();
+        employment.process = table_data.get(3).text();
+        employment.weekend = table_data.get(4).text();
+        employment.hour_count = table_data.get(5).text();
+        employment.content = table_data.get(6).text();
+        dao.insert(employment);
+        Log.d("EMP", "getPrint: "+employment.batch_num);
+      }
+      return 200;
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return 400;
   }
 
   private String login() {

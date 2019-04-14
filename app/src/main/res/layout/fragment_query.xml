@@ -75,19 +75,19 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="@android:style/TextAppearance.Material.Medium"
                             android:checked="true"
-                            android:text="行政學習助理"/>
+                            android:text="@string/admin_assistant"/>
                         <RadioButton
                             android:id="@+id/emptype2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                            android:text="勞僱工讀學生"/>
+                            android:text="@string/part_time_labor"/>
                         <RadioButton
                             android:id="@+id/emptype3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                            android:text="教學助理(TA)"/>
+                            android:text="@string/teacher_assistant"/>
 
 
                     </RadioGroup>

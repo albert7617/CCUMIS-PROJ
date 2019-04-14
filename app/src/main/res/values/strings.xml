@@ -13,6 +13,7 @@
     <string name="caution">注意事項</string>
     <string name="caution_items">1. 本系統僅提供學習暨勞僱時數登錄，助學金請領仍應於會計系統辦理。\n2. 學生應於完成學習暨勞僱後逐日即時進入學習暨勞僱系統內登錄學習暨勞僱時段，超過3個月未登錄，將視同放棄請領。\n3. 學習暨勞僱時段不可事先登錄。\n4. 學習暨勞僱時段不可於不同單位重複登錄。\n5. 學習暨勞僱時段亦不可和臨時工資工作時段重複登錄。\n6. 當周申請時數不能超過20小時(不含假日)</string>
     <string name="hour_count">本次登記時數</string>
+    <string name="work_hours">學習暨勞僱時間</string>
     <string name="hours">小時</string>
     <string name="delete">刪除</string>
     <string name="delete_all">刪除全部</string>
@@ -24,7 +25,16 @@
     <string name="weekend">例假日</string>
     <string name="no_data">沒有資料</string>
     <string name="querying">查詢中</string>
-
+    <string name="admin_assistant">行政學習助理</string>
+    <string name="teacher_assistant">教學助理(TA)</string>
+    <string name="part_time_labor">勞僱工讀學生</string>
+    <string name="start_date">起始時間</string>
+    <string name="end_date">結束時間</string>
+    <string name="list_data">依條件選出資料</string>
+    <string name="print_select_condition">設定選擇列印條件</string>
+    <string name="print_select_employment">加入列印</string>
+    <string name="prev">上一步</string>
+    <string name="next">下一步</string>
     <!-- Status Items -->
     <string-array name="statuses">
         <item>未確認</item>
@@ -69,6 +79,7 @@
     <string name="url_sp_sel">http://mis.cc.ccu.edu.tw/parttime/sp_sel.php</string>
     <string name="url_del_sel">http://mis.cc.ccu.edu.tw/parttime/delete_sel.php</string>
     <string name="url_prt_sel">http://mis.cc.ccu.edu.tw/parttime/print_sel.php</string>
+    <string name="url_prt_row">http://mis.cc.ccu.edu.tw/parttime/print_row.php</string>
     <string name="url_prt_pdf">http://mis.cc.ccu.edu.tw/parttime/printpdf1.php</string>
     <string name="main2">http://mis.cc.ccu.edu.tw/parttime/main2.php</string>
 
@@ -118,7 +129,6 @@
     <string name="new_stuff_hint">勞雇內容</string>
     <string name="confirm">確定</string>
     <string name="dismiss">取消</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

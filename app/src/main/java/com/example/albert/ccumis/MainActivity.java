@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.albert.ccumis.fragments.DeleteDocFragment;
 import com.example.albert.ccumis.fragments.NewDocFragment;
+import com.example.albert.ccumis.fragments.PrintDocFragment;
 import com.example.albert.ccumis.fragments.QueryFragment;
 import com.example.albert.ccumis.fragments.SelectDocFragment;
 
@@ -127,7 +128,6 @@ public class MainActivity extends AppCompatActivity
   public boolean onNavigationItemSelected(MenuItem item) {
     // Handle navigation view item clicks here.
     int id = item.getItemId();
-    FrameLayout fragmentContainer = findViewById(R.id.main_frame);
     if (id == R.id.nav_new_doc) {
       getSupportFragmentManager().beginTransaction()
               .replace(R.id.main_frame, new NewDocFragment())
@@ -141,7 +141,9 @@ public class MainActivity extends AppCompatActivity
               .replace(R.id.main_frame, new DeleteDocFragment())
               .commit();
     } else if (id == R.id.nav_prt_doc) {
-
+      getSupportFragmentManager().beginTransaction()
+              .replace(R.id.main_frame, new PrintDocFragment())
+              .commit();
     } else if (id == R.id.nav_pdf_doc) {
       getSupportFragmentManager().beginTransaction()
               .replace(R.id.main_frame, new QueryFragment())

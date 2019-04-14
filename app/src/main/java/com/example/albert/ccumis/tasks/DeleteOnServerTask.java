@@ -1,9 +1,13 @@
-package com.example.albert.ccumis;
+package com.example.albert.ccumis.tasks;
 
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+
+import com.example.albert.ccumis.AppRoomDatabase;
+import com.example.albert.ccumis.EmploymentDao;
+import com.example.albert.ccumis.R;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

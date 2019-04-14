@@ -25,7 +25,7 @@ import com.example.albert.ccumis.adapters.EmploymentListAdapter;
 import com.example.albert.ccumis.EmploymentViewModel;
 import com.example.albert.ccumis.R;
 import com.example.albert.ccumis.RecyclerDecoration;
-import com.example.albert.ccumis.SaveToServerTask;
+import com.example.albert.ccumis.tasks.SaveToServerTask;
 
 import java.util.List;
 

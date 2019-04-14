@@ -54,6 +54,11 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
         holder.status.setVisibility(View.GONE);
         holder.statusTitle.setVisibility(View.GONE);
       }
+      if( current.operation == 3) {
+        holder.batch.setVisibility(View.GONE);
+        holder.batchTitle.setVisibility(View.GONE);
+        holder.statusTitle.setText(R.string.work_hours);
+      }
       holder.title.setText(current.content);
       holder.time.setText(current.date);
       holder.batch.setText(current.batch_num);

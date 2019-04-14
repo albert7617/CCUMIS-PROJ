@@ -1,4 +1,4 @@
-package com.example.albert.ccumis;
+package com.example.albert.ccumis.tasks;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+
+import com.example.albert.ccumis.R;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
