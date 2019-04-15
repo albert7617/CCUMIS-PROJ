@@ -69,6 +69,12 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
       holder.linearLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
       holder.checkBox.setChecked(isChecked);
       holder.title.setSelected(isSelected);
+      if(current.operation == 4) {
+        holder.checkBox.setChecked(true);
+        holder.checkBox.setClickable(false);
+        holder.statusTitle.setText(R.string.work_hours);
+        selected.add(position);
+      }
       holder.imageButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -135,41 +141,18 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
     notifyDataSetChanged();
   }
 
-
-  private class DiffCallback extends DiffUtil.Callback {
-
-    List<Employment> oldList, newList;
-
-    public DiffCallback(List<Employment> oldList, List<Employment> newList) {
-      this.oldList = oldList;
-      this.newList = newList;
-    }
-
-    @Override
-    public int getOldListSize() {
-      return oldList == null ? 0 : oldList.size();
-    }
-
-    @Override
-    public int getNewListSize() {
-      return newList == null ? 0 : newList.size();
-    }
-
-    @Override
-    public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-      return oldList.get(oldItemPosition).seri_no == newList.get(newItemPosition).seri_no;
-    }
-
-    @Override
-    public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-      return false;
-    }
-  }
-
   public List<String> getSelectedEmployments() {
     List<String> selectEmployments = new ArrayList<>();
     for (Integer i : selected) {
       selectEmployments.add(employments.get(i).batch_num);
+    }
+    return selectEmployments;
+  }
+
+  public List<Employment> getSelectedEmploymentsObject() {
+    List<Employment> selectEmployments = new ArrayList<>();
+    for (Integer i : selected) {
+      selectEmployments.add(employments.get(i));
     }
     return selectEmployments;
   }

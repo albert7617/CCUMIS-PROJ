@@ -23,8 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class QueryPDFTask extends AsyncTask<Void, Void, Map<String, String>> {
-  @SuppressLint("StaticFieldLeak")
   private Callback callback;
+  @SuppressLint("StaticFieldLeak")
   private Context context;
   private String serialNO;
   private int empType;

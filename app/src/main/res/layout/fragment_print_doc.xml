@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -221,7 +223,400 @@
                         </FrameLayout>
                     </LinearLayout>
                 </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                style="@style/LightCardView">
+                <LinearLayout
+                    android:animateLayoutChanges="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.Material.Large"
+                        android:text="@string/print_confirm_and_print" />
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/print_step_4"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/editWageTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:text="@string/print_wage"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            tools:ignore="RtlSymmetry"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/editIdentityTitle"
+                            app:layout_constraintHorizontal_weight="1"
+                            />
+                        <EditText
+                            android:id="@+id/editWage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:ems="5"
+                            android:inputType="numberDecimal"
+                            android:text="150"
+                            app:layout_constraintHorizontal_weight="1"
+                            app:layout_constraintTop_toBottomOf="@id/editWageTitle"
+                            app:layout_constraintEnd_toStartOf="@id/editIdentity"
+                            app:layout_constraintStart_toStartOf="parent"/>
 
+                        <TextView
+                            android:id="@+id/editIdentityTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:text="@string/print_identity"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            tools:ignore="RtlSymmetry"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/editWageTitle"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_weight="1"/>
+
+                        <Spinner
+                            android:id="@+id/editIdentity"
+                            style="@style/Widget.AppCompat.Spinner.Underlined"
+                            android:layout_marginTop="2dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:spinnerMode="dropdown"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_weight="1"
+                            app:layout_constraintStart_toEndOf="@id/editWage"
+                            app:layout_constraintTop_toBottomOf="@id/editIdentityTitle" />
+
+                        <TextView
+                            android:id="@+id/editInsuranceTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:text="@string/print_insurance"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            tools:ignore="RtlSymmetry"
+                            app:layout_constraintTop_toBottomOf="@id/editWage"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+                        <RadioGroup
+                            android:id="@+id/editInsurance"
+                            android:orientation="horizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/editInsuranceTitle"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+                            <RadioButton
+                                android:id="@+id/yes"
+                                android:text="@string/yes"
+                                android:layout_marginEnd="8dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"/>
+                            <RadioButton
+                                android:id="@+id/no"
+                                android:text="@string/no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RadioGroup>
+                        <TextView
+                            android:id="@+id/editEmpTypeTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:text="@string/print_emp_type"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            tools:ignore="RtlSymmetry"
+                            app:layout_constraintTop_toBottomOf="@id/editInsurance"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+                        <RadioGroup
+                            android:id="@+id/editEmpType"
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/editEmpTypeTitle"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+                            <RadioButton
+                                android:id="@+id/admin_assistant"
+                                android:text="@string/admin_assistant"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"/>
+                            <RadioButton
+                                android:id="@+id/part_time_labor"
+                                android:text="@string/part_time_labor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <RadioButton
+                                android:id="@+id/teacher_assistant"
+                                android:text="@string/teacher_assistant"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RadioGroup>
+                        <TextView
+                            android:id="@+id/terms"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:text="@string/print_terms"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            tools:ignore="RtlSymmetry"
+                            app:layout_constraintTop_toBottomOf="@id/editEmpType"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+                        <CheckBox
+                            android:id="@+id/agreeTerms"
+                            android:text="@string/agree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/terms"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <Button
+                            android:id="@+id/step_4_prev"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/prev"
+                            app:layout_constraintTop_toBottomOf="@id/agreeTerms"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/step_4_next"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+                        <Button
+                            android:id="@+id/step_4_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/next"
+                            app:layout_constraintTop_toBottomOf="@id/agreeTerms"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/step_4_prev"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+                    </android.support.constraint.ConstraintLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                style="@style/LightCardView">
+                <LinearLayout
+                    android:animateLayoutChanges="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.Material.Large"
+                        android:text="@string/print_confirm_selection" />
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/print_step_5"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/selectedRecyclerViewTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:text="@string/print_select_selection"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            tools:ignore="RtlSymmetry"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/selectedRecyclerView"
+                            android:descendantFocusability="blocksDescendants"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/selectedRecyclerViewTitle"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+                        <TextView
+                            android:id="@+id/displayWageTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:text="@string/print_wage"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            tools:ignore="RtlSymmetry"
+                            app:layout_constraintTop_toBottomOf="@id/selectedRecyclerView"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+                        <EditText
+                            android:id="@+id/displayWage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:ems="5"
+                            android:inputType="numberDecimal"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            app:layout_constraintTop_toBottomOf="@id/displayWageTitle"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/displayIdentityTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:text="@string/print_identity"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            tools:ignore="RtlSymmetry"
+                            app:layout_constraintTop_toBottomOf="@id/displayWage"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <EditText
+                            android:id="@+id/displayIdentity"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            app:layout_constraintTop_toBottomOf="@id/displayIdentityTitle"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/displayInsuranceTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:text="@string/print_insurance"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            tools:ignore="RtlSymmetry"
+                            app:layout_constraintTop_toBottomOf="@id/displayIdentity"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <RadioGroup
+                            android:id="@+id/displayInsurance"
+                            android:orientation="horizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/displayInsuranceTitle"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+                            <RadioButton
+                                android:id="@+id/displayYes"
+                                android:text="@string/yes"
+                                android:layout_marginEnd="8dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"/>
+                            <RadioButton
+                                android:id="@+id/displayNo"
+                                android:text="@string/no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"/>
+                        </RadioGroup>
+                        <TextView
+                            android:id="@+id/displayEmpTypeTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:text="@string/print_emp_type"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            tools:ignore="RtlSymmetry"
+                            app:layout_constraintTop_toBottomOf="@id/displayInsurance"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+                        <RadioGroup
+                            android:id="@+id/displayEmpType"
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/displayEmpTypeTitle"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+                            <RadioButton
+                                android:id="@+id/display_admin_assistant"
+                                android:text="@string/admin_assistant"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"/>
+                            <RadioButton
+                                android:id="@+id/display_part_time_labor"
+                                android:text="@string/part_time_labor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"/>
+                            <RadioButton
+                                android:id="@+id/display_teacher_assistant"
+                                android:text="@string/teacher_assistant"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"/>
+                        </RadioGroup>
+                        <TextView
+                            android:id="@+id/displayTerms"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:text="@string/print_terms"
+                            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                            tools:ignore="RtlSymmetry"
+                            app:layout_constraintTop_toBottomOf="@id/displayEmpType"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+                        <CheckBox
+                            android:id="@+id/displayAgreeTerms"
+                            android:text="@string/agree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/displayTerms"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:clickable="false"/>
+
+                        <Button
+                            android:id="@+id/step_5_prev"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/prev"
+                            app:layout_constraintTop_toBottomOf="@id/displayAgreeTerms"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/step_5_next"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+                        <Button
+                            android:id="@+id/step_5_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/submit"
+                            app:layout_constraintTop_toBottomOf="@id/displayAgreeTerms"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/step_5_prev"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+                    </android.support.constraint.ConstraintLayout>
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/displayIdentityHidden"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp" />
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/displayInsuranceHidden"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp" />
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/displayEmpTypeHidden"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp" />
+                </LinearLayout>
             </android.support.v7.widget.CardView>
             <Space
                 android:layout_width="match_parent"
@@ -229,4 +624,4 @@
         </LinearLayout>
     </ScrollView>
 
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

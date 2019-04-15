@@ -2,6 +2,7 @@ package com.example.albert.ccumis;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,12 +12,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.albert.ccumis.fragments.DeleteDocFragment;
 import com.example.albert.ccumis.fragments.NewDocFragment;
@@ -153,5 +156,24 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawer.closeDrawer(GravityCompat.START);
     return true;
+  }
+  @Override
+  public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    switch (requestCode) {
+      case 200: {
+        // If request is cancelled, the result arrays are empty.
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+          // permission was granted, yay! Do the
+          // contacts-related task you need to do.
+        } else {
+          Toast.makeText(this, "請授予寫入檔案權限", Toast.LENGTH_SHORT).show();
+          // permission denied, boo! Disable the
+          // functionality that depends on this permission.
+        }
+      }
+
+      // other 'case' lines to check for other
+      // permissions this app might request.
+    }
   }
 }

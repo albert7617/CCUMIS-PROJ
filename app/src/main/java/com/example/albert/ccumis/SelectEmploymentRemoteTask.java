@@ -162,6 +162,7 @@ public class SelectEmploymentRemoteTask extends AsyncTask<Void, Void, Integer> {
   }
   private int getPrint(String phpsessid) {
     try {
+      boolean flag = false;
       dao.nukeTable(operation);
       Connection.Response response = Jsoup.connect(application.getString(R.string.url_prt_sel))
               .cookie("PHPSESSID", phpsessid)
@@ -199,9 +200,14 @@ public class SelectEmploymentRemoteTask extends AsyncTask<Void, Void, Integer> {
         employment.hour_count = table_data.get(5).text();
         employment.content = table_data.get(6).text();
         dao.insert(employment);
-        Log.d("EMP", "getPrint: "+employment.batch_num);
+        flag = true;
       }
-      return 200;
+      if(flag) {
+        return 200;
+      } else {
+        return 201;
+      }
+
     } catch (Exception e) {
       e.printStackTrace();
     }
