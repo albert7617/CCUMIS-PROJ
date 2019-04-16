@@ -196,7 +196,7 @@ public class DeleteDocFragment extends Fragment {
       }
     });
 
-    CheckBox checkBox = rootView.findViewById(R.id.checkbox);
+    CheckBox checkBox = rootView.findViewById(R.id.checkboxSelectAll);
     checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

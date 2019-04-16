@@ -2,7 +2,6 @@ package com.example.albert.ccumis.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,6 +72,7 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
         holder.checkBox.setChecked(true);
         holder.checkBox.setClickable(false);
         holder.statusTitle.setText(R.string.work_hours);
+        holder.checkBox.setEnabled(false);
         selected.add(position);
       }
       holder.imageButton.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +121,7 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
       super(itemView);
       linearLayout = itemView.findViewById(R.id.linearLayoutDetail);
       imageButton = itemView.findViewById(R.id.imageBtn);
-      checkBox = itemView.findViewById(R.id.checkbox);
+      checkBox = itemView.findViewById(R.id.checkboxSelectAll);
       title = itemView.findViewById(R.id.title);
       time = itemView.findViewById(R.id.time);
       batch = itemView.findViewById(R.id.batch);

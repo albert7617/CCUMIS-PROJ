@@ -39,7 +39,7 @@
                             android:text="@string/caution_items"
                             />
                         <Button
-                            android:id="@+id/confirmWarning"
+                            android:id="@+id/step_1_next"
                             android:text="@string/confirm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -67,14 +67,14 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingStart="4dp"
                             android:text="@string/department"
                             android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                            tools:ignore="RtlSymmetry"
-                            />
+                            tools:ignore="RtlSymmetry" />
                         <android.support.v7.widget.AppCompatSpinner
                             android:id="@+id/printDepartmentSpinner"
                             android:layout_width="match_parent"
@@ -141,7 +141,7 @@
                             </LinearLayout>
                         </LinearLayout>
                         <Button
-                            android:id="@+id/printSubmit"
+                            android:id="@+id/step_2_next"
                             android:text="@string/list_data"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <CheckBox
-                                android:id="@+id/checkbox"
+                                android:id="@+id/checkboxSelectAll"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 android:layout_width="wrap_content"
@@ -190,7 +190,7 @@
                                 android:layout_height="wrap_content"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/checkbox">
+                                app:layout_constraintStart_toEndOf="@id/checkboxSelectAll">
                             </TextView>
                         </android.support.constraint.ConstraintLayout>
                         <View
@@ -461,6 +461,7 @@
                             android:inputType="numberDecimal"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
+                            android:enabled="false"
                             app:layout_constraintTop_toBottomOf="@id/displayWageTitle"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"/>
@@ -483,6 +484,7 @@
                             android:layout_height="wrap_content"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
+                            android:enabled="false"
                             app:layout_constraintTop_toBottomOf="@id/displayIdentityTitle"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"/>
@@ -513,12 +515,14 @@
                                 android:layout_marginEnd="8dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:enabled="false"
                                 android:clickable="false"/>
                             <RadioButton
                                 android:id="@+id/displayNo"
                                 android:text="@string/no"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:enabled="false"
                                 android:clickable="false"/>
                         </RadioGroup>
                         <TextView
@@ -545,18 +549,21 @@
                                 android:text="@string/admin_assistant"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:enabled="false"
                                 android:clickable="false"/>
                             <RadioButton
                                 android:id="@+id/display_part_time_labor"
                                 android:text="@string/part_time_labor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:enabled="false"
                                 android:clickable="false"/>
                             <RadioButton
                                 android:id="@+id/display_teacher_assistant"
                                 android:text="@string/teacher_assistant"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:enabled="false"
                                 android:clickable="false"/>
                         </RadioGroup>
                         <TextView
@@ -578,6 +585,7 @@
                             app:layout_constraintTop_toBottomOf="@id/displayTerms"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
+                            android:enabled="false"
                             android:clickable="false"/>
 
                         <Button

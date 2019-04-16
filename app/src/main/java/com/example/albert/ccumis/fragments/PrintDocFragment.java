@@ -23,7 +23,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,13 +49,10 @@ import com.example.albert.ccumis.data.Department;
 import com.example.albert.ccumis.data.Employment;
 import com.example.albert.ccumis.tasks.PrintPDFTask;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -82,10 +78,43 @@ public class PrintDocFragment extends Fragment {
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    rootView = inflater.inflate(R.layout.fragment_print_doc, container, false);
+
+    Button step1_next = rootView.findViewById(R.id.step_1_next),
+            step2_next = rootView.findViewById(R.id.step_2_next),
+            step3_next = rootView.findViewById(R.id.step_3_next),
+            step4_next = rootView.findViewById(R.id.step_4_next),
+            step5_next = rootView.findViewById(R.id.step_5_next),
+            step3_prev = rootView.findViewById(R.id.step_3_prev),
+            step4_prev = rootView.findViewById(R.id.step_4_prev),
+            step5_prev = rootView.findViewById(R.id.step_5_prev);
+
+    final EditText editWage = rootView.findViewById(R.id.editWage),
+            displayWage = rootView.findViewById(R.id.displayWage),
+            displayIdentity = rootView.findViewById(R.id.displayIdentity);
+
+    final TextView hiddenIdentityType = rootView.findViewById(R.id.displayIdentityHidden),
+            hiddenInsurance = rootView.findViewById(R.id.displayInsuranceHidden),
+            hiddenEmpType = rootView.findViewById(R.id.displayEmpTypeHidden);
+
+    final RadioGroup employmentType = rootView.findViewById(R.id.editEmpType),
+            insuranceType = rootView.findViewById(R.id.editInsurance);
+
+    final RadioGroup displayEmploymentType = rootView.findViewById(R.id.displayEmpType),
+            displayInsuranceType = rootView.findViewById(R.id.displayInsurance);
+
+    final Spinner identitySpinner = rootView.findViewById(R.id.editIdentity),
+            spinner = rootView.findViewById(R.id.printDepartmentSpinner);
+
+    final CheckBox agreeTerms = rootView.findViewById(R.id.agreeTerms),
+            displayAgreeTerms = rootView.findViewById(R.id.displayAgreeTerms),
+            checkBoxSelectAll = rootView.findViewById(R.id.checkboxSelectAll);
 
     final int DEPARTMENT_TYPE = 3;
-    rootView = inflater.inflate(R.layout.fragment_print_doc, container, false);
+
+
     coordinatorLayout = rootView.findViewById(R.id.coordinator);
+
     step1 = rootView.findViewById(R.id.print_step_1);
     step2 = rootView.findViewById(R.id.print_step_2);
     step3 = rootView.findViewById(R.id.print_step_3);
@@ -97,14 +126,9 @@ public class PrintDocFragment extends Fragment {
     step4.setVisibility(View.GONE);
     step5.setVisibility(View.GONE);
 
-    start = Calendar.getInstance();
-    start.set(Calendar.DAY_OF_MONTH, 1);
-    end = Calendar.getInstance();
-    end.set(Calendar.DAY_OF_MONTH, Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
-    startDate = rootView.findViewById(R.id.editDateStart);
-    endDate = rootView.findViewById(R.id.editDateEnd);
-    updateView();
-    final Spinner spinner = rootView.findViewById(R.id.printDepartmentSpinner);
+
+    initCalendar();
+
     final DepartmentAdapter adapter = new DepartmentAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item);
     spinner.setAdapter(adapter);
 
@@ -131,47 +155,15 @@ public class PrintDocFragment extends Fragment {
       }
     });
 
-    startDate.setOnClickListener(new View.OnClickListener() {
+    step1_next.setOnClickListener(new View.OnClickListener(){
       @Override
       public void onClick(View v) {
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-          @Override
-          public void onDateSet(DatePicker view, int year, int month, int day) {
-            start.set(Calendar.YEAR, year);
-            start.set(Calendar.MONTH, month);
-            start.set(Calendar.DAY_OF_MONTH, day);
-            updateView();
-          }
-        }, year, month, day).show();
+        step1.setVisibility(View.GONE);
+        step2.setVisibility(View.VISIBLE);
       }
     });
 
-    endDate.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-          @Override
-          public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            end.set(Calendar.YEAR, year);
-            end.set(Calendar.MONTH, month);
-            end.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateView();
-          }
-        }, year, month, day).show();
-      }
-    });
-
-
-    Button submit = rootView.findViewById(R.id.printSubmit);
-    submit.setOnClickListener(new View.OnClickListener() {
+    step2_next.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if(spinner.getSelectedItemPosition() == -1) {
@@ -212,20 +204,12 @@ public class PrintDocFragment extends Fragment {
       }
     });
 
-    Button confirmWarning = rootView.findViewById(R.id.confirmWarning);
-    confirmWarning.setOnClickListener(new View.OnClickListener(){
-      @Override
-      public void onClick(View v) {
-        step1.setVisibility(View.GONE);
-        step2.setVisibility(View.VISIBLE);
-      }
-    });
 
     employmentViewModel.getEmployments(OPERATION).observe(this, new Observer<List<Employment>>() {
       @Override
       public void onChanged(@Nullable List<Employment> employments) {
         selectAdapter.setEmployments(employments);
-        if(employments.size() != 0 && step2.getVisibility() == View.VISIBLE) {
+        if(employments != null && employments.size() != 0 && step2.getVisibility() == View.VISIBLE) {
           step2.setVisibility(View.GONE);
           step3.setVisibility(View.VISIBLE);
         }
@@ -239,8 +223,8 @@ public class PrintDocFragment extends Fragment {
       }
     });
 
-    final CheckBox checkBox = rootView.findViewById(R.id.checkbox);
-    checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+    checkBoxSelectAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked) {
@@ -255,16 +239,15 @@ public class PrintDocFragment extends Fragment {
     checkboxConstraintLayout.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if(checkBox.isChecked()) {
-          checkBox.setChecked(false);
+        if(checkBoxSelectAll.isChecked()) {
+          checkBoxSelectAll.setChecked(false);
         } else {
-          checkBox.setChecked(true);
+          checkBoxSelectAll.setChecked(true);
         }
       }
     });
 
-    Button step_3_next = rootView.findViewById(R.id.step_3_next);
-    step_3_next.setOnClickListener(new View.OnClickListener() {
+    step3_next.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if(selectAdapter.getSelectedEmployments().size() == 0) {
@@ -290,16 +273,6 @@ public class PrintDocFragment extends Fragment {
       }
     });
 
-    final EditText editWage = rootView.findViewById(R.id.editWage),
-            displayWage = rootView.findViewById(R.id.displayWage),
-            displayIdentity = rootView.findViewById(R.id.displayIdentity);
-    final TextView hiddenIdentityType = rootView.findViewById(R.id.displayIdentityHidden),
-            hiddenInsurance = rootView.findViewById(R.id.displayInsuranceHidden),
-            hiddenEmpType = rootView.findViewById(R.id.displayEmpTypeHidden);
-    final RadioGroup employmentType = rootView.findViewById(R.id.editEmpType), insuranceType = rootView.findViewById(R.id.editInsurance);
-    final RadioGroup displayEmploymentType = rootView.findViewById(R.id.displayEmpType), displayInsuranceType = rootView.findViewById(R.id.displayInsurance);
-    final Spinner identitySpinner = rootView.findViewById(R.id.editIdentity);
-    final CheckBox agreeTerms = rootView.findViewById(R.id.agreeTerms), displayAgreeTerms = rootView.findViewById(R.id.displayAgreeTerms);
 
     final HashMap<String, String> identityMap = new HashMap<String, String>();
     String[] identities = getResources().getStringArray(R.array.identities);
@@ -313,8 +286,8 @@ public class PrintDocFragment extends Fragment {
     identityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     identitySpinner.setAdapter(identityAdapter);
 
-    Button step_4_next = rootView.findViewById(R.id.step_4_next);
-    step_4_next.setOnClickListener(new View.OnClickListener() {
+
+    step4_next.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         displayWage.setText(editWage.getText().toString());
@@ -359,8 +332,8 @@ public class PrintDocFragment extends Fragment {
       }
     });
 
-    Button step_5_next = rootView.findViewById(R.id.step_5_next);
-    step_5_next.setOnClickListener(new View.OnClickListener() {
+
+    step5_next.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if(getActivity() != null) {
@@ -402,9 +375,83 @@ public class PrintDocFragment extends Fragment {
       }
     });
 
+    step3_prev.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        employmentViewModel.nukeTable(OPERATION);
+        step2.setVisibility(View.VISIBLE);
+        step3.setVisibility(View.GONE);
+      }
+    });
+
+    step4_prev.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        employmentViewModel.nukeTable(DISPLAY_OPERATION);
+        step3.setVisibility(View.VISIBLE);
+        step4.setVisibility(View.GONE);
+      }
+    });
+
+    step5_prev.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        step4.setVisibility(View.VISIBLE);
+        step5.setVisibility(View.GONE);
+      }
+    });
+
+
     return rootView;
   }
 
+  private void initCalendar() {
+    start = Calendar.getInstance();
+    start.set(Calendar.DAY_OF_MONTH, 1);
+    end = Calendar.getInstance();
+    end.set(Calendar.DAY_OF_MONTH, Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
+    startDate = rootView.findViewById(R.id.editDateStart);
+    endDate = rootView.findViewById(R.id.editDateEnd);
+    updateView();
+    startDate.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+          @Override
+          public void onDateSet(DatePicker view, int year, int month, int day) {
+            start.set(Calendar.YEAR, year);
+            start.set(Calendar.MONTH, month);
+            start.set(Calendar.DAY_OF_MONTH, day);
+            updateView();
+          }
+        }, year, month, day).show();
+      }
+    });
+
+    endDate.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+          @Override
+          public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            end.set(Calendar.YEAR, year);
+            end.set(Calendar.MONTH, month);
+            end.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateView();
+          }
+        }, year, month, day).show();
+      }
+    });
+
+  }
 
 
   private void updateView() {
