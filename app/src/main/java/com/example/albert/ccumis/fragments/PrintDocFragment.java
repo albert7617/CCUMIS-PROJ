@@ -42,12 +42,13 @@ import com.example.albert.ccumis.DepartmentViewModel;
 import com.example.albert.ccumis.EmploymentViewModel;
 import com.example.albert.ccumis.PostEmployment;
 import com.example.albert.ccumis.R;
-import com.example.albert.ccumis.SelectEmploymentRemoteTask;
 import com.example.albert.ccumis.adapters.DepartmentAdapter;
 import com.example.albert.ccumis.adapters.SelectAdapter;
 import com.example.albert.ccumis.data.Department;
 import com.example.albert.ccumis.data.Employment;
 import com.example.albert.ccumis.tasks.PrintPDFTask;
+import com.example.albert.ccumis.tasks.RemoteTask;
+import com.example.albert.ccumis.tasks.SelectPrintTask;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -186,8 +187,8 @@ public class PrintDocFragment extends Fragment {
           postEmployment.end_year = end.get(Calendar.YEAR) - 1911;
           postEmployment.end_month = end.get(Calendar.MONTH) + 1;
           postEmployment.end_day = end.get(Calendar.DAY_OF_MONTH);
-          final SelectEmploymentRemoteTask task = new SelectEmploymentRemoteTask(((Application) getContext().getApplicationContext()), OPERATION, postEmployment);
-          task.setCallback(callback);
+          final SelectPrintTask task = new SelectPrintTask(getActivity().getApplication(), postEmployment);
+          task.setCallback(selectCallback);
           alertDialog = new AlertDialog.Builder(getActivity())
                   .setView(R.layout.dialog_progress)
                   .setCancelable(false)
@@ -351,14 +352,14 @@ public class PrintDocFragment extends Fragment {
           for (String bsn : selections) {
             printRows.put(bsn, "1");
           }
-          final PrintPDFTask printPDFTask = new PrintPDFTask(getActivity().getApplicationContext(),
+          final PrintPDFTask printPDFTask = new PrintPDFTask(getActivity().getApplication(),
                                             displayWage.getText().toString(),
                                             hiddenIdentityType.getText().toString(),
                                             hiddenInsurance.getText().toString(),
                                             hiddenEmpType.getText().toString(),
                                             printRows,
                                             postEmployment);
-          printPDFTask.setCallback(printCallback);
+          printPDFTask.setCallback(callback, fileCallback);
           printPDFTask.execute();
           alertDialog = new AlertDialog.Builder(getActivity())
                   .setView(R.layout.dialog_progress)
@@ -460,54 +461,52 @@ public class PrintDocFragment extends Fragment {
   }
 
 
-  private SelectEmploymentRemoteTask.Callback callback = new SelectEmploymentRemoteTask.Callback() {
+  private RemoteTask.Callback selectCallback = new RemoteTask.Callback() {
     @Override
-    public void result(int result) {
+    public void result(Map<String, String> result) {
       alertDialog.dismiss();
-      if(result == 400) {
+      if(result.get("result").equalsIgnoreCase("400")) {
         new AlertDialog.Builder(getActivity())
                 .setTitle(getString(R.string.error))
-                .setMessage(getString(R.string.error_no_connection))
+                .setMessage(result.get("msg"))
                 .setPositiveButton(R.string.confirm, null)
                 .show();
-      } else if (result == 201) {
+      } else if (result.get("result").equalsIgnoreCase("201")) {
         Toast.makeText(getContext(), R.string.print_select_nothing, Toast.LENGTH_SHORT).show();
       }
     }
   };
 
-  private PrintPDFTask.Callback printCallback = new PrintPDFTask.Callback() {
+  private RemoteTask.Callback callback = new RemoteTask.Callback() {
     @Override
     public void result(Map<String, String> result) {
-      if(result.containsKey("error")) {
-        Toast.makeText(getContext(), result.get("error"), Toast.LENGTH_SHORT).show();
+      alertDialog.dismiss();
+      if(result.get("result").equalsIgnoreCase("400")) {
+        Toast.makeText(getContext(), result.get("msg"), Toast.LENGTH_SHORT).show();
       }
     }
+  };
 
+  private RemoteTask.FileCallback fileCallback = new RemoteTask.FileCallback() {
     @Override
-    public void pdfSaved(final String filePath) {
-      getActivity().runOnUiThread(new Runnable() {
-        @Override
-        public void run() {
-          alertDialog.dismiss();
-          Snackbar.make(coordinatorLayout, "工讀單已儲存到下載資料夾", Snackbar.LENGTH_SHORT)
-                  .setAction("開啟", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                      Intent target = new Intent(Intent.ACTION_VIEW);
-                      target.setDataAndType(Uri.parse(filePath),"application/pdf");
-                      Intent intent = Intent.createChooser(target, "Open File");
-                      try {
-                        startActivity(intent);
-                      } catch (ActivityNotFoundException e) {
-                        // Instruct the user to install a PDF reader here, or something
-                      }
-                    }
-                  })
-                  .setDuration(5000)
-                  .show();
-        }
-      });
+    public void fileSaved(final String filePath) {
+      alertDialog.dismiss();
+      Snackbar.make(coordinatorLayout, "工讀單已儲存到下載資料夾", Snackbar.LENGTH_SHORT)
+              .setAction("開啟", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                  Intent target = new Intent(Intent.ACTION_VIEW);
+                  target.setDataAndType(Uri.parse(filePath),"application/pdf");
+                  Intent intent = Intent.createChooser(target, "Open File");
+                  try {
+                    startActivity(intent);
+                  } catch (ActivityNotFoundException e) {
+                    // Instruct the user to install a PDF reader here, or something
+                  }
+                }
+              })
+              .setDuration(5000)
+              .show();
     }
   };
 }

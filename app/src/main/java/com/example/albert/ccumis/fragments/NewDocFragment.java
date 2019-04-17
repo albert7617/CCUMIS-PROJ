@@ -1,6 +1,5 @@
 package com.example.albert.ccumis.fragments;
 
-import android.app.Application;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
@@ -24,10 +23,11 @@ import com.example.albert.ccumis.data.Employment;
 import com.example.albert.ccumis.adapters.EmploymentListAdapter;
 import com.example.albert.ccumis.EmploymentViewModel;
 import com.example.albert.ccumis.R;
-import com.example.albert.ccumis.RecyclerDecoration;
-import com.example.albert.ccumis.tasks.SaveToServerTask;
+import com.example.albert.ccumis.tasks.InsertDocTask;
+import com.example.albert.ccumis.tasks.RemoteTask;
 
 import java.util.List;
+import java.util.Map;
 
 public class NewDocFragment extends Fragment {
 
@@ -43,8 +43,7 @@ public class NewDocFragment extends Fragment {
     recyclerView.setNestedScrollingEnabled(false);
     recyclerView.setAdapter(adapter);
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    recyclerView.addItemDecoration(new RecyclerDecoration());
-    adapter.setCallback(callback);
+    adapter.setCallback(deleteCallback);
     final TextView hourCount = rootView.findViewById(R.id.hoursCount);
     viewModel = ViewModelProviders.of(this).get(EmploymentViewModel.class);
     viewModel.getEmployments(OPERATION).observe(this, new Observer<List<Employment>>() {
@@ -109,8 +108,8 @@ public class NewDocFragment extends Fragment {
     submit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        final SaveToServerTask task = new SaveToServerTask(((Application) getContext().getApplicationContext()));
-        task.setCallback(dbCallback);
+        final InsertDocTask task = new InsertDocTask(getActivity().getApplication());
+        task.setCallback(callback);
         task.execute();
         alertDialog = new AlertDialog.Builder(getActivity())
                 .setView(R.layout.dialog_progress)
@@ -129,53 +128,22 @@ public class NewDocFragment extends Fragment {
     return rootView;
   }
 
-  EmploymentListAdapter.Callback callback = new EmploymentListAdapter.Callback() {
+  EmploymentListAdapter.Callback deleteCallback = new EmploymentListAdapter.Callback() {
     @Override
     public void delete(int seri_no) {
       viewModel.delete(seri_no);
     }
   };
 
-  SaveToServerTask.Callback dbCallback = new SaveToServerTask.Callback() {
+  RemoteTask.Callback callback = new RemoteTask.Callback() {
     @Override
-    public void taskDone(int msg) {
+    public void result(Map<String, String> result) {
       alertDialog.dismiss();
-      String title, content;
-      switch (msg) {
-        case 1:
-          title = getString(R.string.success);
-          content = getString(R.string.success_to_db);
-          break;
-        case -1:
-          title = getString(R.string.error_not_saved);
-          content = getString(R.string.error_login_fail);
-          break;
-        case -2:
-          title = getString(R.string.success);
-          content = getString(R.string.error_no_connection);
-          break;
-        case -3:
-          title = getString(R.string.success);
-          content = getString(R.string.error_no_data);
-          break;
-        case -4:
-          title = getString(R.string.success);
-          content = getString(R.string.error_unknown);
-          break;
-        default:
-          title = "安安";
-          content = msg + "";
-          break;
-      }
+      String title = result.get("result").equalsIgnoreCase("200") ? getString(R.string.success) : getString(R.string.error);
       new AlertDialog.Builder(getActivity())
               .setTitle(title)
-              .setMessage(content)
-              .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-              })
+              .setMessage(result.get("msg"))
+              .setPositiveButton(R.string.confirm, null)
               .show();
     }
   };

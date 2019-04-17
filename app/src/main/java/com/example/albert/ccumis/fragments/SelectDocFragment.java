@@ -1,6 +1,5 @@
 package com.example.albert.ccumis.fragments;
 
-import android.app.Application;
 import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -8,7 +7,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,38 +27,20 @@ import com.example.albert.ccumis.data.Employment;
 import com.example.albert.ccumis.EmploymentViewModel;
 import com.example.albert.ccumis.PostEmployment;
 import com.example.albert.ccumis.R;
-import com.example.albert.ccumis.RecyclerDecoration;
 import com.example.albert.ccumis.adapters.SelectAdapter;
-import com.example.albert.ccumis.SelectEmploymentRemoteTask;
+import com.example.albert.ccumis.tasks.RemoteTask;
+import com.example.albert.ccumis.tasks.SelectDocTask;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SelectDocFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SelectDocFragment extends Fragment {
-  // TODO: Rename parameter arguments, choose names that match
-  // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-  private static final String ARG_PARAM1 = "param1";
-  private static final String ARG_PARAM2 = "param2";
-
-
-
-  private String mParam1;
-  private String mParam2;
 
   private final int OPERATION = 1;
-  // --Commented out by Inspection (2019/3/7 17:53):private final int DEPARTMENT_TYPE = 1;
 
-  private DepartmentViewModel departmentViewModel;
-  private EmploymentViewModel employmentViewModel;
-  private FragmentManager fm;
   private EditText startDate, endDate, weekend, status;
 
   private final DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.TAIWAN);
@@ -71,30 +51,14 @@ public class SelectDocFragment extends Fragment {
     // Required empty public constructor
   }
 
-
-  public static SelectDocFragment newInstance(String param1, String param2) {
-    SelectDocFragment fragment = new SelectDocFragment();
-    Bundle args = new Bundle();
-    args.putString(ARG_PARAM1, param1);
-    args.putString(ARG_PARAM2, param2);
-    fragment.setArguments(args);
-    return fragment;
-  }
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (getArguments() != null) {
-      mParam1 = getArguments().getString(ARG_PARAM1);
-      mParam2 = getArguments().getString(ARG_PARAM2);
-    }
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
     View rootView = inflater.inflate(R.layout.fragment_select_doc, container, false);
-    fm = getChildFragmentManager();
 
     final RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
     final SelectAdapter selectAdapter = new SelectAdapter(getActivity());
@@ -102,7 +66,6 @@ public class SelectDocFragment extends Fragment {
     recyclerView.setNestedScrollingEnabled(false);
     recyclerView.setAdapter(selectAdapter);
     ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-    recyclerView.addItemDecoration(new RecyclerDecoration());
     start = Calendar.getInstance();
     start.set(Calendar.DAY_OF_MONTH, 1);
     end = Calendar.getInstance();
@@ -110,8 +73,8 @@ public class SelectDocFragment extends Fragment {
     final Spinner spinner = rootView.findViewById(R.id.department_spinner);
     final DepartmentAdapter adapter = new DepartmentAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item);
     spinner.setAdapter(adapter);
-    departmentViewModel = ViewModelProviders.of(this).get(DepartmentViewModel.class);
-    employmentViewModel = ViewModelProviders.of(this).get(EmploymentViewModel.class);
+    DepartmentViewModel departmentViewModel = ViewModelProviders.of(this).get(DepartmentViewModel.class);
+    EmploymentViewModel employmentViewModel = ViewModelProviders.of(this).get(EmploymentViewModel.class);
 
     employmentViewModel.nukeTable(OPERATION);
 
@@ -235,7 +198,7 @@ public class SelectDocFragment extends Fragment {
           postEmployment.end_year = end.get(Calendar.YEAR) - 1911;
           postEmployment.end_month = end.get(Calendar.MONTH) + 1;
           postEmployment.end_day = end.get(Calendar.DAY_OF_MONTH);
-          final SelectEmploymentRemoteTask task = new SelectEmploymentRemoteTask(((Application) getContext().getApplicationContext()), OPERATION, postEmployment);
+          final SelectDocTask task = new SelectDocTask(getActivity().getApplication(), postEmployment);
           task.setCallback(callback);
           alertDialog = new AlertDialog.Builder(getActivity())
                   .setView(R.layout.dialog_progress)
@@ -277,14 +240,14 @@ public class SelectDocFragment extends Fragment {
     endDate.setText(df.format(end.getTime()));
   }
 
-  SelectEmploymentRemoteTask.Callback callback = new SelectEmploymentRemoteTask.Callback() {
+  RemoteTask.Callback callback = new RemoteTask.Callback() {
     @Override
-    public void result(int result) {
+    public void result(Map<String, String> result) {
       alertDialog.dismiss();
-      if(result != 200) {
+      if(result.get("result").equalsIgnoreCase("400")) {
         new AlertDialog.Builder(getActivity())
                 .setTitle(getString(R.string.error))
-                .setMessage(getString(R.string.error_no_connection))
+                .setMessage(result.get("msg"))
                 .setPositiveButton(R.string.confirm, null)
                 .show();
       }

@@ -1,44 +1,34 @@
 package com.example.albert.ccumis.tasks;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
-import android.os.Environment;
-import android.preference.PreferenceManager;
+
+import android.app.Application;
 
 import com.example.albert.ccumis.R;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class QueryPDFTask extends AsyncTask<Void, Void, Map<String, String>> {
+public class QueryPDFTask extends RemoteTask {
   private Callback callback;
-  @SuppressLint("StaticFieldLeak")
-  private Context context;
+  private Application application;
   private String serialNO;
   private int empType;
-  public QueryPDFTask(Context context, String serialNo, int empType) {
+  public QueryPDFTask(Application application, String serialNo, int empType) {
+    super(application);
     this.serialNO = serialNo;
     this.empType = empType;
-    this.context = context;
+    this.application = application;
   }
 
   @Override
   protected Map<String, String> doInBackground(Void... voids) {
     Map<String, String> postData = new HashMap<>(), retval = new HashMap<>();
 
-    String sessid = login();
+    String sessid = super.login();
     if(sessid == null) {
       retval.put("error", "錯誤無法登入");
       return retval;
@@ -52,7 +42,7 @@ public class QueryPDFTask extends AsyncTask<Void, Void, Map<String, String>> {
       boolean flag = false;
       for (int i = 1; i < 100; i++) {
         postData.put("ctrow", Integer.toString(i));
-        response = Jsoup.connect(context.getString(R.string.url_prt_pdf))
+        response = Jsoup.connect(application.getString(R.string.url_prt_pdf))
                 .cookie("PHPSESSID", sessid)
                 .followRedirects(true)
                 .data(postData)
@@ -65,7 +55,10 @@ public class QueryPDFTask extends AsyncTask<Void, Void, Map<String, String>> {
         }
         if(response.contentType().contains("pdf")) {
           flag = true;
-          writeToFile(response.bodyAsBytes());
+          File file = super.writeToFile(response.bodyAsBytes(), postData.get("bsn"), postData.get("ctrow"), postData.get("emp_type"));
+          if(this.callback != null) {
+            callback.pdfSaved(file.getPath());
+          }
           break;
         }
         postData.remove("ctrow");
@@ -76,7 +69,7 @@ public class QueryPDFTask extends AsyncTask<Void, Void, Map<String, String>> {
       if(flag) {
         return postData;
       } else {
-        retval.put("error", "錯誤查無資料");
+        retval.put("error", "查無資料");
         return retval;
       }
     } catch (Exception e) {
@@ -91,58 +84,6 @@ public class QueryPDFTask extends AsyncTask<Void, Void, Map<String, String>> {
     if(this.callback != null) {
       this.callback.result(stringStringMap);
     }
-  }
-
-  private String login() {
-    try {
-      SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
-      String username = sharedPreferences.getString(context.getString(R.string.pref_username), "username");
-      String password = sharedPreferences.getString(context.getString(R.string.pref_password), "password");
-
-      Connection.Response response = Jsoup.connect(context.getString(R.string.url_login))
-              .followRedirects(true)
-              .data("staff_cd", username, "passwd", password)
-              .method(Connection.Method.POST)
-              .execute();
-      String phpsessid = response.cookie("PHPSESSID");
-      Document document = response.parse();
-      if(document.title().equals("學習暨勞僱時數登錄系統")) {
-        return phpsessid;
-      } else {
-        // Login fail
-        return null;
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-      // Connection error
-      return null;
-    }
-  }
-
-  private void writeToFile(byte[] data) throws Exception {
-
-    File root = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/");
-    File file = new File(root, "ccu_mis_"+SHAsum(data)+".pdf");
-    if (!file.exists()) file.createNewFile();
-    FileOutputStream out = new FileOutputStream(file);
-    out.write(data);
-    out.close();
-    if(this.callback != null) {
-      callback.pdfSaved(file.getPath());
-    }
-  }
-
-  public static String SHAsum(byte[] convertme) throws NoSuchAlgorithmException {
-    MessageDigest md = MessageDigest.getInstance("SHA-1");
-    return byteArray2Hex(md.digest(convertme));
-  }
-
-  private static String byteArray2Hex(final byte[] hash) {
-    Formatter formatter = new Formatter();
-    for (byte b : hash) {
-      formatter.format("%02x", b);
-    }
-    return formatter.toString();
   }
 
   public interface Callback {

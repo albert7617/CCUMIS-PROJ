@@ -22,21 +22,14 @@ import java.util.List;
 import java.util.Locale;
 
 public class DocumentRepository {
-  private HistoryDao historyDao;
   private DepartmentDao departmentDao;
   private LiveData<List<Department>> allDepartment;
   private Application application;
   DocumentRepository(Application application){
     AppRoomDatabase db = AppRoomDatabase.getDatabase(application);
     departmentDao = db.departmentDao();
-    historyDao = db.historyDao();
     allDepartment = departmentDao.getAll(0);
     this.application = application;
-  }
-
-
-  LiveData<List<String>> getAllHistory(int type) {
-    return historyDao.getAll(type);
   }
 
 
@@ -98,7 +91,7 @@ public class DocumentRepository {
         Document document = response.parse();
 
         if(document.title().equals("學習暨勞僱時數登錄系統")) {
-          response = Jsoup.connect(application.getString(R.string.main2))
+          response = Jsoup.connect(application.getString(R.string.url_main2))
                   .cookie("PHPSESSID", phpsessid)
                   .execute();
           document = response.parse();

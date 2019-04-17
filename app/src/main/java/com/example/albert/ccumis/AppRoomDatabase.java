@@ -9,11 +9,10 @@ import com.example.albert.ccumis.data.Department;
 import com.example.albert.ccumis.data.Employment;
 import com.example.albert.ccumis.data.History;
 
-@Database(entities = {Employment.class, Department.class, History.class}, version = 12, exportSchema = false)
+@Database(entities = {Employment.class, Department.class, History.class}, version = 1, exportSchema = false)
 public abstract class AppRoomDatabase extends RoomDatabase {
   public abstract EmploymentDao employmentDao();
   public abstract DepartmentDao departmentDao();
-  public abstract HistoryDao historyDao();
 
   private static AppRoomDatabase INSTANCE;
 

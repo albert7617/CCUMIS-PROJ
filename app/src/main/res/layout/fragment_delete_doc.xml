@@ -145,10 +145,12 @@
                 app:layout_constraintTop_toBottomOf="@id/cautionCard"
                 app:layout_constraintStart_toStartOf="parent"
                 android:id="@+id/selectAllCard"
+                android:clickable="true"
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/LightCardView">
+                style="@style/LightCardView"
+                android:focusable="true">
                 <android.support.constraint.ConstraintLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:padding="8dp"
@@ -179,13 +181,10 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:descendantFocusability="blocksDescendants"
-                android:layout_marginTop="8dp"
+                style="@style/RecyclerView"
                 android:nestedScrollingEnabled="true"
                 app:layout_constraintTop_toBottomOf="@id/selectAllCard"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/submitCard"

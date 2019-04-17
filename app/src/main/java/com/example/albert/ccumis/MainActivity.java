@@ -12,19 +12,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.albert.ccumis.fragments.AboutFragment;
 import com.example.albert.ccumis.fragments.DeleteDocFragment;
 import com.example.albert.ccumis.fragments.NewDocFragment;
 import com.example.albert.ccumis.fragments.PrintDocFragment;
-import com.example.albert.ccumis.fragments.QueryFragment;
 import com.example.albert.ccumis.fragments.SelectDocFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -147,9 +145,9 @@ public class MainActivity extends AppCompatActivity
       getSupportFragmentManager().beginTransaction()
               .replace(R.id.main_frame, new PrintDocFragment())
               .commit();
-    } else if (id == R.id.nav_pdf_doc) {
+    } else if (id == R.id.nav_abt_doc) {
       getSupportFragmentManager().beginTransaction()
-              .replace(R.id.main_frame, new QueryFragment())
+              .replace(R.id.main_frame, new AboutFragment())
               .commit();
     }
 

@@ -38,7 +38,6 @@ public class DocumentActivity extends AppCompatActivity {
 
   SelectedDate mSelectedDate;
   private final int OPERATION = 0;
-  // --Commented out by Inspection (2019/3/7 17:53):private final int DEPARTMENT_TYPE = 0;
   private int startHour=-1, startMinute=-1, endHour=-1, endMinute=-1;
   private FragmentManager fm;
   private final DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.TAIWAN);
@@ -255,6 +254,10 @@ public class DocumentActivity extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView = findViewById(R.id.content);
     if(autoCompleteTextView.getText().toString().isEmpty()) {
       errorMsg += getString(R.string.error_no_content);
+      errorMsg += "\n";
+    }
+    if(department == null) {
+      errorMsg += getString(R.string.error_no_department);
       errorMsg += "\n";
     }
     if(!errorMsg.isEmpty()) {
