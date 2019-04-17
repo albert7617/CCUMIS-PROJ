@@ -24,12 +24,6 @@ public class DepartmentRepository {
     this.application = application;
     departmentDao = db.departmentDao();
   }
-  
-// --Commented out by Inspection START (2019/3/7 17:53):
-//  public void insert(Department department) {
-//    new InsertTask(departmentDao).execute(department);
-//  }
-// --Commented out by Inspection STOP (2019/3/7 17:53)
 
   private static class InsertTask extends AsyncTask<Department, Void, Void> {
     DepartmentDao departmentDao;
@@ -106,7 +100,7 @@ public class DepartmentRepository {
                 .execute();
         String phpsessid = response.cookie("PHPSESSID");
         Document document = response.parse();
-        boolean flag = true;
+
         if(document.title().equals("學習暨勞僱時數登錄系統")) {
           response = Jsoup.connect(url)
                   .cookie("PHPSESSID", phpsessid)

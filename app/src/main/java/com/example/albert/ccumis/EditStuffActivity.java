@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -21,7 +20,6 @@ import com.example.albert.ccumis.adapters.StuffAdapter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class EditStuffActivity extends AppCompatActivity {
 
@@ -51,14 +49,14 @@ public class EditStuffActivity extends AppCompatActivity {
         int position = viewHolder.getAdapterPosition();
         final String stuff = adapter.getStuffAtPosition(position);
         stuffs.remove(stuff);
-        sharedPreferences.edit().putStringSet(getString(R.string.pref_content), new HashSet<String>(stuffs)).commit();
+        sharedPreferences.edit().putStringSet(getString(R.string.pref_content), new HashSet<>(stuffs)).commit();
         adapter.setStuff(stuffs);
         Snackbar.make(findViewById(R.id.stuffCoordinatorLayout),"常用勞雇資料\""+stuff+"\"已刪除",Snackbar.LENGTH_LONG)
                 .setAction("復原", new View.OnClickListener() {
                   @Override
                   public void onClick(View view) {
                     stuffs.add(stuff);
-                    sharedPreferences.edit().putStringSet(getString(R.string.pref_content), new HashSet<String>(stuffs)).commit();
+                    sharedPreferences.edit().putStringSet(getString(R.string.pref_content), new HashSet<>(stuffs)).commit();
                     adapter.setStuff(stuffs);
                   }
                 })
@@ -86,7 +84,7 @@ public class EditStuffActivity extends AppCompatActivity {
             EditText editText = dialogView.findViewById(R.id.stuffEditText);
             stuffs.add(editText.getText().toString());
             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            pref.edit().putStringSet(getString(R.string.pref_content), new HashSet<String>(stuffs)).commit();
+            pref.edit().putStringSet(getString(R.string.pref_content), new HashSet<>(stuffs)).commit();
             adapter.setStuff(stuffs);
           }
         });

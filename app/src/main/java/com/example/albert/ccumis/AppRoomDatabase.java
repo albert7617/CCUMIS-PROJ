@@ -7,9 +7,8 @@ import android.content.Context;
 
 import com.example.albert.ccumis.data.Department;
 import com.example.albert.ccumis.data.Employment;
-import com.example.albert.ccumis.data.History;
 
-@Database(entities = {Employment.class, Department.class, History.class}, version = 1, exportSchema = false)
+@Database(entities = {Employment.class, Department.class}, version = 1, exportSchema = false)
 public abstract class AppRoomDatabase extends RoomDatabase {
   public abstract EmploymentDao employmentDao();
   public abstract DepartmentDao departmentDao();

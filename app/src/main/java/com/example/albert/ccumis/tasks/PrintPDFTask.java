@@ -1,7 +1,6 @@
 package com.example.albert.ccumis.tasks;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.example.albert.ccumis.PostEmployment;
 import com.example.albert.ccumis.R;
@@ -74,8 +73,6 @@ public class PrintPDFTask extends RemoteTask {
       postData.put("agreethis", "1");
       postData.put("go", "確定送出並列印");
 
-      boolean flag = false;
-
       response = Jsoup.connect(application.getString(R.string.url_prt_chk))
               .cookie("PHPSESSID", sessid)
               .followRedirects(true)
@@ -103,7 +100,6 @@ public class PrintPDFTask extends RemoteTask {
                 .ignoreContentType(true)
                 .execute();
         if(response.contentType().contains("pdf")) {
-          flag = true;
           File file = super.writeToFile(response.bodyAsBytes(), postData.get("bsn"), postData.get("ctrow"), postData.get("emp_type"));
           if(this.fileCallback != null) {
             fileCallback.fileSaved(file.getPath());

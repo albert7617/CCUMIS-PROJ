@@ -2,7 +2,6 @@ package com.example.albert.ccumis.fragments;
 
 
 import android.Manifest;
-import android.app.Application;
 import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -275,7 +274,7 @@ public class PrintDocFragment extends Fragment {
     });
 
 
-    final HashMap<String, String> identityMap = new HashMap<String, String>();
+    final HashMap<String, String> identityMap = new HashMap<>();
     String[] identities = getResources().getStringArray(R.array.identities);
     ArrayList<String> identitiesDisplay = new ArrayList<>();
     for(String identity : identities) {
@@ -283,7 +282,7 @@ public class PrintDocFragment extends Fragment {
       identityMap.put(value, index);
       identitiesDisplay.add(value);
     }
-    ArrayAdapter<String> identityAdapter =new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, identitiesDisplay);
+    ArrayAdapter<String> identityAdapter =new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, identitiesDisplay);
     identityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     identitySpinner.setAdapter(identityAdapter);
 

@@ -1,7 +1,6 @@
 package com.example.albert.ccumis.tasks;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.example.albert.ccumis.AppRoomDatabase;
 import com.example.albert.ccumis.EmploymentDao;
