@@ -1,62 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".fragments.AboutFragment">
+
+  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.AboutFragment">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView style="@style/LightCardView">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/github"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textSize="30sp" />
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:autoLink="web"
+          android:linksClickable="true"
+          android:text="@string/github_link"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView style="@style/LightCardView">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/third_party_library"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textSize="30sp" />
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:text="@string/jsoup_title"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.CardView
-                style="@style/LightCardView">
-                <LinearLayout
-                    android:padding="16dp"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:textSize="30sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/github"/>
-                    <TextView
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:linksClickable="true"
-                        android:autoLink="web"
-                        android:text="@string/github_link"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                style="@style/LightCardView">
-                <LinearLayout
-                    android:padding="16dp"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:textSize="30sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/third_party_library"/>
-                    <TextView
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/jsoup_title"/>
-                    <TextView
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/jsoup_content"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/code"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="4dp"
+            android:text="@string/jsoup_url"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
         </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/license"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="4dp"
+            android:text="@string/jsoup_license"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+        </LinearLayout>
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:text="@string/sublimepicker_title"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/code"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="4dp"
+            android:text="@string/sublimepicker_url"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/license"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="4dp"
+            android:text="@string/sublimepicker_license"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+        </LinearLayout>
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:text="@string/materialdaypicker_title"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/code"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="4dp"
+            android:text="@string/materialdaypicker_url"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/license"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="4dp"
+            android:text="@string/materialdaypicker_license"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+        </LinearLayout>
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="16dp" />
+  </LinearLayout>
 </ScrollView>
