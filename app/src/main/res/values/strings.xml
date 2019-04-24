@@ -1,173 +1,174 @@
 <resources>
-    <string name="app_name">CCUMIS</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-    <string name="third_party_library">Third Party Library</string>
-    <string name="action_logout">登出</string>
-    <string name="action_edit">編輯常用勞雇內容</string>
-    <string name="title_activity_login">Sign in</string>
-    <string name="not_login">未登入</string>
-    <string name="caution">注意事項</string>
-    <string name="caution_items">1. 本系統僅提供學習暨勞僱時數登錄，助學金請領仍應於會計系統辦理。\n2. 學生應於完成學習暨勞僱後逐日即時進入學習暨勞僱系統內登錄學習暨勞僱時段，超過3個月未登錄，將視同放棄請領。\n3. 學習暨勞僱時段不可事先登錄。\n4. 學習暨勞僱時段不可於不同單位重複登錄。\n5. 學習暨勞僱時段亦不可和臨時工資工作時段重複登錄。\n6. 當周申請時數不能超過20小時(不含假日)</string>
-    <string name="hour_count">本次登記時數</string>
-    <string name="work_hours">學習暨勞僱時間</string>
-    <string name="yes">有</string>
-    <string name="no">無</string>
-    <string name="hours">小時</string>
-    <string name="delete">刪除</string>
-    <string name="delete_all">刪除全部</string>
-    <string name="edit">編輯</string>
-    <string name="submit">送出</string>
-    <string name="loading">載入中</string>
-    <string name="department">學習暨勞僱單位</string>
-    <string name="status">處理情況</string>
-    <string name="weekend">例假日</string>
-    <string name="no_data">沒有資料</string>
-    <string name="querying">查詢中</string>
-    <string name="agree">同意</string>
-    <string name="start_date">起始時間</string>
-    <string name="end_date">結束時間</string>
-    <string name="list_data">依條件選出資料</string>
-    <string name="print_select_condition">設定選擇列印條件</string>
-    <string name="print_select_employment">加入列印</string>
-    <string name="print_select_nothing">選取範圍無學習暨勞僱資料</string>
-    <string name="print_select_no_selection">未選取任何的學習暨勞僱資料</string>
-    <string name="print_select_selection">已選取的學習暨勞僱資料</string>
-    <string name="print_confirm_selection">確認填寫資料</string>
-    <string name="print_confirm_and_print">確定送出並列印</string>
-    <string name="print_wage">助學金時薪單價</string>
-    <string name="print_identity">身分</string>
-    <string name="print_insurance">在校外有無專職工作，而由該單位幫您投保(不包括於職業工會投保者)</string>
-    <string name="print_emp_type">學習暨勞僱類型</string>
-    <string name="print_terms">以上選項本人皆已正確勾選，請國立中正大學依「全民健康保險扣取及繳納補充保險費辦法」免扣取（或應扣取）本人補充保險費，如有不實，願依全民健康保險法暨相關法律規定處理，特此聲明。</string>
-    <string name="print_terms_not_agreed">請同意聲明</string>
-    <string name="prev">上一步</string>
-    <string name="next">下一步</string>
+  <string name="app_name">CCUMIS</string>
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="nav_header_title">Android Studio</string>
+  <string name="nav_header_subtitle">android.studio@android.com</string>
+  <string name="nav_header_desc">Navigation header</string>
+  <string name="action_settings">Settings</string>
+  <string name="third_party_library">Third Party Library</string>
+  <string name="action_logout">登出</string>
+  <string name="action_edit">編輯常用勞雇內容</string>
+  <string name="title_activity_login">Sign in</string>
+  <string name="not_login">未登入</string>
+  <string name="caution">注意事項</string>
+  <string name="caution_items">1. 本系統僅提供學習暨勞僱時數登錄，助學金請領仍應於會計系統辦理。\n2. 學生應於完成學習暨勞僱後逐日即時進入學習暨勞僱系統內登錄學習暨勞僱時段，超過3個月未登錄，將視同放棄請領。\n3. 學習暨勞僱時段不可事先登錄。\n4. 學習暨勞僱時段不可於不同單位重複登錄。\n5. 學習暨勞僱時段亦不可和臨時工資工作時段重複登錄。\n6. 當周申請時數不能超過20小時(不含假日)</string>
+  <string name="hour_count">本次登記時數</string>
+  <string name="work_hours">學習暨勞僱時間</string>
+  <string name="yes">有</string>
+  <string name="no">無</string>
+  <string name="hours">小時</string>
+  <string name="delete">刪除</string>
+  <string name="delete_all">刪除全部</string>
+  <string name="edit">編輯</string>
+  <string name="submit">送出</string>
+  <string name="loading">載入中</string>
+  <string name="department">學習暨勞僱單位</string>
+  <string name="status">處理情況</string>
+  <string name="weekend">例假日</string>
+  <string name="no_data">沒有資料</string>
+  <string name="querying">查詢中</string>
+  <string name="agree">同意</string>
+  <string name="start_date">起始時間</string>
+  <string name="end_date">結束時間</string>
+  <string name="list_data">依條件選出資料</string>
+  <string name="print_select_condition">設定選擇列印條件</string>
+  <string name="print_select_employment">加入列印</string>
+  <string name="print_select_nothing">選取範圍無學習暨勞僱資料</string>
+  <string name="print_select_no_selection">未選取任何的學習暨勞僱資料</string>
+  <string name="print_select_selection">已選取的學習暨勞僱資料</string>
+  <string name="print_confirm_selection">確認填寫資料</string>
+  <string name="print_confirm_and_print">確定送出並列印</string>
+  <string name="print_wage">助學金時薪單價</string>
+  <string name="print_identity">身分</string>
+  <string name="print_insurance">在校外有無專職工作，而由該單位幫您投保(不包括於職業工會投保者)</string>
+  <string name="print_emp_type">學習暨勞僱類型</string>
+  <string name="print_terms">以上選項本人皆已正確勾選，請國立中正大學依「全民健康保險扣取及繳納補充保險費辦法」免扣取（或應扣取）本人補充保險費，如有不實，願依全民健康保險法暨相關法律規定處理，特此聲明。</string>
+  <string name="print_terms_not_agreed">請同意聲明</string>
+  <string name="prev">上一步</string>
+  <string name="next">下一步</string>
 
-    <!--Employment Types-->
-    <string name="admin_assistant">行政學習助理</string>
-    <string name="teacher_assistant">教學助理(TA)</string>
-    <string name="part_time_labor">勞僱工讀學生</string>
+  <!--Employment Types-->
+  <string name="admin_assistant">行政學習助理</string>
+  <string name="teacher_assistant">教學助理(TA)</string>
+  <string name="part_time_labor">勞僱工讀學生</string>
 
-    <!-- Status Items -->
-    <string-array name="statuses">
-        <item>未確認</item>
-        <item>已確認</item>
-        <item>已報帳</item>
-        <item>所有狀態</item>
-    </string-array>
+  <!-- Status Items -->
+  <string-array name="statuses">
+    <item>未確認</item>
+    <item>已確認</item>
+    <item>已報帳</item>
+    <item>所有狀態</item>
+  </string-array>
 
-    <!-- Weekend Items -->
-    <string-array name="weekends">
-        <item>是</item>
-        <item>否</item>
-        <item>全部</item>
-    </string-array>
+  <!-- Weekend Items -->
+  <string-array name="weekends">
+    <item>是</item>
+    <item>否</item>
+    <item>全部</item>
+  </string-array>
 
-    <!--Identity-->
-    <string-array name="identities">
-        <item>1|僑生、外籍生、一般學生</item>
-        <item>2|於校外職業工會投保之學生</item>
-        <item>3|低收入戶之學生</item>
-        <item>4|中低收入戶之學生</item>
-        <item>5|領取身心障礙者生活補助費之學生</item>
-        <item>6|僑生、外籍生、一般學生(以本校為健保投保單位)</item>
-    </string-array>
+  <!--Identity-->
+  <string-array name="identities">
+    <item>1|僑生、外籍生、一般學生</item>
+    <item>2|於校外職業工會投保之學生</item>
+    <item>3|低收入戶之學生</item>
+    <item>4|中低收入戶之學生</item>
+    <item>5|領取身心障礙者生活補助費之學生</item>
+    <item>6|僑生、外籍生、一般學生(以本校為健保投保單位)</item>
+  </string-array>
 
-    <!-- Strings related to login -->
-    <string name="prompt_account">帳號</string>
-    <string name="prompt_password">密碼</string>
-    <string name="action_sign_in">登入系統</string>
-    <string name="action_sign_in_short">登入</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">帳號或密碼錯誤</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
+  <!-- Strings related to login -->
+  <string name="prompt_account">帳號</string>
+  <string name="prompt_password">密碼</string>
+  <string name="action_sign_in">登入系統</string>
+  <string name="action_sign_in_short">登入</string>
+  <string name="error_invalid_email">This email address is invalid</string>
+  <string name="error_invalid_password">This password is too short</string>
+  <string name="error_incorrect_password">帳號或密碼錯誤</string>
+  <string name="error_field_required">This field is required</string>
+  <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
 
-    <!-- URLs -->
-    <string name="url_login">http://mis.cc.ccu.edu.tw/parttime/control.php</string>
-    <string name="url_home">http://mis.cc.ccu.edu.tw/parttime/</string>
-    <string name="url_post_data">http://mis.cc.ccu.edu.tw/parttime/next.php</string>
-    <string name="url_employment_list">http://mis.cc.ccu.edu.tw/parttime/xa2.php</string>
-    <string name="url_save_to_db">http://mis.cc.ccu.edu.tw/parttime/todb.php</string>
-    <string name="url_del_to_db">http://mis.cc.ccu.edu.tw/parttime/delete_todb.php</string>
-    <string name="url_head_stu">http://mis.cc.ccu.edu.tw/parttime/head_stu.php</string>
-    <string name="url_menu">http://mis.cc.ccu.edu.tw/parttime/menu_stu.php?type=0</string>
-    <string name="url_attend">http://mis.cc.ccu.edu.tw/parttime/attend.php</string>
-    <string name="url_control2">http://mis.cc.ccu.edu.tw/parttime/control2.php</string>
-    <string name="url_main2">http://mis.cc.ccu.edu.tw/parttime/main2.php</string>
-    <string name="url_sel_row">http://mis.cc.ccu.edu.tw/parttime/sp_row.php</string>
-    <string name="url_del_row">http://mis.cc.ccu.edu.tw/parttime/delete_row.php</string>
-    <string name="url_sp_sel">http://mis.cc.ccu.edu.tw/parttime/sp_sel.php</string>
-    <string name="url_del_sel">http://mis.cc.ccu.edu.tw/parttime/delete_sel.php</string>
-    <string name="url_prt_sel">http://mis.cc.ccu.edu.tw/parttime/print_sel.php</string>
-    <string name="url_prt_row">http://mis.cc.ccu.edu.tw/parttime/print_row.php</string>
-    <string name="url_prt_pdf">http://mis.cc.ccu.edu.tw/parttime/printpdf1.php</string>
-    <string name="url_prt_chk">http://mis.cc.ccu.edu.tw/parttime/print_check.php</string>
+  <!-- URLs -->
+  <string name="url_login">http://mis.cc.ccu.edu.tw/parttime/control.php</string>
+  <string name="url_home">http://mis.cc.ccu.edu.tw/parttime/</string>
+  <string name="url_post_data">http://mis.cc.ccu.edu.tw/parttime/next.php</string>
+  <string name="url_employment_list">http://mis.cc.ccu.edu.tw/parttime/xa2.php</string>
+  <string name="url_save_to_db">http://mis.cc.ccu.edu.tw/parttime/todb.php</string>
+  <string name="url_del_to_db">http://mis.cc.ccu.edu.tw/parttime/delete_todb.php</string>
+  <string name="url_head_stu">http://mis.cc.ccu.edu.tw/parttime/head_stu.php</string>
+  <string name="url_menu">http://mis.cc.ccu.edu.tw/parttime/menu_stu.php?type=0</string>
+  <string name="url_attend">http://mis.cc.ccu.edu.tw/parttime/attend.php</string>
+  <string name="url_control2">http://mis.cc.ccu.edu.tw/parttime/control2.php</string>
+  <string name="url_main2">http://mis.cc.ccu.edu.tw/parttime/main2.php</string>
+  <string name="url_sel_row">http://mis.cc.ccu.edu.tw/parttime/sp_row.php</string>
+  <string name="url_del_row">http://mis.cc.ccu.edu.tw/parttime/delete_row.php</string>
+  <string name="url_sp_sel">http://mis.cc.ccu.edu.tw/parttime/sp_sel.php</string>
+  <string name="url_del_sel">http://mis.cc.ccu.edu.tw/parttime/delete_sel.php</string>
+  <string name="url_prt_sel">http://mis.cc.ccu.edu.tw/parttime/print_sel.php</string>
+  <string name="url_prt_row">http://mis.cc.ccu.edu.tw/parttime/print_row.php</string>
+  <string name="url_prt_pdf">http://mis.cc.ccu.edu.tw/parttime/printpdf1.php</string>
+  <string name="url_prt_chk">http://mis.cc.ccu.edu.tw/parttime/print_check.php</string>
 
-    <!-- SharedPreference Keys -->
-    <string name="pref_username">PREF_USERNAME</string>
-    <string name="pref_password">PREF_PASSWORD</string>
-    <string name="pref_logined">PREF_LOGINED</string>
-    <string name="pref_content">PREF_CONTENT</string>
+  <!-- SharedPreference Keys -->
+  <string name="pref_username">PREF_USERNAME</string>
+  <string name="pref_password">PREF_PASSWORD</string>
+  <string name="pref_logined">PREF_LOGINED</string>
+  <string name="pref_content">PREF_CONTENT</string>
 
-    <!-- Drawer Titles -->
-    <string name="drawer_new_doc">新增學習暨勞僱時數</string>
-    <string name="drawer_sel_doc">查詢學習暨勞僱資料</string>
-    <string name="drawer_del_doc">刪除學習暨勞僱資料</string>
-    <string name="drawer_prt_doc">列印簽到退表與批號</string>
-    <string name="drawer_abt_doc">關於</string>
+  <!-- Drawer Titles -->
+  <string name="drawer_new_doc">新增學習暨勞僱時數</string>
+  <string name="drawer_sel_doc">查詢學習暨勞僱資料</string>
+  <string name="drawer_del_doc">刪除學習暨勞僱資料</string>
+  <string name="drawer_prt_doc">列印簽到退表與批號</string>
+  <string name="drawer_abt_doc">關於</string>
 
 
-    <!-- Error Message-->
-    <string name="error">錯誤</string>
+  <!-- Error Message-->
+  <string name="error">錯誤</string>
 
-    <string name="error_no_date">請輸入日期</string>
-    <string name="error_no_start_time">請輸入起始時間</string>
-    <string name="error_no_end_time">請輸入結束時間</string>
-    <string name="error_no_start_date">請輸入起始日期</string>
-    <string name="error_no_end_date">請輸入結束日期</string>
-    <string name="error_start_later_than_end">起始時間晚於結束時間</string>
-    <string name="error_start_later_than_end_date">起始日期晚於結束日期</string>
-    <string name="error_no_content">請輸入勞雇內容</string>
-    <string name="error_no_department">請輸入勞雇單位</string>
-    <string name="error_duration_long">勞雇時數大於4小時</string>
-    <string name="error_not_saved">未儲存到資料庫</string>
-    <string name="error_no_connection">網路錯誤 請檢查連線</string>
-    <string name="error_login_fail">登入失敗</string>
-    <string name="error_unknown">未知錯誤</string>
-    <string name="error_no_data">請輸入資料</string>
-    <string name="error_nothing">查無資料</string>
+  <string name="error_no_date">請輸入日期</string>
+  <string name="error_no_start_time">請輸入起始時間</string>
+  <string name="error_no_end_time">請輸入結束時間</string>
+  <string name="error_no_start_date">請輸入起始日期</string>
+  <string name="error_no_end_date">請輸入結束日期</string>
+  <string name="error_start_later_than_end">起始時間晚於結束時間</string>
+  <string name="error_start_later_than_end_date">起始日期晚於結束日期</string>
+  <string name="error_no_content">請輸入勞雇內容</string>
+  <string name="error_no_department">請輸入勞雇單位</string>
+  <string name="error_duration_long">勞雇時數大於4小時</string>
+  <string name="error_not_saved">未儲存到資料庫</string>
+  <string name="error_no_connection">網路錯誤 請檢查連線</string>
+  <string name="error_login_fail">登入失敗</string>
+  <string name="error_unknown">未知錯誤</string>
+  <string name="error_no_data">請輸入資料</string>
+  <string name="error_nothing">查無資料</string>
+  <string name="error_to_db">資料未寫入資料庫</string>
 
-    <!-- Success Message -->
+  <!-- Success Message -->
 
-    <string name="success">成功</string>
-    <string name="success_to_db">資料已寫入資料庫</string>
+  <string name="success">成功</string>
+  <string name="success_to_db">資料已寫入資料庫</string>
 
-    <!-- Alert Dialog -->
-    <string name="delete_warning">確定刪除嗎?</string>
-    <string name="delete_all_warning">確定全部刪除嗎?</string>
-    <string name="delete_confirm">確定</string>
-    <string name="delete_dismiss">取消</string>
-    <string name="new_stuff_title">新增常用勞雇內容</string>
-    <string name="new_stuff_hint">勞雇內容</string>
-    <string name="confirm">確定</string>
-    <string name="dismiss">取消</string>
+  <!-- Alert Dialog -->
+  <string name="delete_warning">確定刪除嗎?</string>
+  <string name="delete_all_warning">確定全部刪除嗎?</string>
+  <string name="delete_confirm">確定</string>
+  <string name="delete_dismiss">取消</string>
+  <string name="new_stuff_title">新增常用勞雇內容</string>
+  <string name="new_stuff_hint">勞雇內容</string>
+  <string name="confirm">確定</string>
+  <string name="dismiss">取消</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!--JSOUP license-->
-    <string name="jsoup_title">jsoup License</string>
-    <string name="jsoup_content">The jsoup code–base (including source and compiled packages) are distributed under the open source MIT license as described below.\nThe MIT License\nCopyright © 2009 – 2017 Jonathan Hedley (jonathan@hedley.net)\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+  <!--JSOUP license-->
+  <string name="jsoup_title">jsoup License</string>
+  <string name="jsoup_content">The jsoup code–base (including source and compiled packages) are distributed under the open source MIT license as described below.\nThe MIT License\nCopyright © 2009 – 2017 Jonathan Hedley (jonathan@hedley.net)\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
 
-    <!--github-->
-    <string name="github">Github</string>
-    <string name="github_link">https://github.com/albert7617/CCUMIS</string>
+  <!--github-->
+  <string name="github">Github</string>
+  <string name="github_link">https://github.com/albert7617/CCUMIS</string>
 </resources>

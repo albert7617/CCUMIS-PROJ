@@ -101,6 +101,10 @@ public class InsertDocTask extends RemoteTask {
           result.put("msg", application.getString(R.string.error_unknown));
           return result;
         }
+      } else {
+        result.put("result", "400");
+        result.put("msg", application.getString(R.string.error_to_db));
+        return result;
       }
 
     } catch (Exception e) {
@@ -110,11 +114,6 @@ public class InsertDocTask extends RemoteTask {
       result.put("msg", application.getString(R.string.error_no_connection));
       return result;
     }
-
-    // Unknown error
-    result.put("result", "400");
-    result.put("msg", application.getString(R.string.error_unknown));
-    return result;
   }
 
   @Override

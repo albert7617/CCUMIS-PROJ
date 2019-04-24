@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".AutoDocumentActivity">
+
+  <LinearLayout
+    android:padding="8dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+      android:textAppearance="@android:style/TextAppearance.Material.Medium"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="目標時數"/>
+
+    <EditText
+      android:id="@+id/editHours"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:ems="10"
+      android:inputType="numberDecimal"/>
+
+    <TextView
+      android:textAppearance="@android:style/TextAppearance.Material.Medium"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="學習暨勞僱月份"/>
+
+    <EditText
+      android:id="@+id/editDate"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:ems="10"
+      android:clickable="true"
+      android:focusableInTouchMode="false"
+      android:cursorVisible="false"
+      android:inputType="date"
+      android:text="選擇月份" />
+
+    <TextView
+      android:textAppearance="@android:style/TextAppearance.Material.Medium"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="工作日"/>
+
+    <ca.antonious.materialdaypicker.MaterialDayPicker
+      android:id="@+id/day_picker"
+      android:paddingEnd="16dp"
+      android:paddingStart="16dp"
+      android:paddingTop="8dp"
+      android:paddingBottom="8dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+    <!--<EditText-->
+      <!--android:id="@+id/editTimeEnd"-->
+      <!--android:layout_width="match_parent"-->
+      <!--android:layout_height="wrap_content"-->
+      <!--android:ems="10"-->
+      <!--android:clickable="true"-->
+      <!--android:focusableInTouchMode="false"-->
+      <!--android:cursorVisible="false"-->
+      <!--android:inputType="time"-->
+      <!--android:text="結束時間" />-->
+
+    <TextView
+    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="起始時間"/>
+
+    <EditText
+    android:id="@+id/editTimeStart"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:clickable="true"
+    android:focusableInTouchMode="false"
+    android:cursorVisible="false"
+    android:inputType="time"
+    android:text="起始時間" />
+
+    <TextView
+      android:textAppearance="@android:style/TextAppearance.Material.Medium"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="學習暨勞僱單位"/>
+
+
+    <TextView
+      android:id="@+id/spinner_item"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="18sp"
+      android:paddingStart="4dp"
+      android:text="勞僱單位"
+      style="@style/Widget.AppCompat.Spinner"/>
+
+    <TextView
+      android:textAppearance="@android:style/TextAppearance.Material.Medium"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:labelFor="@+id/content"
+      android:text="學習暨勞僱內容	"/>
+
+    <AutoCompleteTextView
+      android:id="@+id/content"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+    <Button
+      android:id="@+id/save"
+      android:text="儲存"
+      android:layout_gravity="right"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+
+  </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

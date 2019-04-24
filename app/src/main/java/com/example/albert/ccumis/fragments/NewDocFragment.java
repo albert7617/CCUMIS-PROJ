@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.albert.ccumis.AutoDocumentActivity;
 import com.example.albert.ccumis.DocumentActivity;
 import com.example.albert.ccumis.data.Employment;
 import com.example.albert.ccumis.adapters.EmploymentListAdapter;
@@ -65,6 +66,15 @@ public class NewDocFragment extends Fragment {
         Intent intent = new Intent(getActivity(), DocumentActivity.class);
         intent.putExtra("SERI_NO", -1);
         startActivity(intent);
+      }
+    });
+
+    fab.setOnLongClickListener(new View.OnLongClickListener() {
+      @Override
+      public boolean onLongClick(View v) {
+        Intent intent = new Intent(getActivity(), AutoDocumentActivity.class);
+        startActivity(intent);
+        return false;
       }
     });
 
