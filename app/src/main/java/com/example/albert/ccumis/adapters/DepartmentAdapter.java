@@ -43,7 +43,7 @@ public class DepartmentAdapter extends ArrayAdapter<String>{
   @NonNull
   @Override
   public Filter getFilter() {
-    Filter filter = new Filter() {
+    return new Filter() {
       @Override
       protected FilterResults performFiltering(CharSequence constraint) {
         FilterResults results = new FilterResults();
@@ -74,7 +74,6 @@ public class DepartmentAdapter extends ArrayAdapter<String>{
         notifyDataSetChanged();
       }
     };
-    return filter;
   }
 
   public void setDepartments(List<Department> departments) {

@@ -20,14 +20,12 @@ import java.util.List;
 
 public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder> {
   private LayoutInflater inflater;
-  private Context context;
   private List<Employment> employments;
   private List<Integer> expanded = new ArrayList<>();
   private List<Integer> selected = new ArrayList<>();
   private int selectedPosition  = -1;
   public SelectAdapter(Context context) {
     this.inflater = LayoutInflater.from(context);
-    this.context = context;
   }
 
   @NonNull
