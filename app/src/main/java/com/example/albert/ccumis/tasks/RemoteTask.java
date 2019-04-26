@@ -51,7 +51,7 @@ public abstract class RemoteTask extends AsyncTask<Void, Void, Map<String, Strin
     }
   }
 
-  protected File writeToFile(byte[] data, String bsn, String ctrow, String emp_type) throws Exception {
+  File writeToFile(byte[] data, String bsn, String ctrow, String emp_type) throws Exception {
     File root = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/");
     File file = new File(root, "ccu_mis_"+bsn+"_"+ctrow+"_"+emp_type+".pdf");
     if (!file.exists())
