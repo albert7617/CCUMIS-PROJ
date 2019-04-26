@@ -1,10 +1,13 @@
 package com.example.albert.ccumis.fragments;
 
+import android.app.Application;
 import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -53,9 +56,10 @@ public class DeleteDocFragment extends Fragment {
   private int weekend_cd = 2;
   private AlertDialog alertDialog;
   private PostEmployment postEmployment;
+  private Context context;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     View rootView = inflater.inflate(R.layout.fragment_delete_doc, container, false);
@@ -75,7 +79,7 @@ public class DeleteDocFragment extends Fragment {
     endDate = rootView.findViewById(R.id.editTimeEnd);
     updateView();
     final Spinner spinner = rootView.findViewById(R.id.department_spinner);
-    final DepartmentAdapter adapter = new DepartmentAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item);
+    final DepartmentAdapter adapter = new DepartmentAdapter(context, R.layout.support_simple_spinner_dropdown_item);
     spinner.setAdapter(adapter);
     DepartmentViewModel departmentViewModel = ViewModelProviders.of(this).get(DepartmentViewModel.class);
     EmploymentViewModel employmentViewModel = ViewModelProviders.of(this).get(EmploymentViewModel.class);
@@ -95,7 +99,7 @@ public class DeleteDocFragment extends Fragment {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+        new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
           @Override
           public void onDateSet(DatePicker view, int year, int month, int day) {
             start.set(Calendar.YEAR, year);
@@ -114,7 +118,7 @@ public class DeleteDocFragment extends Fragment {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+        new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
           @Override
           public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             end.set(Calendar.YEAR, year);
@@ -130,7 +134,7 @@ public class DeleteDocFragment extends Fragment {
     weekend.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(context)
                 .setTitle(getString(R.string.weekend))
                 .setItems(R.array.weekends, new DialogInterface.OnClickListener() {
                   @Override
@@ -153,7 +157,7 @@ public class DeleteDocFragment extends Fragment {
           return;
         }
         if(start.getTime().after(end.getTime())) {
-          new AlertDialog.Builder(getActivity())
+          new AlertDialog.Builder(context)
                   .setTitle(getString(R.string.error))
                   .setMessage(getString(R.string.error_start_later_than_end_date))
                   .setPositiveButton(getString(R.string.confirm), null)
@@ -169,9 +173,9 @@ public class DeleteDocFragment extends Fragment {
           postEmployment.end_year = end.get(Calendar.YEAR) - 1911;
           postEmployment.end_month = end.get(Calendar.MONTH) + 1;
           postEmployment.end_day = end.get(Calendar.DAY_OF_MONTH);
-          final SelectDeletionTask task = new SelectDeletionTask(getActivity().getApplication(), postEmployment);
+          final SelectDeletionTask task = new SelectDeletionTask((Application) context.getApplicationContext(), postEmployment);
           task.setCallback(callback);
-          alertDialog = new AlertDialog.Builder(getActivity())
+          alertDialog = new AlertDialog.Builder(context)
                   .setView(R.layout.dialog_progress)
                   .setCancelable(false)
                   .setPositiveButton(R.string.delete_dismiss, new DialogInterface.OnClickListener() {
@@ -226,9 +230,9 @@ public class DeleteDocFragment extends Fragment {
         List<String> selected = selectAdapter.getSelectedEmployments();
         final DeleteDocTask task;
         if(postEmployment != null && selectAdapter.getSelectedEmployments().size() != 0) {
-          task = new DeleteDocTask(getActivity().getApplication(), selected, postEmployment);
+          task = new DeleteDocTask((Application) context.getApplicationContext(), selected, postEmployment);
           task.setCallback(deleteCallback);
-          alertDialog = new AlertDialog.Builder(getActivity())
+          alertDialog = new AlertDialog.Builder(context)
                   .setView(R.layout.dialog_progress)
                   .setCancelable(false)
                   .setPositiveButton(R.string.delete_dismiss, new DialogInterface.OnClickListener() {
@@ -248,6 +252,12 @@ public class DeleteDocFragment extends Fragment {
     return rootView;
   }
 
+  @Override
+  public void onAttach(Context context) {
+    super.onAttach(context);
+    this.context = context;
+  }
+
   private void updateView() {
     startDate.setText(df.format(start.getTime()));
     endDate.setText(df.format(end.getTime()));
@@ -258,7 +268,7 @@ public class DeleteDocFragment extends Fragment {
     public void result(Map<String, String> result) {
       alertDialog.dismiss();
       if(result.get("result").equalsIgnoreCase("400")) {
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(context)
                 .setTitle(getString(R.string.error))
                 .setMessage(result.get("msg"))
                 .setPositiveButton(R.string.confirm, null)
@@ -272,14 +282,14 @@ public class DeleteDocFragment extends Fragment {
     public void result(Map<String, String> result) {
       alertDialog.dismiss();
       if(result.get("result").equalsIgnoreCase("400")) {
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(context)
                 .setTitle(getString(R.string.error))
                 .setMessage(result.get("msg"))
                 .setPositiveButton(R.string.confirm, null)
                 .show();
       }
       if(result.get("result").equalsIgnoreCase("200")) {
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(context)
                 .setTitle(getString(R.string.success))
                 .setMessage(result.get("msg"))
                 .setPositiveButton(R.string.confirm, null)

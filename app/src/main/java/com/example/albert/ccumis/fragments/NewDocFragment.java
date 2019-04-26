@@ -1,10 +1,13 @@
 package com.example.albert.ccumis.fragments;
 
+import android.app.Application;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -28,16 +31,17 @@ import com.example.albert.ccumis.tasks.InsertDocTask;
 import com.example.albert.ccumis.tasks.RemoteTask;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class NewDocFragment extends Fragment {
-
+  private Context context;
   private EmploymentViewModel viewModel;
   AlertDialog alertDialog;
   private final int OPERATION = 0;
   @Nullable
   @Override
-  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.fragment_new_doc, container, false);
     RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
     final EmploymentListAdapter adapter = new EmploymentListAdapter(getContext());
@@ -56,7 +60,7 @@ public class NewDocFragment extends Fragment {
     viewModel.getSum(OPERATION).observe(this, new Observer<Integer>() {
       @Override
       public void onChanged(@Nullable Integer integer) {
-        hourCount.setText(String.format("%.1f", ((float) (integer==null ? 0 : integer)/60)));
+        hourCount.setText(String.format(Locale.TAIWAN, "%.1f", ((float) (integer==null ? 0 : integer)/60)));
       }
     });
     final FloatingActionButton fab = rootView.findViewById(R.id.fab);
@@ -96,7 +100,7 @@ public class NewDocFragment extends Fragment {
     nuke.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(context)
                 .setTitle(R.string.delete_all_warning)
                 .setPositiveButton(R.string.delete_dismiss, new DialogInterface.OnClickListener() {
                   @Override
@@ -118,10 +122,10 @@ public class NewDocFragment extends Fragment {
     submit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        final InsertDocTask task = new InsertDocTask(getActivity().getApplication());
+        final InsertDocTask task = new InsertDocTask((Application) context.getApplicationContext());
         task.setCallback(callback);
         task.execute();
-        alertDialog = new AlertDialog.Builder(getActivity())
+        alertDialog = new AlertDialog.Builder(context)
                 .setView(R.layout.dialog_progress)
                 .setCancelable(false)
                 .setPositiveButton(R.string.delete_dismiss, new DialogInterface.OnClickListener() {
@@ -138,6 +142,12 @@ public class NewDocFragment extends Fragment {
     return rootView;
   }
 
+  @Override
+  public void onAttach(Context context) {
+    super.onAttach(context);
+    this.context = context;
+  }
+
   EmploymentListAdapter.Callback deleteCallback = new EmploymentListAdapter.Callback() {
     @Override
     public void delete(int seri_no) {
@@ -150,7 +160,7 @@ public class NewDocFragment extends Fragment {
     public void result(Map<String, String> result) {
       alertDialog.dismiss();
       String title = result.get("result").equalsIgnoreCase("200") ? getString(R.string.success) : getString(R.string.error);
-      new AlertDialog.Builder(getActivity())
+      new AlertDialog.Builder(context)
               .setTitle(title)
               .setMessage(result.get("msg"))
               .setPositiveButton(R.string.confirm, null)

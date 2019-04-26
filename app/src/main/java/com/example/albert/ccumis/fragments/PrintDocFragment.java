@@ -2,10 +2,13 @@ package com.example.albert.ccumis.fragments;
 
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.Application;
 import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -72,6 +75,9 @@ public class PrintDocFragment extends Fragment {
   private ConstraintLayout step4, step5;
   private View rootView;
   private CoordinatorLayout coordinatorLayout;
+  private Context context;
+
+
   public PrintDocFragment() {
     // Required empty public constructor
   }
@@ -129,18 +135,18 @@ public class PrintDocFragment extends Fragment {
 
     initCalendar();
 
-    final DepartmentAdapter adapter = new DepartmentAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item);
+    final DepartmentAdapter adapter = new DepartmentAdapter(context, R.layout.support_simple_spinner_dropdown_item);
     spinner.setAdapter(adapter);
 
     final RecyclerView recyclerView = rootView.findViewById(R.id.printRecyclerView);
-    final SelectAdapter selectAdapter = new SelectAdapter(getActivity());
-    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    final SelectAdapter selectAdapter = new SelectAdapter(context);
+    recyclerView.setLayoutManager(new LinearLayoutManager(context));
     recyclerView.setNestedScrollingEnabled(false);
     recyclerView.setAdapter(selectAdapter);
 
     final RecyclerView displayRecyclerView = rootView.findViewById(R.id.selectedRecyclerView);
-    final SelectAdapter displaySelectAdapter = new SelectAdapter(getActivity());
-    displayRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    final SelectAdapter displaySelectAdapter = new SelectAdapter(context);
+    displayRecyclerView.setLayoutManager(new LinearLayoutManager(context));
     displayRecyclerView.setNestedScrollingEnabled(false);
     displayRecyclerView.setAdapter(displaySelectAdapter);
 
@@ -170,7 +176,7 @@ public class PrintDocFragment extends Fragment {
           return;
         }
         if(start.getTime().after(end.getTime())) {
-          new AlertDialog.Builder(getActivity())
+          new AlertDialog.Builder(context)
                   .setTitle(getString(R.string.error))
                   .setMessage(getString(R.string.error_start_later_than_end_date))
                   .setPositiveButton(getString(R.string.confirm), null)
@@ -186,9 +192,9 @@ public class PrintDocFragment extends Fragment {
           postEmployment.end_year = end.get(Calendar.YEAR) - 1911;
           postEmployment.end_month = end.get(Calendar.MONTH) + 1;
           postEmployment.end_day = end.get(Calendar.DAY_OF_MONTH);
-          final SelectPrintTask task = new SelectPrintTask(getActivity().getApplication(), postEmployment);
+          final SelectPrintTask task = new SelectPrintTask((Application) context.getApplicationContext(), postEmployment);
           task.setCallback(selectCallback);
-          alertDialog = new AlertDialog.Builder(getActivity())
+          alertDialog = new AlertDialog.Builder(context)
                   .setView(R.layout.dialog_progress)
                   .setCancelable(false)
                   .setPositiveButton(R.string.delete_dismiss, new DialogInterface.OnClickListener() {
@@ -282,7 +288,7 @@ public class PrintDocFragment extends Fragment {
       identityMap.put(value, index);
       identitiesDisplay.add(value);
     }
-    ArrayAdapter<String> identityAdapter =new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, identitiesDisplay);
+    ArrayAdapter<String> identityAdapter =new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, identitiesDisplay);
     identityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     identitySpinner.setAdapter(identityAdapter);
 
@@ -320,9 +326,9 @@ public class PrintDocFragment extends Fragment {
         if (!agreeTerms.isChecked()) {
           Toast.makeText(getContext(), R.string.print_terms_not_agreed, Toast.LENGTH_SHORT).show();
         } else {
-          if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+          if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             // Permission is not granted
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 200);
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 200);
           } else {
             displayAgreeTerms.setChecked(true);
             step4.setVisibility(View.GONE);
@@ -336,7 +342,7 @@ public class PrintDocFragment extends Fragment {
     step5_next.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if(getActivity() != null) {
+        if(context != null) {
           Department department = adapter.getDepartment(spinner.getSelectedItemPosition());
           PostEmployment postEmployment = new PostEmployment();
           postEmployment.department = department.value;
@@ -351,7 +357,7 @@ public class PrintDocFragment extends Fragment {
           for (String bsn : selections) {
             printRows.put(bsn, "1");
           }
-          final PrintPDFTask printPDFTask = new PrintPDFTask(getActivity().getApplication(),
+          final PrintPDFTask printPDFTask = new PrintPDFTask((Application) context.getApplicationContext(),
                                             displayWage.getText().toString(),
                                             hiddenIdentityType.getText().toString(),
                                             hiddenInsurance.getText().toString(),
@@ -360,7 +366,7 @@ public class PrintDocFragment extends Fragment {
                                             postEmployment);
           printPDFTask.setCallback(callback, fileCallback);
           printPDFTask.execute();
-          alertDialog = new AlertDialog.Builder(getActivity())
+          alertDialog = new AlertDialog.Builder(context)
                   .setView(R.layout.dialog_progress)
                   .setCancelable(false)
                   .setPositiveButton(R.string.delete_dismiss, new DialogInterface.OnClickListener() {
@@ -405,6 +411,12 @@ public class PrintDocFragment extends Fragment {
     return rootView;
   }
 
+  @Override
+  public void onAttach(Context context) {
+    super.onAttach(context);
+    this.context = context;
+  }
+
   private void initCalendar() {
     start = Calendar.getInstance();
     start.set(Calendar.DAY_OF_MONTH, 1);
@@ -420,7 +432,7 @@ public class PrintDocFragment extends Fragment {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+        new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
           @Override
           public void onDateSet(DatePicker view, int year, int month, int day) {
             start.set(Calendar.YEAR, year);
@@ -439,7 +451,7 @@ public class PrintDocFragment extends Fragment {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+        new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
           @Override
           public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             end.set(Calendar.YEAR, year);
@@ -465,7 +477,7 @@ public class PrintDocFragment extends Fragment {
     public void result(Map<String, String> result) {
       alertDialog.dismiss();
       if(result.get("result").equalsIgnoreCase("400")) {
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(context)
                 .setTitle(getString(R.string.error))
                 .setMessage(result.get("msg"))
                 .setPositiveButton(R.string.confirm, null)

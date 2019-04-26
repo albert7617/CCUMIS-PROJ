@@ -1,6 +1,7 @@
 package com.example.albert.ccumis.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicke
 
 public class DatePickerDialogFragment extends DialogFragment {
   Callback callback;
+  Context context;
 
   SublimeListenerAdapter listenerAdapter = new SublimeListenerAdapter() {
     @Override
@@ -42,12 +44,19 @@ public class DatePickerDialogFragment extends DialogFragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     getDialog().setCanceledOnTouchOutside(true);
-    SublimePicker picker = new SublimePicker(getContext());
+    SublimePicker picker = new SublimePicker(context);
     SublimeOptions options = new SublimeOptions();
+    assert getArguments() != null;
     options.setCanPickDateRange(getArguments().getBoolean("TYPE"));
     options.setDisplayOptions(SublimeOptions.ACTIVATE_DATE_PICKER);
     picker.initializePicker(options,listenerAdapter);
     return picker;
+  }
+
+  @Override
+  public void onAttach(Context context) {
+    super.onAttach(context);
+    this.context = context;
   }
 
   // Set activity callback

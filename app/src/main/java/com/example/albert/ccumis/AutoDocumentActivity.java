@@ -322,10 +322,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
         }
       }
     }
-
     finish();
-
-
   }
 
 

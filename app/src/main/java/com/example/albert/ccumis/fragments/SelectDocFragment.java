@@ -1,10 +1,13 @@
 package com.example.albert.ccumis.fragments;
 
+import android.app.Application;
 import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -40,7 +43,7 @@ import java.util.Map;
 public class SelectDocFragment extends Fragment {
 
   private final int OPERATION = 1;
-
+  private Context context;
   private EditText startDate, endDate, weekend, status;
 
   private final DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.TAIWAN);
@@ -57,12 +60,12 @@ public class SelectDocFragment extends Fragment {
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.fragment_select_doc, container, false);
 
     final RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
-    final SelectAdapter selectAdapter = new SelectAdapter(getActivity());
-    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    final SelectAdapter selectAdapter = new SelectAdapter(context);
+    recyclerView.setLayoutManager(new LinearLayoutManager(context));
     recyclerView.setNestedScrollingEnabled(false);
     recyclerView.setAdapter(selectAdapter);
     ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
@@ -71,7 +74,7 @@ public class SelectDocFragment extends Fragment {
     end = Calendar.getInstance();
     end.set(Calendar.DAY_OF_MONTH, Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
     final Spinner spinner = rootView.findViewById(R.id.department_spinner);
-    final DepartmentAdapter adapter = new DepartmentAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item);
+    final DepartmentAdapter adapter = new DepartmentAdapter(context, R.layout.support_simple_spinner_dropdown_item);
     spinner.setAdapter(adapter);
     DepartmentViewModel departmentViewModel = ViewModelProviders.of(this).get(DepartmentViewModel.class);
     EmploymentViewModel employmentViewModel = ViewModelProviders.of(this).get(EmploymentViewModel.class);
@@ -96,7 +99,7 @@ public class SelectDocFragment extends Fragment {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+        new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
           @Override
           public void onDateSet(DatePicker view, int year, int month, int day) {
             start.set(Calendar.YEAR, year);
@@ -116,7 +119,7 @@ public class SelectDocFragment extends Fragment {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+        new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
           @Override
           public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             end.set(Calendar.YEAR, year);
@@ -132,7 +135,7 @@ public class SelectDocFragment extends Fragment {
     weekend.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(context)
                 .setTitle(getString(R.string.weekend))
                 .setItems(R.array.weekends, new DialogInterface.OnClickListener() {
                   @Override
@@ -150,7 +153,7 @@ public class SelectDocFragment extends Fragment {
     status.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(context)
                 .setTitle(getString(R.string.status))
                 .setItems(R.array.statuses, new DialogInterface.OnClickListener() {
                   @Override
@@ -198,9 +201,9 @@ public class SelectDocFragment extends Fragment {
           postEmployment.end_year = end.get(Calendar.YEAR) - 1911;
           postEmployment.end_month = end.get(Calendar.MONTH) + 1;
           postEmployment.end_day = end.get(Calendar.DAY_OF_MONTH);
-          final SelectDocTask task = new SelectDocTask(getActivity().getApplication(), postEmployment);
+          final SelectDocTask task = new SelectDocTask((Application) context.getApplicationContext(), postEmployment);
           task.setCallback(callback);
-          alertDialog = new AlertDialog.Builder(getActivity())
+          alertDialog = new AlertDialog.Builder(context)
                   .setView(R.layout.dialog_progress)
                   .setCancelable(false)
                   .setPositiveButton(R.string.delete_dismiss, new DialogInterface.OnClickListener() {
@@ -214,7 +217,7 @@ public class SelectDocFragment extends Fragment {
           task.execute();
 
         } else {
-          new AlertDialog.Builder(getActivity())
+          new AlertDialog.Builder(context)
                   .setTitle(getString(R.string.error))
                   .setMessage(errorMsg)
                   .setPositiveButton(getString(R.string.confirm), null)
@@ -235,6 +238,12 @@ public class SelectDocFragment extends Fragment {
     return rootView;
   }
 
+  @Override
+  public void onAttach(Context context) {
+    super.onAttach(context);
+    this.context = context;
+  }
+
   private void updateView() {
     startDate.setText(df.format(start.getTime()));
     endDate.setText(df.format(end.getTime()));
@@ -245,7 +254,7 @@ public class SelectDocFragment extends Fragment {
     public void result(Map<String, String> result) {
       alertDialog.dismiss();
       if(result.get("result").equalsIgnoreCase("400")) {
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(context)
                 .setTitle(getString(R.string.error))
                 .setMessage(result.get("msg"))
                 .setPositiveButton(R.string.confirm, null)
