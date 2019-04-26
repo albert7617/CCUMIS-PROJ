@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -164,25 +165,25 @@ public class AutoDocumentActivity extends AppCompatActivity {
     MaterialDayPicker.Weekday current = MaterialDayPicker.Weekday.MONDAY;
     for (; calendar1.after(calendar); calendar.add(Calendar.DATE, 1)) {
       switch (calendar.get(Calendar.DAY_OF_WEEK)) {
-        case 1:
+        case Calendar.MONDAY:
           current = MaterialDayPicker.Weekday.MONDAY;
           break;
-        case 2:
+        case Calendar.TUESDAY:
           current = MaterialDayPicker.Weekday.TUESDAY;
           break;
-        case 3:
+        case Calendar.WEDNESDAY:
           current = MaterialDayPicker.Weekday.WEDNESDAY;
           break;
-        case 4:
+        case Calendar.THURSDAY:
           current = MaterialDayPicker.Weekday.THURSDAY;
           break;
-        case 5:
+        case Calendar.FRIDAY:
           current = MaterialDayPicker.Weekday.FRIDAY;
           break;
-        case 6:
+        case Calendar.SATURDAY:
           current = MaterialDayPicker.Weekday.SATURDAY;
           break;
-        case 7:
+        case Calendar.SUNDAY:
           current = MaterialDayPicker.Weekday.SUNDAY;
           break;
       }
@@ -272,7 +273,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
     strings.add(content);
     preferences.edit().putStringSet(getString(R.string.pref_content), strings).apply();
 
-    int target = Integer.valueOf(targetHours.getText().toString()) * 60;
+    int target = Integer.valueOf(targetHours.getText().toString());
     if(mSelectedDate.getType() == SelectedDate.Type.SINGLE) {
       Calendar calendar = Calendar.getInstance();
       calendar.setTime(mSelectedDate.getStartDate().getTime());
@@ -286,34 +287,39 @@ public class AutoDocumentActivity extends AppCompatActivity {
       List<MaterialDayPicker.Weekday> weekdays = dayPicker.getSelectedDays();
       MaterialDayPicker.Weekday current = MaterialDayPicker.Weekday.MONDAY;
       int targetPerDay = target/days;
+      int remainderHours = target%days;
       for(; calendar1.after(calendar); calendar.add(Calendar.DATE, 1)) {
         switch (calendar.get(Calendar.DAY_OF_WEEK)) {
-          case 1:
+          case Calendar.MONDAY:
             current = MaterialDayPicker.Weekday.MONDAY;
             break;
-          case 2:
+          case Calendar.TUESDAY:
             current = MaterialDayPicker.Weekday.TUESDAY;
             break;
-          case 3:
+          case Calendar.WEDNESDAY:
             current = MaterialDayPicker.Weekday.WEDNESDAY;
             break;
-          case 4:
+          case Calendar.THURSDAY:
             current = MaterialDayPicker.Weekday.THURSDAY;
             break;
-          case 5:
+          case Calendar.FRIDAY:
             current = MaterialDayPicker.Weekday.FRIDAY;
             break;
-          case 6:
+          case Calendar.SATURDAY:
             current = MaterialDayPicker.Weekday.SATURDAY;
             break;
-          case 7:
+          case Calendar.SUNDAY:
             current = MaterialDayPicker.Weekday.SUNDAY;
             break;
         }
         if (weekdays.contains(current)) {
-          addEmployments(calendar, targetPerDay, department, content);
+          if(remainderHours > 0) {
+            addEmployments(calendar, targetPerDay+1, department, content);
+            remainderHours --;
+          } else {
+            addEmployments(calendar, targetPerDay, department, content);
+          }
         }
-
       }
     }
 
@@ -325,26 +331,26 @@ public class AutoDocumentActivity extends AppCompatActivity {
 
   private void addEmployments(Calendar calendar, int target, Department department, String content) {
     int offset = 0;
-    while (target > 480) {
+    while (target > 4) {
       Employment employment = generateEmployment(calendar,
               department,
               content,
               480,
               startHour + offset + 4,
               startMinute,
-              startHour+offset,
+              startHour + offset,
               startMinute);
       employmentViewModel.insert(employment);
       offset += 4;
-      target -= 480;
+      target -= 4;
     }
     if(target > 0) {
       Employment employment = generateEmployment(calendar,
               department,
               content,
-              target,
-              startHour + offset + target / 60,
-              startMinute + target % 60,
+              target * 60,
+              startHour + offset + target,
+              startMinute,
               startHour + offset,
               startMinute);
       employmentViewModel.insert(employment);
@@ -365,7 +371,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
    */
   private Employment generateEmployment(Calendar calendar, Department department, String content, int duration, int end_hour, int end_minute, int start_hour, int start_minute) {
     Employment employment = new Employment();
-    employment.date = df.format(mSelectedDate.getStartDate().getTime());
+    employment.date = df.format(calendar.getTime());
     employment.year = calendar.get(Calendar.YEAR) - 1911;
     employment.month = calendar.get(Calendar.MONTH) + 1;
     employment.day = calendar.get(Calendar.DAY_OF_MONTH);
