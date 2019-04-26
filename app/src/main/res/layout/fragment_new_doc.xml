@@ -188,6 +188,36 @@
 
   </android.support.v4.widget.NestedScrollView>
 
+  <View
+    android:id="@+id/blocker"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone" />
+
+  <LinearLayout
+    android:id="@+id/fabMenu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    app:layout_constraintBottom_toTopOf="@id/fab"
+    app:layout_constraintEnd_toEndOf="@id/fab"
+    app:layout_constraintStart_toStartOf="@id/fab">
+
+    <android.support.design.widget.FloatingActionButton
+      android:id="@+id/fabNewDoc"
+      android:layout_width="36dp"
+      android:layout_height="36dp"
+      android:layout_margin="@dimen/fab_margin"
+      android:backgroundTint="#FFFFFF"
+      android:elevation="7dp"
+      android:scaleType="center"
+      android:src="@drawable/ic_add_to_photos_black_24dp"
+      android:visibility="gone"
+      app:borderWidth="0dp" />
+  </LinearLayout>
 
   <android.support.design.widget.FloatingActionButton
     android:id="@+id/fab"

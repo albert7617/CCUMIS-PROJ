@@ -1,5 +1,7 @@
 package com.example.albert.ccumis.fragments;
 
+import android.animation.Animator;
+import android.app.ActivityOptions;
 import android.app.Application;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -9,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
@@ -16,9 +19,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Explode;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.TextView;
 
 import com.example.albert.ccumis.AutoDocumentActivity;
@@ -33,16 +39,18 @@ import com.example.albert.ccumis.tasks.RemoteTask;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class NewDocFragment extends Fragment {
   private Context context;
   private EmploymentViewModel viewModel;
   AlertDialog alertDialog;
+  View rootView;
   private final int OPERATION = 0;
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-    View rootView = inflater.inflate(R.layout.fragment_new_doc, container, false);
+    rootView = inflater.inflate(R.layout.fragment_new_doc, container, false);
     RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
     final EmploymentListAdapter adapter = new EmploymentListAdapter(getContext());
     recyclerView.setNestedScrollingEnabled(false);
@@ -63,22 +71,42 @@ public class NewDocFragment extends Fragment {
         hourCount.setText(String.format(Locale.TAIWAN, "%.1f", ((float) (integer==null ? 0 : integer)/60)));
       }
     });
-    final FloatingActionButton fab = rootView.findViewById(R.id.fab);
+    final FloatingActionButton fab = rootView.findViewById(R.id.fab), fab_auto = rootView.findViewById(R.id.fabNewDoc);
+    final View blocker = rootView.findViewById(R.id.blocker);
+    fab_auto.setVisibility(View.GONE);
+
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(getActivity(), DocumentActivity.class);
-        intent.putExtra("SERI_NO", -1);
-        startActivity(intent);
+        if(fab_auto.getVisibility() == View.VISIBLE) {
+          Objects.requireNonNull(getActivity()).getWindow().setExitTransition(new Explode());
+          Intent intent = new Intent(getActivity(), DocumentActivity.class);
+          intent.putExtra("SERI_NO", -1);
+          startActivity(intent, ActivityOptions.makeClipRevealAnimation(rootView,
+                  (int) fab.getX() + fab.getWidth() / 2,
+                  (int) fab.getY() + fab.getHeight() / 2,
+                  fab.getWidth() / 2,
+                  rootView.getHeight()).toBundle());
+        } else {
+          blocker.setVisibility(View.VISIBLE);
+          fab_auto.setVisibility(View.VISIBLE);
+        }
       }
     });
 
-    fab.setOnLongClickListener(new View.OnLongClickListener() {
+    blocker.setOnClickListener(new View.OnClickListener() {
       @Override
-      public boolean onLongClick(View v) {
+      public void onClick(View v) {
+        blocker.setVisibility(View.INVISIBLE);
+        fab_auto.setVisibility(View.GONE);
+      }
+    });
+
+    fab_auto.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
         Intent intent = new Intent(getActivity(), AutoDocumentActivity.class);
         startActivity(intent);
-        return false;
       }
     });
 

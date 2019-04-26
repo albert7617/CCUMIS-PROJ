@@ -6,6 +6,7 @@
     <color name="colorAccentLight">#4db6ac</color>
     <color name="colorTitleText">#545454</color>
     <color name="colorBackground">#EEEEEE</color>
+    <color name="colorBackgroundDark">#99EEEEEE</color>
     <color name="colorClicked">#007C70</color>
 
     <color name="dayPressed">@color/colorClicked</color>
