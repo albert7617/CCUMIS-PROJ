@@ -33,7 +33,7 @@ public class EmploymentListAdapter extends RecyclerView.Adapter<EmploymentListAd
   @NonNull
   @Override
   public EmploymentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = inflater.inflate(R.layout.item_new_document, parent, false);
+    View view = inflater.inflate(R.layout.item_document_card, parent, false);
     return new EmploymentViewHolder(view);
   }
 
@@ -107,11 +107,11 @@ public class EmploymentListAdapter extends RecyclerView.Adapter<EmploymentListAd
     return employments == null ? 0 : employments.size();
   }
 
-  public class EmploymentViewHolder extends RecyclerView.ViewHolder {
-    private final TextView errorMsg, hour, department, date, time, content;
-    private final LinearLayout confirmed, unconfirmed, error;
+  class EmploymentViewHolder extends RecyclerView.ViewHolder {
+    private final TextView confirmed, unconfirmed, errorMsg, hour, department, date, time, content;
+    private final LinearLayout error;
     private final Button edit, delete;
-    public EmploymentViewHolder(View itemView) {
+    EmploymentViewHolder(View itemView) {
       super(itemView);
       errorMsg = itemView.findViewById(R.id.error_msg);
       confirmed = itemView.findViewById(R.id.confirmed);
