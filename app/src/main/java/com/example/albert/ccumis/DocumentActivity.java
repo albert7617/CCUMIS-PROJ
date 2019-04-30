@@ -67,7 +67,7 @@ public class DocumentActivity extends AppCompatActivity {
       updateSeri_no = seri_no;
       employmentViewModel.getBySer_no(seri_no).observe(this, new Observer<Employment>() {
         @Override
-        public void onChanged(@Nullable Employment employment) {
+        public void onChanged(Employment employment) {
           try {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(df.parse(employment.date));
