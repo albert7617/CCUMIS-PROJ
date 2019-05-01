@@ -29,6 +29,9 @@
   <string name="no_data">沒有資料</string>
   <string name="querying">查詢中</string>
   <string name="agree">同意</string>
+  <string name="work_date">學習暨勞僱月份</string>
+  <string name="work_day">工作日</string>
+  <string name="input_date">輸入日期</string>
   <string name="start_date">起始時間</string>
   <string name="end_date">結束時間</string>
   <string name="list_data">依條件選出資料</string>
@@ -45,11 +48,23 @@
   <string name="print_emp_type">學習暨勞僱類型</string>
   <string name="print_terms">以上選項本人皆已正確勾選，請國立中正大學依「全民健康保險扣取及繳納補充保險費辦法」免扣取（或應扣取）本人補充保險費，如有不實，願依全民健康保險法暨相關法律規定處理，特此聲明。</string>
   <string name="print_terms_not_agreed">請同意聲明</string>
+  <string name="target_hours">目標時數</string>
   <string name="prev">上一步</string>
   <string name="next">下一步</string>
   <string name="unconfirmed">未確認</string>
   <string name="confirmed">沒問題</string>
   <string name="error_colon">錯誤：</string>
+  <string name="contact">Contact</string>
+  <string name="my_email">albert@alum.ccu.edu.tw</string>
+
+  <!--Day of Week-->
+  <string name="monday">一</string>
+  <string name="tuesday">二</string>
+  <string name="wednesday">三</string>
+  <string name="thursday">四</string>
+  <string name="friday">五</string>
+  <string name="saturday">六</string>
+  <string name="sunday">日</string>
 
   <!--Employment Types-->
   <string name="admin_assistant">行政學習助理</string>
@@ -179,9 +194,18 @@
   <string name="materialdaypicker_title">MaterialDayPicker</string>
   <string name="materialdaypicker_url">https://github.com/gantonious/MaterialDayPicker</string>
   <string name="materialdaypicker_license">https://github.com/gantonious/MaterialDayPicker#license</string>
+  <string name="appupdater_title">AppUpdater</string>
+  <string name="appupdater_url">https://github.com/javiersantos/AppUpdater</string>
+  <string name="appupdater_license">https://github.com/javiersantos/AppUpdater#license</string>
 
   <!--github-->
   <string name="github">Github</string>
   <string name="github_link">https://github.com/albert7617/CCUMIS</string>
   <string name="image_view_desc">icon</string>
+
+
+  <string name="input_department">勞僱單位</string>
+  <string name="employment">學習暨勞僱內容</string>
+  <string name="save">儲存</string>
+  <string name="employment_date">學習暨勞僱日期</string>
 </resources>

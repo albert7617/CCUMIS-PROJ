@@ -190,6 +190,79 @@
             android:text="@string/materialdaypicker_license"
             android:textAppearance="@style/TextAppearance.AppCompat.Small" />
         </LinearLayout>
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:text="@string/appupdater_title"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/code"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="4dp"
+            android:text="@string/appupdater_url"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/license"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="4dp"
+            android:text="@string/appupdater_license"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+        </LinearLayout>
+
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView style="@style/LightCardView">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/contact"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textSize="30sp" />
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:autoLink="email"
+          android:linksClickable="true"
+          android:text="@string/my_email"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large" />
       </LinearLayout>
     </android.support.v7.widget.CardView>
 

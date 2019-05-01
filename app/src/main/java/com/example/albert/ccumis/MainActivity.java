@@ -1,9 +1,11 @@
 package com.example.albert.ccumis;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
@@ -24,6 +26,8 @@ import com.example.albert.ccumis.fragments.DeleteDocFragment;
 import com.example.albert.ccumis.fragments.NewDocFragment;
 import com.example.albert.ccumis.fragments.PrintDocFragment;
 import com.example.albert.ccumis.fragments.SelectDocFragment;
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +36,30 @@ public class MainActivity extends AppCompatActivity
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    AppUpdater appUpdater = new AppUpdater(this);
+    appUpdater.setUpdateFrom(UpdateFrom.GITHUB)
+            .setGitHubUserAndRepo("albert7617", "CCUMIS")
+            .setTitleOnUpdateAvailable("Update available")
+            .setContentOnUpdateAvailable("Check out the latest version")
+            .setButtonUpdate("Update now?")
+            .setButtonUpdateClickListener(new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/albert7617/CCUMIS/releases"));
+                startActivity(browserIntent);
+              }
+            })
+	          .setButtonDismiss("Maybe later")
+            .setButtonDismissClickListener(new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+              }
+            })
+            .setButtonDoNotShowAgain(null)
+            .setCancelable(false)
+            .start();
 
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
@@ -43,7 +71,6 @@ public class MainActivity extends AppCompatActivity
     getSupportFragmentManager().beginTransaction()
             .add(R.id.main_frame, newDocFragment)
             .commit();
-
 
 
     DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -84,7 +111,7 @@ public class MainActivity extends AppCompatActivity
     TextView textView = headerView.findViewById(R.id.username);
     textView.setText(pref.getString(getString(R.string.pref_username), getString(R.string.not_login)));
 
-    if(!pref.getBoolean(getString(R.string.pref_logined), false)) {
+    if (!pref.getBoolean(getString(R.string.pref_logined), false)) {
       startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
     Bitmap userIcon = IdenticonGenerator.generate(pref.getString(getString(R.string.pref_username), "NA"));
@@ -153,6 +180,7 @@ public class MainActivity extends AppCompatActivity
     drawer.closeDrawer(GravityCompat.START);
     return true;
   }
+
   @Override
   public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
     switch (requestCode) {

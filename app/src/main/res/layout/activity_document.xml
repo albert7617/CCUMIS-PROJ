@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/constraintLayout"
   android:layout_width="match_parent"
@@ -18,8 +17,8 @@
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="學習暨勞僱日期"
-      android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+      android:text="@string/employment_date"
+      android:textAppearance="@style/TextViewLabel" />
 
     <EditText
       android:id="@+id/editDate"
@@ -29,14 +28,15 @@
       android:cursorVisible="false"
       android:ems="10"
       android:focusableInTouchMode="false"
+      android:hint="@string/input_date"
       android:inputType="date"
-      android:text="選擇日期" />
+      tools:ignore="Autofill,KeyboardInaccessibleWidget" />
 
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="起始時間"
-      android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+      android:text="@string/start_date"
+      android:textAppearance="@style/TextViewLabel" />
 
     <EditText
       android:id="@+id/editTimeStart"
@@ -46,14 +46,15 @@
       android:cursorVisible="false"
       android:ems="10"
       android:focusableInTouchMode="false"
+      android:hint="@string/start_date"
       android:inputType="time"
-      android:text="起始時間" />
+      tools:ignore="Autofill,KeyboardInaccessibleWidget" />
 
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="結束時間"
-      android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+      android:text="@string/end_date"
+      android:textAppearance="@style/TextViewLabel" />
 
     <EditText
       android:id="@+id/editTimeEnd"
@@ -63,43 +64,43 @@
       android:cursorVisible="false"
       android:ems="10"
       android:focusableInTouchMode="false"
+      android:hint="@string/end_date"
       android:inputType="time"
-      android:text="結束時間" />
+      tools:ignore="Autofill,KeyboardInaccessibleWidget" />
 
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="學習暨勞僱單位"
-      android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+      android:text="@string/department"
+      android:textAppearance="@style/TextViewLabel" />
 
 
     <TextView
       android:id="@+id/spinner_item"
-      style="@style/Widget.AppCompat.Spinner"
+      style="@style/TextViewSpinner"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:paddingStart="4dp"
-      android:text="勞僱單位"
+      android:hint="@string/input_department"
       android:textSize="18sp" />
 
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:labelFor="@+id/content"
-      android:text="學習暨勞僱內容	"
-      android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+      android:text="@string/employment"
+      android:textAppearance="@style/TextViewLabel" />
 
     <AutoCompleteTextView
       android:id="@+id/content"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
+      android:layout_height="wrap_content"
+      android:hint="@string/employment" />
 
     <Button
       android:id="@+id/save"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_gravity="right"
-      android:text="儲存" />
+      android:layout_gravity="end"
+      android:text="@string/save" />
 
   </LinearLayout>
 

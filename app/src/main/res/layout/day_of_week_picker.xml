@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_gravity="center_horizontal"
+  android:orientation="horizontal">
+
+  <ToggleButton
+    android:id="@+id/monday_toggle"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="@drawable/circle_toggle_button"
+    android:textColor="@android:color/white"
+    android:textOff="@string/monday"
+    android:textOn="@string/monday"
+    android:textSize="22sp" />
+
+  <View
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
+
+
+  <ToggleButton
+    android:id="@+id/tuesday_toggle"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="@drawable/circle_toggle_button"
+    android:textColor="@android:color/white"
+    android:textOff="@string/tuesday"
+    android:textOn="@string/tuesday"
+    android:textSize="22sp" />
+
+  <View
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
+
+  <ToggleButton
+    android:id="@+id/wednesday_toggle"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="@drawable/circle_toggle_button"
+    android:textColor="@android:color/white"
+    android:textOff="@string/wednesday"
+    android:textOn="@string/wednesday"
+    android:textSize="22sp" />
+
+  <View
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
+
+
+  <ToggleButton
+    android:id="@+id/thursday_toggle"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="@drawable/circle_toggle_button"
+    android:textColor="@android:color/white"
+    android:textOff="@string/thursday"
+    android:textOn="@string/thursday"
+    android:textSize="22sp" />
+
+  <View
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
+
+  <ToggleButton
+    android:id="@+id/friday_toggle"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="@drawable/circle_toggle_button"
+    android:text="New ToggleButton"
+    android:textColor="@android:color/white"
+    android:textOff="@string/friday"
+    android:textOn="@string/friday"
+    android:textSize="22sp" />
+
+  <View
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
+
+  <ToggleButton
+    android:id="@+id/saturday_toggle"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="@drawable/circle_toggle_button"
+    android:text="New ToggleButton"
+    android:textColor="@android:color/white"
+    android:textOff="@string/saturday"
+    android:textOn="@string/saturday"
+    android:textSize="22sp" />
+
+  <View
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
+
+  <ToggleButton
+    android:id="@+id/sunday_toggle"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="@drawable/circle_toggle_button"
+    android:textColor="@android:color/white"
+    android:textOff="@string/sunday"
+    android:textOn="@string/sunday"
+    android:textSize="22sp" />
+
+
+</LinearLayout>

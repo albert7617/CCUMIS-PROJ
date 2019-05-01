@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.appeaser.sublimepickerlibrary.SublimePicker;
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.example.albert.ccumis.data.Department;
 import com.example.albert.ccumis.data.Employment;
@@ -33,8 +32,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import ca.antonious.materialdaypicker.MaterialDayPicker;
-
 public class AutoDocumentActivity extends AppCompatActivity {
   private final int OPERATION = 0;
   private SelectedDate mSelectedDate;
@@ -44,7 +41,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
   private EditText editDate, sTime, targetHours;
   private EmploymentViewModel employmentViewModel;
   private AutoCompleteTextView autoCompleteTextView;
-  private MaterialDayPicker dayPicker;
+  private WeekDayPicker dayPicker;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 
@@ -52,7 +49,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
     setContentView(R.layout.activity_auto_document);
 
     employmentViewModel = ViewModelProviders.of(this).get(EmploymentViewModel.class);
-    dayPicker = findViewById(R.id.day_picker);
+    dayPicker = findViewById(R.id.week_of_day_picker);
     final TextView spinner = findViewById(R.id.spinner_item);
     autoCompleteTextView = findViewById(R.id.content);
     editDate = findViewById(R.id.editDate);
@@ -61,12 +58,12 @@ public class AutoDocumentActivity extends AppCompatActivity {
 
     fm = getSupportFragmentManager();
 
-    ArrayList<MaterialDayPicker.Weekday> weekdays = new ArrayList<>();
-    weekdays.add(MaterialDayPicker.Weekday.MONDAY);
-    weekdays.add(MaterialDayPicker.Weekday.TUESDAY);
-    weekdays.add(MaterialDayPicker.Weekday.WEDNESDAY);
-    weekdays.add(MaterialDayPicker.Weekday.THURSDAY);
-    weekdays.add(MaterialDayPicker.Weekday.FRIDAY);
+    ArrayList<WeekDayPicker.Weekday> weekdays = new ArrayList<>();
+    weekdays.add(WeekDayPicker.Weekday.MONDAY);
+    weekdays.add(WeekDayPicker.Weekday.TUESDAY);
+    weekdays.add(WeekDayPicker.Weekday.WEDNESDAY);
+    weekdays.add(WeekDayPicker.Weekday.THURSDAY);
+    weekdays.add(WeekDayPicker.Weekday.FRIDAY);
     dayPicker.setSelectedDays(weekdays);
 
     spinner.setOnClickListener(new View.OnClickListener() {
@@ -161,30 +158,30 @@ public class AutoDocumentActivity extends AppCompatActivity {
     Calendar calendar1 = Calendar.getInstance();
     calendar1.setTime(mSelectedDate.getEndDate().getTime());
     int dayCount = 0;
-    List<MaterialDayPicker.Weekday> weekdays = dayPicker.getSelectedDays();
-    MaterialDayPicker.Weekday current = MaterialDayPicker.Weekday.MONDAY;
+    List<WeekDayPicker.Weekday> weekdays = dayPicker.getSelectedDays();
+    WeekDayPicker.Weekday current = WeekDayPicker.Weekday.MONDAY;
     for (; calendar1.after(calendar); calendar.add(Calendar.DATE, 1)) {
       switch (calendar.get(Calendar.DAY_OF_WEEK)) {
         case Calendar.MONDAY:
-          current = MaterialDayPicker.Weekday.MONDAY;
+          current = WeekDayPicker.Weekday.MONDAY;
           break;
         case Calendar.TUESDAY:
-          current = MaterialDayPicker.Weekday.TUESDAY;
+          current = WeekDayPicker.Weekday.TUESDAY;
           break;
         case Calendar.WEDNESDAY:
-          current = MaterialDayPicker.Weekday.WEDNESDAY;
+          current = WeekDayPicker.Weekday.WEDNESDAY;
           break;
         case Calendar.THURSDAY:
-          current = MaterialDayPicker.Weekday.THURSDAY;
+          current = WeekDayPicker.Weekday.THURSDAY;
           break;
         case Calendar.FRIDAY:
-          current = MaterialDayPicker.Weekday.FRIDAY;
+          current = WeekDayPicker.Weekday.FRIDAY;
           break;
         case Calendar.SATURDAY:
-          current = MaterialDayPicker.Weekday.SATURDAY;
+          current = WeekDayPicker.Weekday.SATURDAY;
           break;
         case Calendar.SUNDAY:
-          current = MaterialDayPicker.Weekday.SUNDAY;
+          current = WeekDayPicker.Weekday.SUNDAY;
           break;
       }
       if (weekdays.contains(current))
@@ -284,32 +281,32 @@ public class AutoDocumentActivity extends AppCompatActivity {
       Calendar calendar1 = Calendar.getInstance();
       calendar1.setTime(mSelectedDate.getEndDate().getTime());
       int days = countDays();
-      List<MaterialDayPicker.Weekday> weekdays = dayPicker.getSelectedDays();
-      MaterialDayPicker.Weekday current = MaterialDayPicker.Weekday.MONDAY;
+      List<WeekDayPicker.Weekday> weekdays = dayPicker.getSelectedDays();
+      WeekDayPicker.Weekday current = WeekDayPicker.Weekday.MONDAY;
       int targetPerDay = target/days;
       int remainderHours = target%days;
       for(; calendar1.after(calendar); calendar.add(Calendar.DATE, 1)) {
         switch (calendar.get(Calendar.DAY_OF_WEEK)) {
           case Calendar.MONDAY:
-            current = MaterialDayPicker.Weekday.MONDAY;
+            current = WeekDayPicker.Weekday.MONDAY;
             break;
           case Calendar.TUESDAY:
-            current = MaterialDayPicker.Weekday.TUESDAY;
+            current = WeekDayPicker.Weekday.TUESDAY;
             break;
           case Calendar.WEDNESDAY:
-            current = MaterialDayPicker.Weekday.WEDNESDAY;
+            current = WeekDayPicker.Weekday.WEDNESDAY;
             break;
           case Calendar.THURSDAY:
-            current = MaterialDayPicker.Weekday.THURSDAY;
+            current = WeekDayPicker.Weekday.THURSDAY;
             break;
           case Calendar.FRIDAY:
-            current = MaterialDayPicker.Weekday.FRIDAY;
+            current = WeekDayPicker.Weekday.FRIDAY;
             break;
           case Calendar.SATURDAY:
-            current = MaterialDayPicker.Weekday.SATURDAY;
+            current = WeekDayPicker.Weekday.SATURDAY;
             break;
           case Calendar.SUNDAY:
-            current = MaterialDayPicker.Weekday.SUNDAY;
+            current = WeekDayPicker.Weekday.SUNDAY;
             break;
         }
         if (weekdays.contains(current)) {
