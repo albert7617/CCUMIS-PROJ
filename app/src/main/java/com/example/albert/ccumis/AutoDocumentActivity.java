@@ -329,7 +329,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
       Employment employment = generateEmployment(calendar,
               department,
               content,
-              480,
+              240,
               startHour + offset + 4,
               startMinute,
               startHour + offset,
