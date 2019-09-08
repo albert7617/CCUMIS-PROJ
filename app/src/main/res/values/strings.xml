@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">CCUMIS</string>
+  <string name="app_name">CCUMIS PROJ</string>
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
   <string name="nav_header_title">Android Studio</string>
@@ -24,7 +24,7 @@
   <string name="submit">送出</string>
   <string name="loading">載入中</string>
   <string name="department">學習暨勞僱單位</string>
-  <string name="status">處理情況</string>
+  <string name="status">狀態</string>
   <string name="weekend">例假日</string>
   <string name="no_data">沒有資料</string>
   <string name="querying">查詢中</string>
@@ -73,9 +73,9 @@
 
   <!-- Status Items -->
   <string-array name="statuses">
-    <item>未確認</item>
-    <item>已確認</item>
-    <item>已報帳</item>
+    <item>未審核</item>
+    <item>主持人已審核</item>
+    <item>已進行報帳</item>
     <item>所有狀態</item>
   </string-array>
 
@@ -110,25 +110,25 @@
     </string>
 
   <!-- URLs -->
-  <string name="url_login">http://mis.cc.ccu.edu.tw/parttime/control.php</string>
-  <string name="url_home">http://mis.cc.ccu.edu.tw/parttime/</string>
-  <string name="url_post_data">http://mis.cc.ccu.edu.tw/parttime/next.php</string>
-  <string name="url_employment_list">http://mis.cc.ccu.edu.tw/parttime/xa2.php</string>
-  <string name="url_save_to_db">http://mis.cc.ccu.edu.tw/parttime/todb.php</string>
-  <string name="url_del_to_db">http://mis.cc.ccu.edu.tw/parttime/delete_todb.php</string>
-  <string name="url_head_stu">http://mis.cc.ccu.edu.tw/parttime/head_stu.php</string>
-  <string name="url_menu">http://mis.cc.ccu.edu.tw/parttime/menu_stu.php?type=0</string>
-  <string name="url_attend">http://mis.cc.ccu.edu.tw/parttime/attend.php</string>
-  <string name="url_control2">http://mis.cc.ccu.edu.tw/parttime/control2.php</string>
-  <string name="url_main2">http://mis.cc.ccu.edu.tw/parttime/main2.php</string>
-  <string name="url_sel_row">http://mis.cc.ccu.edu.tw/parttime/sp_row.php</string>
-  <string name="url_del_row">http://mis.cc.ccu.edu.tw/parttime/delete_row.php</string>
-  <string name="url_sp_sel">http://mis.cc.ccu.edu.tw/parttime/sp_sel.php</string>
-  <string name="url_del_sel">http://mis.cc.ccu.edu.tw/parttime/delete_sel.php</string>
-  <string name="url_prt_sel">http://mis.cc.ccu.edu.tw/parttime/print_sel.php</string>
-  <string name="url_prt_row">http://mis.cc.ccu.edu.tw/parttime/print_row.php</string>
-  <string name="url_prt_pdf">http://mis.cc.ccu.edu.tw/parttime/printpdf1.php</string>
-  <string name="url_prt_chk">http://mis.cc.ccu.edu.tw/parttime/print_check.php</string>
+  <string name="url_login">http://mis.cc.ccu.edu.tw/pt_proj/control.php</string>
+  <string name="url_home">http://mis.cc.ccu.edu.tw/pt_proj/</string>
+  <string name="url_post_data">http://mis.cc.ccu.edu.tw/pt_proj/next.php</string>
+  <string name="url_employment_list">http://mis.cc.ccu.edu.tw/pt_proj/xa2.php</string>
+  <string name="url_save_to_db">http://mis.cc.ccu.edu.tw/pt_proj/todb.php</string>
+  <string name="url_del_to_db">http://mis.cc.ccu.edu.tw/pt_proj/delete_todb.php</string>
+  <string name="url_head_stu">http://mis.cc.ccu.edu.tw/pt_proj/head_stu.php</string>
+  <string name="url_menu">http://mis.cc.ccu.edu.tw/pt_proj/menu_stu.php?type=0</string>
+  <string name="url_attend">http://mis.cc.ccu.edu.tw/pt_proj/attend.php</string>
+  <string name="url_control2">http://mis.cc.ccu.edu.tw/pt_proj/control2.php</string>
+  <string name="url_main2">http://mis.cc.ccu.edu.tw/pt_proj/main2.php</string>
+  <string name="url_sel_row">http://mis.cc.ccu.edu.tw/pt_proj/sp_row.php</string>
+  <string name="url_del_row">http://mis.cc.ccu.edu.tw/pt_proj/delete_row.php</string>
+  <string name="url_sp_sel">http://mis.cc.ccu.edu.tw/pt_proj/sp_sel.php</string>
+  <string name="url_del_sel">http://mis.cc.ccu.edu.tw/pt_proj/delete_sel.php</string>
+  <string name="url_prt_sel">http://mis.cc.ccu.edu.tw/pt_proj/print_sel.php</string>
+  <string name="url_prt_row">http://mis.cc.ccu.edu.tw/pt_proj/print_row.php</string>
+  <string name="url_prt_pdf">http://mis.cc.ccu.edu.tw/pt_proj/printpdf1.php</string>
+  <string name="url_prt_chk">http://mis.cc.ccu.edu.tw/pt_proj/print_check.php</string>
 
   <!-- SharedPreference Keys -->
   <string name="pref_username">PREF_USERNAME</string>
@@ -205,6 +205,7 @@
 
 
   <string name="input_department">勞僱單位</string>
+  <string name="input_project">計畫編號</string>
   <string name="employment">學習暨勞僱內容</string>
   <string name="save">儲存</string>
   <string name="employment_date">學習暨勞僱日期</string>

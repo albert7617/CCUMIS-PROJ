@@ -75,12 +75,11 @@
       android:textAppearance="@style/TextViewLabel" />
 
 
-    <TextView
+    <Spinner
       android:id="@+id/spinner_item"
-      style="@style/TextViewSpinner"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:hint="@string/input_department"
+      android:hint="@string/input_project"
       android:textSize="18sp" />
 
     <TextView
