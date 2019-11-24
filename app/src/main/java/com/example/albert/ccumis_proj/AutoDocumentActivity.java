@@ -1,8 +1,10 @@
 package com.example.albert.ccumis_proj;
 
+import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -13,14 +15,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.example.albert.ccumis_proj.data.Department;
@@ -45,6 +53,10 @@ public class AutoDocumentActivity extends AppCompatActivity {
   private EditText editDate, sTime, targetHours;
   private EmploymentViewModel employmentViewModel;
   private AutoCompleteTextView autoCompleteTextView;
+  private AutoCompleteTextView autoCompleteTextView2;
+  private AutoCompleteTextView autoCompleteTextView3;
+  private AutoCompleteTextView autoCompleteTextView4;
+  private AutoCompleteTextView autoCompleteTextView5;
   private WeekDayPicker dayPicker;
 
   @Override
@@ -57,9 +69,83 @@ public class AutoDocumentActivity extends AppCompatActivity {
     dayPicker = findViewById(R.id.week_of_day_picker);
     final Spinner spinner = findViewById(R.id.spinner_item);
     autoCompleteTextView = findViewById(R.id.content);
+    autoCompleteTextView2 = findViewById(R.id.content2);
+    autoCompleteTextView3 = findViewById(R.id.content3);
+    autoCompleteTextView4 = findViewById(R.id.content4);
+    autoCompleteTextView5 = findViewById(R.id.content5);
     editDate = findViewById(R.id.editDate);
     sTime = findViewById(R.id.editTimeStart);
     targetHours = findViewById(R.id.editHours);
+
+    final Spinner spinnerContent = findViewById(R.id.spinner_content);
+    Integer[] spinnerContentItems = new Integer[]{1,2,3,4,5};
+    ArrayAdapter<Integer> spinnerContentAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, spinnerContentItems);
+    spinnerContent.setAdapter(spinnerContentAdapter);
+    spinnerContent.setOnTouchListener(new View.OnTouchListener() {
+      @Override
+      public boolean onTouch(View view, MotionEvent motionEvent) {
+        hideSoftKeyboard(AutoDocumentActivity.this, view);
+        return false;
+      }
+    });
+    spinnerContent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        switch (i) {
+          case 0:
+            autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            autoCompleteTextView2.setVisibility(View.GONE);
+            autoCompleteTextView3.setVisibility(View.GONE);
+            autoCompleteTextView4.setVisibility(View.GONE);
+            autoCompleteTextView5.setVisibility(View.GONE);
+            break;
+          case 1:
+            autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView2.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            autoCompleteTextView2.setVisibility(View.VISIBLE);
+            autoCompleteTextView3.setVisibility(View.GONE);
+            autoCompleteTextView4.setVisibility(View.GONE);
+            autoCompleteTextView5.setVisibility(View.GONE);
+            break;
+          case 2:
+            autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView2.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView3.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            autoCompleteTextView2.setVisibility(View.VISIBLE);
+            autoCompleteTextView3.setVisibility(View.VISIBLE);
+            autoCompleteTextView4.setVisibility(View.GONE);
+            autoCompleteTextView5.setVisibility(View.GONE);
+            break;
+          case 3:
+            autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView2.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView3.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView4.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            autoCompleteTextView2.setVisibility(View.VISIBLE);
+            autoCompleteTextView3.setVisibility(View.VISIBLE);
+            autoCompleteTextView4.setVisibility(View.VISIBLE);
+            autoCompleteTextView5.setVisibility(View.GONE);
+            break;
+          case 4:
+            autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView2.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView3.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView4.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView5.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            autoCompleteTextView2.setVisibility(View.VISIBLE);
+            autoCompleteTextView3.setVisibility(View.VISIBLE);
+            autoCompleteTextView4.setVisibility(View.VISIBLE);
+            autoCompleteTextView5.setVisibility(View.VISIBLE);
+            break;
+        }
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> adapterView) {
+
+      }
+    });
 
 
     final List<String> items = new ArrayList<>(), values = new ArrayList<>();
@@ -92,9 +178,17 @@ public class AutoDocumentActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     List<String> historyList = new ArrayList<>(sharedPreferences.getStringSet(getString(R.string.pref_content), new HashSet<String>()));
     autoCompleteTextView.setThreshold(0);
+    autoCompleteTextView2.setThreshold(0);
+    autoCompleteTextView3.setThreshold(0);
+    autoCompleteTextView4.setThreshold(0);
+    autoCompleteTextView5.setThreshold(0);
 
     final ArrayAdapter<String> historyArrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, historyList);
     autoCompleteTextView.setAdapter(historyArrayAdapter);
+    autoCompleteTextView2.setAdapter(historyArrayAdapter);
+    autoCompleteTextView3.setAdapter(historyArrayAdapter);
+    autoCompleteTextView4.setAdapter(historyArrayAdapter);
+    autoCompleteTextView5.setAdapter(historyArrayAdapter);
 
     editDate.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -389,5 +483,9 @@ public class AutoDocumentActivity extends AppCompatActivity {
     employment.operation = OPERATION;
     employment.status = 401;
     return employment;
+  }
+  public static void hideSoftKeyboard (Activity activity, View view) {
+    InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
   }
 }
