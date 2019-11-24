@@ -1,68 +1,72 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
-        <!-- Customize your theme here. -->
-        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
-        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <!--<item name="colorAccent">@color/colorAccent</item>-->
-        <item name="android:windowBackground">@color/colorBackground</item>
-        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <item name="actionOverflowButtonStyle">@style/DotsDarkTheme</item>
-    </style>
+  <!-- Base application theme. -->
+  <style name="AppTheme" parent="@style/Theme.MaterialComponents.Light">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">#FFFFFF</item>
+    <item name="colorPrimaryDark">#EEEEEE</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="android:windowBackground">@color/colorBackground</item>
+    <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+    <item name="actionOverflowButtonStyle">@style/DotsDarkTheme</item>
+    <!--        <item name="android:actionBarStyle">@style/LightActionBar</item>-->
+  </style>
 
+  <style name="LightActionBar">
+    <item name="android:background">#FFFFFF</item>
+  </style>
 
-    <style name="DotsDarkTheme" parent="@style/Widget.AppCompat.ActionButton.Overflow" >
-        <item name="android:tint">@color/colorTitleText</item>
-    </style>
+  <style name="DotsDarkTheme" parent="@style/Widget.AppCompat.ActionButton.Overflow" >
+    <item name="android:tint">@color/colorTitleText</item>
+  </style>
 
-    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="spinBars">true</item>
-        <item name="color">@android:color/black</item>
-    </style>
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+  <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+    <item name="spinBars">true</item>
+    <item name="color">@android:color/black</item>
+  </style>
+  <style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+  </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+  <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="LightCardView" parent="Theme.AppCompat.Light">
-        <item name="cardCornerRadius">2dp</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
+  <style name="LightCardView" parent="Theme.AppCompat.Light">
+    <item name="cardCornerRadius">2dp</item>
+    <item name="android:layout_marginStart">8dp</item>
+    <item name="android:layout_marginEnd">8dp</item>
+    <item name="android:layout_marginTop">8dp</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+  </style>
 
-    <style name="LightRecyclerCardView" parent="Theme.AppCompat.Light">
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginBottom">4dp</item>
-        <item name="cardCornerRadius">2dp</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
+  <style name="LightRecyclerCardView" parent="Theme.AppCompat.Light">
+    <item name="android:layout_marginStart">8dp</item>
+    <item name="android:layout_marginEnd">8dp</item>
+    <item name="android:layout_marginTop">4dp</item>
+    <item name="android:layout_marginBottom">4dp</item>
+    <item name="cardCornerRadius">2dp</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+  </style>
 
-    <style name="RecyclerView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:descendantFocusability">blocksDescendants</item>
-        <item name="android:layout_marginTop">8dp</item>
-    </style>
+  <style name="RecyclerView">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:descendantFocusability">blocksDescendants</item>
+    <item name="android:layout_marginTop">8dp</item>
+  </style>
 
-    <style name="TextViewSpinner" parent="Widget.AppCompat.Spinner">
-        <item name="android:paddingStart">2dp</item>
-        <item name="android:paddingTop">6dp</item>
-        <item name="android:paddingBottom">4dp</item>
-    </style>
+  <style name="TextViewSpinner" parent="Widget.AppCompat.Spinner">
+    <item name="android:paddingStart">2dp</item>
+    <item name="android:paddingTop">6dp</item>
+    <item name="android:paddingBottom">4dp</item>
+  </style>
 
-    <style name="TextViewLabel" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">@android:color/black</item>
-    </style>
+  <style name="TextViewLabel" parent="TextAppearance.AppCompat.Medium">
+    <item name="android:textColor">@android:color/black</item>
+  </style>
 
 </resources>

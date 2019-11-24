@@ -35,6 +35,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -45,7 +46,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\Albert\Downloads\ic_fab_add.png" />
+                                      <entry key="imageAsset" value="C:\Users\Albert\Downloads\icons8-calculator-24.png" />
+                                      <entry key="outputName" value="ic_calculator_black_24px" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
                                   </option>

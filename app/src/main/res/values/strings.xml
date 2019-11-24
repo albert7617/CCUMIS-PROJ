@@ -49,6 +49,8 @@
   <string name="print_terms">以上選項本人皆已正確勾選，請國立中正大學依「全民健康保險扣取及繳納補充保險費辦法」免扣取（或應扣取）本人補充保險費，如有不實，願依全民健康保險法暨相關法律規定處理，特此聲明。</string>
   <string name="print_terms_not_agreed">請同意聲明</string>
   <string name="target_hours">目標時數</string>
+  <string name="target_wage">目標工讀金</string>
+  <string name="wage_per_hour">法定時薪</string>
   <string name="prev">上一步</string>
   <string name="next">下一步</string>
   <string name="unconfirmed">未確認</string>

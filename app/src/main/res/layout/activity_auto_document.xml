@@ -12,21 +12,35 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:padding="8dp">
-
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/target_hours"
       android:textAppearance="@style/TextViewLabel" />
 
-    <EditText
-      android:id="@+id/editHours"
+    <LinearLayout
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:ems="10"
-      android:hint="@string/target_hours"
-      android:inputType="numberDecimal"
-      tools:ignore="Autofill" />
+      android:layout_height="wrap_content">
+
+      <EditText
+        android:id="@+id/editHours"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/target_hours"
+        android:inputType="numberDecimal"
+        tools:ignore="Autofill" />
+
+      <ImageButton
+        android:id="@+id/imageBtnCalculator"
+        android:src="@drawable/ic_calculator_black_24px"
+        android:background="@null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <TextView
       android:layout_width="wrap_content"

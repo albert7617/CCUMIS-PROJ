@@ -12,17 +12,20 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.example.albert.ccumis_proj.data.Department;
 import com.example.albert.ccumis_proj.data.Employment;
+import com.example.albert.ccumis_proj.fragments.CalculatorFragment;
 import com.example.albert.ccumis_proj.fragments.DatePickerDialogFragment;
 
 import java.text.DateFormat;
@@ -57,6 +60,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
     editDate = findViewById(R.id.editDate);
     sTime = findViewById(R.id.editTimeStart);
     targetHours = findViewById(R.id.editHours);
+
 
     final List<String> items = new ArrayList<>(), values = new ArrayList<>();
     final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
@@ -125,6 +129,16 @@ public class AutoDocumentActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         autoCompleteTextView.showDropDown();
+      }
+    });
+
+    ImageButton calculator = findViewById(R.id.imageBtnCalculator);
+    calculator.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        CalculatorFragment calculatorFragment = new CalculatorFragment();
+        calculatorFragment.show(getFragmentManager(), "CALCULATOR");
+
       }
     });
 

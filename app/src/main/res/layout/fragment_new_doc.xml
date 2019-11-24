@@ -86,7 +86,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="XX"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             android:textColor="#009688"
 
@@ -216,7 +215,8 @@
       android:scaleType="center"
       android:src="@drawable/ic_add_to_photos_black_24dp"
       android:visibility="gone"
-      app:borderWidth="0dp" />
+      app:borderWidth="0dp"
+      app:fabCustomSize="36dp" />
   </LinearLayout>
 
   <android.support.design.widget.FloatingActionButton
@@ -229,8 +229,10 @@
     android:scaleType="center"
     android:src="@drawable/ic_fab_add"
     app:borderWidth="0dp"
+    app:fabCustomSize="56dp"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+    app:layout_constraintEnd_toEndOf="parent"
+    app:maxImageSize="42dp" />
 
 
 </android.support.constraint.ConstraintLayout>
