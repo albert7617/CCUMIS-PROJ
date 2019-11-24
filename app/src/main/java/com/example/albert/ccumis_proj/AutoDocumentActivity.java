@@ -57,6 +57,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
   private AutoCompleteTextView autoCompleteTextView3;
   private AutoCompleteTextView autoCompleteTextView4;
   private AutoCompleteTextView autoCompleteTextView5;
+  private Spinner spinnerContent;
   private WeekDayPicker dayPicker;
 
   @Override
@@ -77,7 +78,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
     sTime = findViewById(R.id.editTimeStart);
     targetHours = findViewById(R.id.editHours);
 
-    final Spinner spinnerContent = findViewById(R.id.spinner_content);
+    spinnerContent = findViewById(R.id.spinner_content);
     Integer[] spinnerContentItems = new Integer[]{1,2,3,4,5};
     ArrayAdapter<Integer> spinnerContentAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, spinnerContentItems);
     spinnerContent.setAdapter(spinnerContentAdapter);
@@ -367,9 +368,37 @@ public class AutoDocumentActivity extends AppCompatActivity {
 
   private void saveToDB(Department department){
     String content = autoCompleteTextView.getText().toString();
+    int contentNum = spinnerContent.getSelectedItemPosition();
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     Set<String> strings = preferences.getStringSet(getString(R.string.pref_content), new HashSet<String>());
-
+    List<String> contents = new ArrayList<>();
+    switch (contentNum) {
+      case 0:
+        contents.add(0, autoCompleteTextView.getText().toString());
+        break;
+      case 1:
+        contents.add(0, autoCompleteTextView.getText().toString());
+        contents.add(1, autoCompleteTextView2.getText().toString());
+        break;
+      case 2:
+        contents.add(0, autoCompleteTextView.getText().toString());
+        contents.add(1, autoCompleteTextView2.getText().toString());
+        contents.add(2, autoCompleteTextView3.getText().toString());
+        break;
+      case 3:
+        contents.add(0, autoCompleteTextView.getText().toString());
+        contents.add(1, autoCompleteTextView2.getText().toString());
+        contents.add(2, autoCompleteTextView3.getText().toString());
+        contents.add(3, autoCompleteTextView4.getText().toString());
+        break;
+      case 4:
+        contents.add(0, autoCompleteTextView.getText().toString());
+        contents.add(1, autoCompleteTextView2.getText().toString());
+        contents.add(2, autoCompleteTextView3.getText().toString());
+        contents.add(3, autoCompleteTextView4.getText().toString());
+        contents.add(4, autoCompleteTextView5.getText().toString());
+        break;
+    }
     strings.add(content);
     preferences.edit().putStringSet(getString(R.string.pref_content), strings).apply();
 
@@ -384,10 +413,12 @@ public class AutoDocumentActivity extends AppCompatActivity {
       Calendar calendar1 = Calendar.getInstance();
       calendar1.setTime(mSelectedDate.getEndDate().getTime());
       int days = countDays();
+      int dayContentRatio = days/(contentNum+1);
       List<WeekDayPicker.Weekday> weekdays = dayPicker.getSelectedDays();
       WeekDayPicker.Weekday current = WeekDayPicker.Weekday.MONDAY;
       int targetPerDay = target/days;
       int remainderHours = target%days;
+      int dayCount = 0;
       for(; calendar1.after(calendar); calendar.add(Calendar.DATE, 1)) {
         switch (calendar.get(Calendar.DAY_OF_WEEK)) {
           case Calendar.MONDAY:
@@ -413,16 +444,31 @@ public class AutoDocumentActivity extends AppCompatActivity {
             break;
         }
         if (weekdays.contains(current)) {
+          dayCount++;
           if(remainderHours > 0) {
-            addEmployments(calendar, targetPerDay+1, department, content);
+            addEmployments(calendar, targetPerDay+1, department, getContent(dayCount, dayContentRatio, contents));
             remainderHours --;
           } else {
-            addEmployments(calendar, targetPerDay, department, content);
+            addEmployments(calendar, targetPerDay, department, getContent(dayCount, dayContentRatio, contents));
           }
         }
+
       }
     }
     finish();
+  }
+
+  private String getContent(int day, int dayContentRatio, List<String> contents) {
+    Log.d("day", "getContent: day   " + day);
+    Log.d("day", "getContent: ratio " + dayContentRatio);
+    Log.d("day", "getContent: d/r   " + day/dayContentRatio);
+    if (day/dayContentRatio < contents.size()) {
+      Log.d("day", "getContent: d/r   " + contents.get(day/dayContentRatio));
+      return contents.get(day/dayContentRatio);
+    } else {
+      Log.d("day", "getContent: d/r   " + contents.get(contents.size()-1));
+      return contents.get(contents.size()-1);
+    }
   }
 
 
