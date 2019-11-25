@@ -500,18 +500,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
     }
   }
 
-  /**
-   *
-   * @param calendar
-   * @param department
-   * @param content
-   * @param duration
-   * @param end_hour
-   * @param end_minute
-   * @param start_hour
-   * @param start_minute
-   * @return
-   */
+
   private Employment generateEmployment(Calendar calendar, Department department, String content, int duration, int end_hour, int end_minute, int start_hour, int start_minute) {
     Employment employment = new Employment();
     employment.date = df.format(calendar.getTime());

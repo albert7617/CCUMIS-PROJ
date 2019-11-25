@@ -1,6 +1,5 @@
 package com.example.albert.ccumis_proj.fragments;
 
-import android.animation.Animator;
 import android.app.ActivityOptions;
 import android.app.Application;
 import android.arch.lifecycle.Observer;
@@ -22,9 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.transition.Explode;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.TextView;
 
 import com.example.albert.ccumis_proj.AutoDocumentActivity;
@@ -73,7 +70,7 @@ public class NewDocFragment extends Fragment {
     });
     final FloatingActionButton fab = rootView.findViewById(R.id.fab), fab_auto = rootView.findViewById(R.id.fabNewDoc);
     final View blocker = rootView.findViewById(R.id.blocker);
-    fab_auto.setVisibility(View.GONE);
+    fab_auto.hide();
 
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -89,7 +86,7 @@ public class NewDocFragment extends Fragment {
                   rootView.getHeight()).toBundle());
         } else {
           blocker.setVisibility(View.VISIBLE);
-          fab_auto.setVisibility(View.VISIBLE);
+          fab_auto.show();
         }
       }
     });
@@ -98,7 +95,7 @@ public class NewDocFragment extends Fragment {
       @Override
       public void onClick(View v) {
         blocker.setVisibility(View.INVISIBLE);
-        fab_auto.setVisibility(View.GONE);
+        fab_auto.hide();
       }
     });
 
@@ -111,8 +108,8 @@ public class NewDocFragment extends Fragment {
     });
 
 
-
-    NestedScrollView scrollView = rootView.findViewById(R.id.nestedScrollView);
+    final ConstraintLayout cardContainer = rootView.findViewById(R.id.cardContainer);
+    final NestedScrollView scrollView = rootView.findViewById(R.id.nestedScrollView);
     scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
       @Override
       public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
@@ -121,8 +118,13 @@ public class NewDocFragment extends Fragment {
         } else{
           fab.show();
         }
+        if (scrollView.getHeight() < cardContainer.getHeight() + scrollView.getPaddingTop() + scrollView.getPaddingBottom()) {
+          fab.show();
+        }
       }
     });
+
+
 
     CardView nuke = rootView.findViewById(R.id.clearAllCard);
     nuke.setOnClickListener(new View.OnClickListener() {
