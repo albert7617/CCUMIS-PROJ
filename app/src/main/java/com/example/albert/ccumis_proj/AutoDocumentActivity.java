@@ -14,7 +14,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -26,9 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.example.albert.ccumis_proj.data.Department;
@@ -80,7 +77,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
 
     spinnerContent = findViewById(R.id.spinner_content);
     Integer[] spinnerContentItems = new Integer[]{1,2,3,4,5};
-    ArrayAdapter<Integer> spinnerContentAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, spinnerContentItems);
+    ArrayAdapter<Integer> spinnerContentAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerContentItems);
     spinnerContent.setAdapter(spinnerContentAdapter);
     spinnerContent.setOnTouchListener(new View.OnTouchListener() {
       @Override
@@ -150,7 +147,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
 
 
     final List<String> items = new ArrayList<>(), values = new ArrayList<>();
-    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+    final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
     spinner.setAdapter(adapter);
     DepartmentViewModel departmentViewModel = ViewModelProviders.of(this).get(DepartmentViewModel.class);
     departmentViewModel.getAll(OPERATION).observe(this, new Observer<List<Department>>() {

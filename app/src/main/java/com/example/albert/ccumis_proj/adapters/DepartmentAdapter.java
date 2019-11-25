@@ -5,13 +5,14 @@ import android.support.annotation.NonNull;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 
+
 import com.example.albert.ccumis_proj.data.Department;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentAdapter extends ArrayAdapter<String>{
-  private List<com.example.albert.ccumis_proj.data.Department> departments,departments_bak;
+  private List<Department> departments,departments_bak;
   public DepartmentAdapter(@NonNull Context context, int resource) {
     super(context, resource);
   }
@@ -20,7 +21,7 @@ public class DepartmentAdapter extends ArrayAdapter<String>{
   public int getPosition(String item) {
     if(departments != null) {
       int i=0;
-      for (com.example.albert.ccumis_proj.data.Department department : departments) {
+      for (Department department : departments) {
         if (department.name.compareToIgnoreCase(item) == 0) {
           return i;
         }
@@ -47,7 +48,7 @@ public class DepartmentAdapter extends ArrayAdapter<String>{
       @Override
       protected FilterResults performFiltering(CharSequence constraint) {
         FilterResults results = new FilterResults();
-        ArrayList<com.example.albert.ccumis_proj.data.Department> filtered = new ArrayList<>();
+        ArrayList<Department> filtered = new ArrayList<>();
 
         departments = departments_bak;
         // perform your search here using the searchConstraint String.
@@ -70,13 +71,13 @@ public class DepartmentAdapter extends ArrayAdapter<String>{
 
       @Override
       protected void publishResults(CharSequence constraint, FilterResults results) {
-        departments = (List<com.example.albert.ccumis_proj.data.Department>) results.values;
+        departments = (List<Department>) results.values;
         notifyDataSetChanged();
       }
     };
   }
 
-  public void setDepartments(List<com.example.albert.ccumis_proj.data.Department> departments) {
+  public void setDepartments(List<Department> departments) {
     this.departments = departments;
     this.departments_bak = departments;
     notifyDataSetChanged();

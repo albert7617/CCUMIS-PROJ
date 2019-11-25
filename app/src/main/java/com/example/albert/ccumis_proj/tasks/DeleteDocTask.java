@@ -50,13 +50,14 @@ public class DeleteDocTask extends RemoteTask {
         result.put("msg", application.getString(R.string.error_login_fail));
         return result;
       }
-      Connection.Response response = Jsoup.connect(application.getString(R.string.url_del_sel))
+      Jsoup.connect(application.getString(R.string.url_del_sel))
               .cookie("PHPSESSID", phpsessid)
               .followRedirects(true)
               .method(Connection.Method.GET)
               .execute();
 
-      response = Jsoup.connect(application.getString(R.string.url_del_row))
+
+      Jsoup.connect(application.getString(R.string.url_del_row))
               .cookie("PHPSESSID", phpsessid)
               .followRedirects(true)
               .data("unit_cd1", postEmployment.department,
@@ -71,6 +72,7 @@ public class DeleteDocTask extends RemoteTask {
               .method(Connection.Method.POST)
               .maxBodySize(0)
               .execute();
+      Connection.Response response;
       response = Jsoup.connect(application.getString(R.string.url_del_to_db))
               .cookie("PHPSESSID", phpsessid)
               .followRedirects(true)

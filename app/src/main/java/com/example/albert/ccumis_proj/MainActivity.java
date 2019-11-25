@@ -1,11 +1,9 @@
 package com.example.albert.ccumis_proj;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
@@ -30,8 +28,6 @@ import com.example.albert.ccumis_proj.fragments.DeleteDocFragment;
 import com.example.albert.ccumis_proj.fragments.NewDocFragment;
 import com.example.albert.ccumis_proj.fragments.PrintDocFragment;
 import com.example.albert.ccumis_proj.fragments.SelectDocFragment;
-import com.github.javiersantos.appupdater.AppUpdater;
-import com.github.javiersantos.appupdater.enums.UpdateFrom;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -187,21 +183,15 @@ public class MainActivity extends AppCompatActivity
 
   @Override
   public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-    switch (requestCode) {
-      case 200: {
-        // If request is cancelled, the result arrays are empty.
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-          // permission was granted, yay! Do the
-          // contacts-related task you need to do.
-        } else {
-          Toast.makeText(this, "請授予寫入檔案權限", Toast.LENGTH_SHORT).show();
-          // permission denied, boo! Disable the
-          // functionality that depends on this permission.
-        }
+    if (requestCode == 200) {
+      if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        // permission was granted, yay! Do the
+        // contacts-related task you need to do.
+      } else {
+        Toast.makeText(this, "請授予寫入檔案權限", Toast.LENGTH_SHORT).show();
+        // permission denied, boo! Disable the
+        // functionality that depends on this permission.
       }
-
-      // other 'case' lines to check for other
-      // permissions this app might request.
     }
   }
 }
