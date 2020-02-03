@@ -186,6 +186,51 @@
         android:singleLine="true"
         android:visibility="gone" />
 
+      <AutoCompleteTextView
+        android:id="@+id/content6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/employment"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:visibility="gone" />
+
+      <AutoCompleteTextView
+        android:id="@+id/content7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/employment"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:visibility="gone" />
+
+      <AutoCompleteTextView
+        android:id="@+id/content8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/employment"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:visibility="gone" />
+
+      <AutoCompleteTextView
+        android:id="@+id/content9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/employment"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:visibility="gone" />
+
+      <AutoCompleteTextView
+        android:id="@+id/content10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/employment"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:visibility="gone" />
+
       <Button
         android:id="@+id/save"
         android:layout_width="wrap_content"

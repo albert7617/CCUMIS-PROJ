@@ -54,6 +54,11 @@ public class AutoDocumentActivity extends AppCompatActivity {
   private AutoCompleteTextView autoCompleteTextView3;
   private AutoCompleteTextView autoCompleteTextView4;
   private AutoCompleteTextView autoCompleteTextView5;
+  private AutoCompleteTextView autoCompleteTextView6;
+  private AutoCompleteTextView autoCompleteTextView7;
+  private AutoCompleteTextView autoCompleteTextView8;
+  private AutoCompleteTextView autoCompleteTextView9;
+  private AutoCompleteTextView autoCompleteTextView10;
   private Spinner spinnerContent;
   private WeekDayPicker dayPicker;
 
@@ -71,12 +76,17 @@ public class AutoDocumentActivity extends AppCompatActivity {
     autoCompleteTextView3 = findViewById(R.id.content3);
     autoCompleteTextView4 = findViewById(R.id.content4);
     autoCompleteTextView5 = findViewById(R.id.content5);
+    autoCompleteTextView6 = findViewById(R.id.content6);
+    autoCompleteTextView7 = findViewById(R.id.content7);
+    autoCompleteTextView8 = findViewById(R.id.content8);
+    autoCompleteTextView9 = findViewById(R.id.content9);
+    autoCompleteTextView10 = findViewById(R.id.content10);
     editDate = findViewById(R.id.editDate);
     sTime = findViewById(R.id.editTimeStart);
     targetHours = findViewById(R.id.editHours);
 
     spinnerContent = findViewById(R.id.spinner_content);
-    Integer[] spinnerContentItems = new Integer[]{1,2,3,4,5};
+    Integer[] spinnerContentItems = new Integer[]{1,2,3,4,5,6,7,8,9,10};
     ArrayAdapter<Integer> spinnerContentAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerContentItems);
     spinnerContent.setAdapter(spinnerContentAdapter);
     spinnerContent.setOnTouchListener(new View.OnTouchListener() {
@@ -89,7 +99,6 @@ public class AutoDocumentActivity extends AppCompatActivity {
     spinnerContent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
         switch (i) {
           case 0:
             autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_DONE);
@@ -97,6 +106,11 @@ public class AutoDocumentActivity extends AppCompatActivity {
             autoCompleteTextView3.setVisibility(View.GONE);
             autoCompleteTextView4.setVisibility(View.GONE);
             autoCompleteTextView5.setVisibility(View.GONE);
+            autoCompleteTextView6.setVisibility(View.GONE);
+            autoCompleteTextView7.setVisibility(View.GONE);
+            autoCompleteTextView8.setVisibility(View.GONE);
+            autoCompleteTextView9.setVisibility(View.GONE);
+            autoCompleteTextView10.setVisibility(View.GONE);
             break;
           case 1:
             autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -105,6 +119,11 @@ public class AutoDocumentActivity extends AppCompatActivity {
             autoCompleteTextView3.setVisibility(View.GONE);
             autoCompleteTextView4.setVisibility(View.GONE);
             autoCompleteTextView5.setVisibility(View.GONE);
+            autoCompleteTextView6.setVisibility(View.GONE);
+            autoCompleteTextView7.setVisibility(View.GONE);
+            autoCompleteTextView8.setVisibility(View.GONE);
+            autoCompleteTextView9.setVisibility(View.GONE);
+            autoCompleteTextView10.setVisibility(View.GONE);
             break;
           case 2:
             autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -114,6 +133,11 @@ public class AutoDocumentActivity extends AppCompatActivity {
             autoCompleteTextView3.setVisibility(View.VISIBLE);
             autoCompleteTextView4.setVisibility(View.GONE);
             autoCompleteTextView5.setVisibility(View.GONE);
+            autoCompleteTextView6.setVisibility(View.GONE);
+            autoCompleteTextView7.setVisibility(View.GONE);
+            autoCompleteTextView8.setVisibility(View.GONE);
+            autoCompleteTextView9.setVisibility(View.GONE);
+            autoCompleteTextView10.setVisibility(View.GONE);
             break;
           case 3:
             autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -124,6 +148,11 @@ public class AutoDocumentActivity extends AppCompatActivity {
             autoCompleteTextView3.setVisibility(View.VISIBLE);
             autoCompleteTextView4.setVisibility(View.VISIBLE);
             autoCompleteTextView5.setVisibility(View.GONE);
+            autoCompleteTextView6.setVisibility(View.GONE);
+            autoCompleteTextView7.setVisibility(View.GONE);
+            autoCompleteTextView8.setVisibility(View.GONE);
+            autoCompleteTextView9.setVisibility(View.GONE);
+            autoCompleteTextView10.setVisibility(View.GONE);
             break;
           case 4:
             autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -135,6 +164,106 @@ public class AutoDocumentActivity extends AppCompatActivity {
             autoCompleteTextView3.setVisibility(View.VISIBLE);
             autoCompleteTextView4.setVisibility(View.VISIBLE);
             autoCompleteTextView5.setVisibility(View.VISIBLE);
+            autoCompleteTextView6.setVisibility(View.GONE);
+            autoCompleteTextView7.setVisibility(View.GONE);
+            autoCompleteTextView8.setVisibility(View.GONE);
+            autoCompleteTextView9.setVisibility(View.GONE);
+            autoCompleteTextView10.setVisibility(View.GONE);
+            break;
+          case 5:
+            autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView2.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView3.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView4.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView5.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView6.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            autoCompleteTextView2.setVisibility(View.VISIBLE);
+            autoCompleteTextView3.setVisibility(View.VISIBLE);
+            autoCompleteTextView4.setVisibility(View.VISIBLE);
+            autoCompleteTextView5.setVisibility(View.VISIBLE);
+            autoCompleteTextView6.setVisibility(View.VISIBLE);
+            autoCompleteTextView7.setVisibility(View.GONE);
+            autoCompleteTextView8.setVisibility(View.GONE);
+            autoCompleteTextView9.setVisibility(View.GONE);
+            autoCompleteTextView10.setVisibility(View.GONE);
+            break;
+          case 6:
+            autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView2.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView3.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView4.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView5.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView6.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView7.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            autoCompleteTextView2.setVisibility(View.VISIBLE);
+            autoCompleteTextView3.setVisibility(View.VISIBLE);
+            autoCompleteTextView4.setVisibility(View.VISIBLE);
+            autoCompleteTextView5.setVisibility(View.VISIBLE);
+            autoCompleteTextView6.setVisibility(View.VISIBLE);
+            autoCompleteTextView7.setVisibility(View.VISIBLE);
+            autoCompleteTextView8.setVisibility(View.GONE);
+            autoCompleteTextView9.setVisibility(View.GONE);
+            autoCompleteTextView10.setVisibility(View.GONE);
+            break;
+          case 7:
+            autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView2.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView3.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView4.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView5.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView6.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView7.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView8.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            autoCompleteTextView2.setVisibility(View.VISIBLE);
+            autoCompleteTextView3.setVisibility(View.VISIBLE);
+            autoCompleteTextView4.setVisibility(View.VISIBLE);
+            autoCompleteTextView5.setVisibility(View.VISIBLE);
+            autoCompleteTextView6.setVisibility(View.VISIBLE);
+            autoCompleteTextView7.setVisibility(View.VISIBLE);
+            autoCompleteTextView8.setVisibility(View.VISIBLE);
+            autoCompleteTextView9.setVisibility(View.GONE);
+            autoCompleteTextView10.setVisibility(View.GONE);
+            break;
+          case 8:
+            autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView2.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView3.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView4.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView5.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView6.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView7.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView8.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView9.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            autoCompleteTextView2.setVisibility(View.VISIBLE);
+            autoCompleteTextView3.setVisibility(View.VISIBLE);
+            autoCompleteTextView4.setVisibility(View.VISIBLE);
+            autoCompleteTextView5.setVisibility(View.VISIBLE);
+            autoCompleteTextView6.setVisibility(View.VISIBLE);
+            autoCompleteTextView7.setVisibility(View.VISIBLE);
+            autoCompleteTextView8.setVisibility(View.VISIBLE);
+            autoCompleteTextView9.setVisibility(View.VISIBLE);
+            autoCompleteTextView10.setVisibility(View.GONE);
+            break;
+          case 9:
+            autoCompleteTextView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView2.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView3.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView4.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView5.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView6.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView7.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView8.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView9.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+            autoCompleteTextView10.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            autoCompleteTextView2.setVisibility(View.VISIBLE);
+            autoCompleteTextView3.setVisibility(View.VISIBLE);
+            autoCompleteTextView4.setVisibility(View.VISIBLE);
+            autoCompleteTextView5.setVisibility(View.VISIBLE);
+            autoCompleteTextView6.setVisibility(View.VISIBLE);
+            autoCompleteTextView7.setVisibility(View.VISIBLE);
+            autoCompleteTextView8.setVisibility(View.VISIBLE);
+            autoCompleteTextView9.setVisibility(View.VISIBLE);
+            autoCompleteTextView10.setVisibility(View.VISIBLE);
             break;
         }
       }
@@ -180,6 +309,10 @@ public class AutoDocumentActivity extends AppCompatActivity {
     autoCompleteTextView3.setThreshold(0);
     autoCompleteTextView4.setThreshold(0);
     autoCompleteTextView5.setThreshold(0);
+    autoCompleteTextView6.setThreshold(0);
+    autoCompleteTextView7.setThreshold(0);
+    autoCompleteTextView8.setThreshold(0);
+    autoCompleteTextView9.setThreshold(0);
 
     final ArrayAdapter<String> historyArrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, historyList);
     autoCompleteTextView.setAdapter(historyArrayAdapter);
@@ -187,6 +320,10 @@ public class AutoDocumentActivity extends AppCompatActivity {
     autoCompleteTextView3.setAdapter(historyArrayAdapter);
     autoCompleteTextView4.setAdapter(historyArrayAdapter);
     autoCompleteTextView5.setAdapter(historyArrayAdapter);
+    autoCompleteTextView6.setAdapter(historyArrayAdapter);
+    autoCompleteTextView7.setAdapter(historyArrayAdapter);
+    autoCompleteTextView8.setAdapter(historyArrayAdapter);
+    autoCompleteTextView9.setAdapter(historyArrayAdapter);
 
     editDate.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -369,6 +506,7 @@ public class AutoDocumentActivity extends AppCompatActivity {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     Set<String> strings = preferences.getStringSet(getString(R.string.pref_content), new HashSet<String>());
     List<String> contents = new ArrayList<>();
+    Log.d("content", "saveToDB: "+contentNum);
     switch (contentNum) {
       case 0:
         contents.add(0, autoCompleteTextView.getText().toString());
@@ -395,6 +533,45 @@ public class AutoDocumentActivity extends AppCompatActivity {
         contents.add(3, autoCompleteTextView4.getText().toString());
         contents.add(4, autoCompleteTextView5.getText().toString());
         break;
+      case 5:
+        contents.add(0, autoCompleteTextView.getText().toString());
+        contents.add(1, autoCompleteTextView2.getText().toString());
+        contents.add(2, autoCompleteTextView3.getText().toString());
+        contents.add(3, autoCompleteTextView4.getText().toString());
+        contents.add(4, autoCompleteTextView5.getText().toString());
+        contents.add(5, autoCompleteTextView6.getText().toString());
+        break;
+      case 6:
+        contents.add(0, autoCompleteTextView.getText().toString());
+        contents.add(1, autoCompleteTextView2.getText().toString());
+        contents.add(2, autoCompleteTextView3.getText().toString());
+        contents.add(3, autoCompleteTextView4.getText().toString());
+        contents.add(4, autoCompleteTextView5.getText().toString());
+        contents.add(5, autoCompleteTextView6.getText().toString());
+        contents.add(6, autoCompleteTextView7.getText().toString());
+        break;
+      case 7:
+        contents.add(0, autoCompleteTextView.getText().toString());
+        contents.add(1, autoCompleteTextView2.getText().toString());
+        contents.add(2, autoCompleteTextView3.getText().toString());
+        contents.add(3, autoCompleteTextView4.getText().toString());
+        contents.add(4, autoCompleteTextView5.getText().toString());
+        contents.add(5, autoCompleteTextView6.getText().toString());
+        contents.add(6, autoCompleteTextView7.getText().toString());
+        contents.add(7, autoCompleteTextView8.getText().toString());
+        break;
+      case 8:
+        contents.add(0, autoCompleteTextView.getText().toString());
+        contents.add(1, autoCompleteTextView2.getText().toString());
+        contents.add(2, autoCompleteTextView3.getText().toString());
+        contents.add(3, autoCompleteTextView4.getText().toString());
+        contents.add(4, autoCompleteTextView5.getText().toString());
+        contents.add(5, autoCompleteTextView6.getText().toString());
+        contents.add(6, autoCompleteTextView7.getText().toString());
+        contents.add(7, autoCompleteTextView8.getText().toString());
+        contents.add(8, autoCompleteTextView9.getText().toString());
+        break;
+
     }
     strings.add(content);
     preferences.edit().putStringSet(getString(R.string.pref_content), strings).apply();
@@ -456,14 +633,19 @@ public class AutoDocumentActivity extends AppCompatActivity {
   }
 
   private String getContent(int day, int dayContentRatio, List<String> contents) {
-    Log.d("day", "getContent: day   " + day);
-    Log.d("day", "getContent: ratio " + dayContentRatio);
-    Log.d("day", "getContent: d/r   " + day/dayContentRatio);
+    Log.d("day", "getContent: day    " + day);
+    Log.d("day", "getContent: ratio  " + dayContentRatio);
+    Log.d("day", "getContent: d/r    " + day/dayContentRatio);
     if (day/dayContentRatio < contents.size()) {
-      Log.d("day", "getContent: d/r   " + contents.get(day/dayContentRatio));
-      return contents.get(day/dayContentRatio);
+      if (day/dayContentRatio == 0) {
+        Log.d("day", "getContent: content" + contents.get(day/dayContentRatio));
+        return contents.get(day/dayContentRatio);
+      } else {
+        Log.d("day", "getContent: content" + contents.get(day/dayContentRatio-1));
+        return contents.get(day/dayContentRatio-1);
+      }
     } else {
-      Log.d("day", "getContent: d/r   " + contents.get(contents.size()-1));
+      Log.d("day", "getContent: content" + contents.get(contents.size()-1));
       return contents.get(contents.size()-1);
     }
   }
