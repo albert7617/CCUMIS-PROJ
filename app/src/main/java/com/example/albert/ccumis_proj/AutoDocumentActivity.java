@@ -36,6 +36,7 @@ import com.example.albert.ccumis_proj.fragments.DatePickerDialogFragment;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -571,9 +572,22 @@ public class AutoDocumentActivity extends AppCompatActivity {
         contents.add(7, autoCompleteTextView8.getText().toString());
         contents.add(8, autoCompleteTextView9.getText().toString());
         break;
+      case 9:
+        contents.add(0, autoCompleteTextView.getText().toString());
+        contents.add(1, autoCompleteTextView2.getText().toString());
+        contents.add(2, autoCompleteTextView3.getText().toString());
+        contents.add(3, autoCompleteTextView4.getText().toString());
+        contents.add(4, autoCompleteTextView5.getText().toString());
+        contents.add(5, autoCompleteTextView6.getText().toString());
+        contents.add(6, autoCompleteTextView7.getText().toString());
+        contents.add(7, autoCompleteTextView8.getText().toString());
+        contents.add(8, autoCompleteTextView9.getText().toString());
+        contents.add(9, autoCompleteTextView10.getText().toString());
+        break;
 
     }
     strings.add(content);
+
     preferences.edit().putStringSet(getString(R.string.pref_content), strings).apply();
 
     int target = Integer.valueOf(targetHours.getText().toString());
@@ -588,6 +602,14 @@ public class AutoDocumentActivity extends AppCompatActivity {
       calendar1.setTime(mSelectedDate.getEndDate().getTime());
       int days = countDays();
       int dayContentRatio = days/(contentNum+1);
+      List<Integer> contentIdx = new ArrayList<>();
+      int idx = 0;
+      for (int i = 0; i <= days; i++) {
+        idx = idx > contentNum ? 0 : idx;
+        contentIdx.add(idx);
+        idx++;
+      }
+      Collections.sort(contentIdx);
       List<WeekDayPicker.Weekday> weekdays = dayPicker.getSelectedDays();
       WeekDayPicker.Weekday current = WeekDayPicker.Weekday.MONDAY;
       int targetPerDay = target/days;
@@ -620,10 +642,10 @@ public class AutoDocumentActivity extends AppCompatActivity {
         if (weekdays.contains(current)) {
           dayCount++;
           if(remainderHours > 0) {
-            addEmployments(calendar, targetPerDay+1, department, getContent(dayCount, dayContentRatio, contents));
+            addEmployments(calendar, targetPerDay+1, department, contents.get(contentIdx.get(dayCount)));
             remainderHours --;
           } else {
-            addEmployments(calendar, targetPerDay, department, getContent(dayCount, dayContentRatio, contents));
+            addEmployments(calendar, targetPerDay, department, contents.get(contentIdx.get(dayCount)));
           }
         }
 
