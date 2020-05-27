@@ -39,25 +39,7 @@ public class DepartmentRepository {
     }
   }
 
-  public void nuke(int type) {
-    new NukeTask(departmentDao).execute(type);
-  }
-
-  private static class NukeTask extends AsyncTask<Integer, Void, Void> {
-    private com.example.albert.ccumis_proj.DepartmentDao departmentDao;
-    public NukeTask(DepartmentDao departmentDao) {
-      this.departmentDao = departmentDao;
-    }
-
-    @Override
-    protected Void doInBackground(Integer... integers) {
-      departmentDao.nukeTable(integers[0]);
-      return null;
-    }
-  }
-
   public LiveData<List<Department>> getAll(int type) {
-    nuke(type);
     new GetRemoteTask(departmentDao, application).execute(type);
     return departmentDao.getAll(type);
   }
@@ -65,7 +47,7 @@ public class DepartmentRepository {
   private static class GetRemoteTask extends AsyncTask<Integer, Void, Void> {
     private DepartmentDao departmentDao;
     private Application application;
-    public GetRemoteTask(DepartmentDao departmentDao, Application application) {
+    private GetRemoteTask(DepartmentDao departmentDao, Application application) {
       this.departmentDao = departmentDao;
       this.application = application;
     }

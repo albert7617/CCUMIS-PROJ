@@ -58,7 +58,6 @@ public class DocumentActivity extends AppCompatActivity {
     final AutoCompleteTextView autoTextView = findViewById(R.id.content);
     final Spinner spinner = findViewById(R.id.spinner_item);
 
-//    final List<Department> items = new ArrayList<>();
     final List<String> items = new ArrayList<>(), values = new ArrayList<>();
     final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
     spinner.setAdapter(adapter);
@@ -97,6 +96,8 @@ public class DocumentActivity extends AppCompatActivity {
       @Override
       public void onChanged(@Nullable List<Department> departments) {
         if (departments != null) {
+          items.clear();
+          values.clear();
           for (Department department :departments) {
             items.add(department.name);
             values.add(department.value);
@@ -108,16 +109,6 @@ public class DocumentActivity extends AppCompatActivity {
         }
       }
     });
-
-//    spinner.setOnClickListener(new View.OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        DepartmentSearchDialogFragment dialog = new DepartmentSearchDialogFragment();
-//        dialog.setCallback(searchCallback);
-//        dialog.show(fm, "DepartmentSearchDialogFragment");
-//      }
-//    });
-
 
     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     List<String> historyList = new ArrayList<>(sharedPreferences.getStringSet(getString(R.string.pref_content), new HashSet<String>()));

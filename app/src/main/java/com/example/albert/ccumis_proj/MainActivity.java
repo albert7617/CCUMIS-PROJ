@@ -37,30 +37,6 @@ public class MainActivity extends AppCompatActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-//    AppUpdater appUpdater = new AppUpdater(this);
-//    appUpdater.setUpdateFrom(UpdateFrom.GITHUB)
-//            .setGitHubUserAndRepo("albert7617", "CCUMIS")
-//            .setTitleOnUpdateAvailable("Update available")
-//            .setContentOnUpdateAvailable("Check out the latest version")
-//            .setButtonUpdate("Update now?")
-//            .setButtonUpdateClickListener(new DialogInterface.OnClickListener() {
-//              @Override
-//              public void onClick(DialogInterface dialog, int which) {
-//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/albert7617/CCUMIS/releases"));
-//                startActivity(browserIntent);
-//              }
-//            })
-//	          .setButtonDismiss("Maybe later")
-//            .setButtonDismissClickListener(new DialogInterface.OnClickListener() {
-//              @Override
-//              public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//              }
-//            })
-//            .setButtonDoNotShowAgain(null)
-//            .setCancelable(false)
-//            .start();
-
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 

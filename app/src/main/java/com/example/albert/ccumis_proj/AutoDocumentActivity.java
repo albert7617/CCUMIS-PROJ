@@ -284,6 +284,8 @@ public class AutoDocumentActivity extends AppCompatActivity {
       @Override
       public void onChanged(@Nullable List<Department> departments) {
         if (departments != null) {
+          items.clear();
+          values.clear();
           for (Department department :departments) {
             items.add(department.name);
             values.add(department.value);
