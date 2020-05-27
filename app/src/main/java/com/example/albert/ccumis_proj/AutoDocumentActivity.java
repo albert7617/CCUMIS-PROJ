@@ -588,7 +588,9 @@ public class AutoDocumentActivity extends AppCompatActivity {
         break;
 
     }
-    strings.add(content);
+    if (strings != null) {
+      strings.addAll(contents);
+    }
 
     preferences.edit().putStringSet(getString(R.string.pref_content), strings).apply();
 
